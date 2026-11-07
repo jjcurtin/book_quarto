@@ -1,0 +1,90 @@
+## Introduction to Quarto {.unnumbered}
+
+<!-- TODO: landing-page intro, how the book is organized (live vs. reference units), and the slide deck links table (see book_git/index.qmd) -->
+
+### Before the workshop
+
+Please finish these steps [before]{.uwred} the workshop so we can spend our time together on Quarto itself. They take about 15 minutes.
+
+This setup builds on the Git workshop. It assumes you already have:
+
+- Git installed (on Windows, this gave you [Git Bash]{.uwred})
+- A GitHub account
+- An SSH key connecting your computer to GitHub
+
+Type every command below in a terminal: Terminal on macOS or Linux, Git Bash on Windows, or the terminal inside RStudio.
+
+#### Step 1: Install Quarto
+
+Download the installer for your operating system from <https://quarto.org/docs/download/> and run it.
+
+RStudio comes with its own copy of Quarto, but please install Quarto separately anyway. The separate install works in [any]{.uwred} terminal, and it lets you control which version you have. You won't break anything: RStudio will use your installed copy automatically.
+
+When the installer finishes, close any open terminals and restart RStudio so they can find Quarto.
+
+#### Step 2: Check your Quarto version
+
+Open a new terminal and run:
+
+```bash
+quarto --version
+```
+
+You need version [1.9 or higher]{.uwred}. Earlier versions can't publish to Posit Connect Cloud from the terminal, which we will do in the workshop.
+
+If you don't see a version number of 1.9 or higher:
+
+- [`command not found`]{.uwred}: Quarto isn't installed, or the terminal can't find it yet. Re-run the installer, then open a [new]{.uwred} terminal and try again.
+- [A version lower than 1.9]{.uwred}: your terminal is finding an older copy of Quarto, often one installed for an earlier course. Run `which quarto` to see where that copy lives. Then download the current installer from the link above, run it, and check the version again in a new terminal.
+
+For a fuller diagnosis, `quarto check` reports which version of Quarto you are running and whether it can find R and Python.
+
+#### Step 3: Create a Posit Connect Cloud account
+
+[Posit Connect Cloud]{.uwred} is a free service for sharing documents online. We will publish a report and a slide deck to it during the workshop.
+
+1. Go to <https://connect.posit.cloud/>
+2. Click [Sign Up]{.uwred}
+3. Choose to sign up with [GitHub]{.uwred}, using the GitHub account you already have
+
+The free plan is all you need. If you already have an account, you can skip this step.
+
+#### Step 4: Create your workshop repo on GitHub
+
+During the workshop you will build a small project about ice cover on Lake Mendota. Make a home for it on GitHub now.
+
+In your browser, signed in to GitHub:
+
+1. Click [+]{.uwred} (top right) → [New repository]{.uwred}
+2. Name it [`mendota_ice`]{.uwred}
+3. Choose [Public]{.uwred} or [Private]{.uwred}; either works
+4. From the [Add .gitignore]{.uwred} dropdown, choose the [`R`]{.uwred} template
+5. Click [Create repository]{.uwred}
+
+Don't skip the `.gitignore`. It tells Git to ignore the clutter that R and RStudio create (like `.Rhistory` and `.Rproj.user/`). It also gives the repo its first commit, so when you clone it, `git push` and `git pull` work right away.
+
+#### Step 5: Clone the repo to your computer
+
+On your new repo's page, click the green [Code]{.uwred} button, select the [SSH]{.uwred} tab, and copy the address.
+
+In your terminal, move to the folder where you keep your GitHub repos. We used `~/github` in the Git workshop; use your own folder if it's different. Then clone the repo, pasting your own address:
+
+```bash
+cd ~/github
+git clone git@github.com:your_username/mendota_ice.git
+```
+
+Move into the new folder and look around:
+
+```bash
+cd mendota_ice
+ls -a
+```
+
+```
+.  ..  .git  .gitignore
+```
+
+You should see the `.gitignore` you created on GitHub, plus the hidden `.git` folder that holds the repo's history.
+
+That's it. You're ready for the workshop. We will start from this folder.

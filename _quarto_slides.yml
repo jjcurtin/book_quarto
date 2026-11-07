@@ -1,3 +1,7 @@
+project:
+  render:
+    - "*.qmd"
+
 toc: false
 css: [slides_teaching.css, utilities.css]
 format: 

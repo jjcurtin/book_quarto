@@ -24,3 +24,4 @@ book:
   reader-mode: true
   chapters:
     - index.qmd
+    - 01_intro.qmd

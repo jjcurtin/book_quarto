@@ -1,0 +1,4 @@
+- source: 01_intro.qmd
+  posit-connect-cloud:
+    - id: 01a1b7e1-d5f5-b3a6-1a7c-f9387cb0cefc
+      url: https://connect.posit.cloud/jjcurtin/content/01a1b7e1-d5f5-b3a6-1a7c-f9387cb0cefc

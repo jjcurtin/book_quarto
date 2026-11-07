@@ -1,0 +1,155 @@
+# What Is Quarto?
+
+## Why are we here?
+
+By the end of this hour you will be able to:
+
+- Explain what [Quarto]{.uwred} is and how it works with R and RStudio
+- Write a report that mixes text and R code
+- Render it to a self-contained file and publish it online
+- Turn the same kind of document into a [slide deck]{.uwred}
+- Write a [manuscript]{.uwred} with citations and cross-references
+
+<div class="gap-md"></div>
+
+You'll build along with me the whole hour, with a few [Your turn]{.uwred} moments to try a step on your own.
+
+
+--------------------------------------------------------------------------------
+
+## What is Quarto?
+
+[Quarto]{.uwred} is a free, open-source publishing system.
+
+<div class="gap-sm"></div>
+
+You write one plain-text file (a `.qmd`) that mixes:
+
+- Text, written in [markdown]{.uwred}
+- Code, in R or Python
+- A few options at the top, written in [YAML]{.uwred}
+
+<div class="gap-md"></div>
+
+Quarto turns that file into a finished document:
+
+- Reports (HTML, Word, PDF)
+- Slide decks
+- Manuscripts and journal articles
+
+
+--------------------------------------------------------------------------------
+
+## R, RStudio, and Quarto
+
+Three tools, three different jobs:
+
+<div class="gap-sm"></div>
+
+| Tool | What it is | Its job |
+|---|---|---|
+| [R]{.uwred} (or Python) | A programming language | Runs your code: data, models, figures |
+| [RStudio]{.uwred} | An IDE | Where you write code and documents |
+| [Quarto]{.uwred} | A publishing system | Turns your `.qmd` into a finished document |
+
+: {tbl-colwidths="[20,30,50]"}
+
+<div class="gap-md"></div>
+
+You use them together: write a `.qmd` in RStudio, [render]{.uwred} it from the terminal, and Quarto has R run your code and builds the document around the results.
+
+
+--------------------------------------------------------------------------------
+
+## What happens when you render
+
+```bash
+quarto render report.qmd
+```
+
+```{mermaid}
+%%| echo: false
+flowchart LR
+  Q[".qmd<br/>text + code"] --> E["engine<br/>runs the code"]
+  E --> M[".md<br/>text + results"]
+  M --> P["Pandoc<br/>converts"]
+  P --> O["HTML, Word,<br/>PDF, slides"]
+```
+
+<div class="gap-sm"></div>
+
+- An [engine]{.uwred} runs your code chunks: knitr for R, Jupyter for Python
+- Your numbers, tables, and figures are woven into the text
+- [Pandoc]{.uwred} converts the result to the format you asked for
+
+<div class="gap-md"></div>
+
+The engine runs your code in a [fresh session]{.uwred}, not in your RStudio console. Remember this; it matters in the next unit.
+
+
+--------------------------------------------------------------------------------
+
+## Why use Quarto?
+
+| The old way | With Quarto |
+|---|---|
+| Copy numbers from the console into Word, then they drift out of date when the data change | Text and code live together; numbers are computed every time you render |
+| Rebuild the same figure for the report, the slides, and the paper | One source, many formats |
+| Type citations by hand and renumber figures when you reorder them | Citations come from a `.bib` file; figure and table numbers update themselves |
+| "How did I get this result?" | Rendering re-runs everything from scratch, so the document *is* the record |
+| Binary files that Git can't compare | Plain text that works with Git |
+
+
+--------------------------------------------------------------------------------
+
+## A few quick notes
+
+[Quarto is its own program.]{.uwred} Like Git, you run it from the terminal, and every command starts with `quarto`. It works the same whether you edit in RStudio, Positron, VS Code, or Jupyter.
+
+<div class="gap-md"></div>
+
+[It is not just for R.]{.uwred} If your project uses Python, you can use Quarto the same way. Code chunks just say `{python}` instead of `{r}`.
+
+<div class="gap-md"></div>
+
+[Coming from R Markdown?]{.uwred} Quarto is its successor. Most of what you know carries over, and your `.Rmd` files still work.
+
+
+--------------------------------------------------------------------------------
+
+## Source vs. output
+
+<div class="gap-sm"></div>
+
+| File | What it is | What you do with it |
+|---|---|---|
+| `report.qmd` | The [source]{.uwred} | Write and edit it; commit it to Git |
+| `report.html` | The [output]{.uwred} | Read and share it; never edit it by hand |
+
+<div class="gap-md"></div>
+
+Quarto rebuilds the output from scratch every time you render, so any edits you make to the HTML will be overwritten.
+
+<div class="gap-md"></div>
+
+To change the output, change the source and render again.
+
+
+--------------------------------------------------------------------------------
+
+## Where we are
+
+We have:
+
+- Defined Quarto as a publishing system, separate from R and RStudio
+- Seen what happens when you render
+- Seen why it beats copy and paste for reports, slides, and papers
+
+<div class="gap-md"></div>
+
+::: {.callout-wide}
+::: {.callout-important}
+# Next up
+Time to write one. Next we will build our first Quarto [report]{.uwred} about a Madison favorite: ice on Lake Mendota.
+:::
+:::
