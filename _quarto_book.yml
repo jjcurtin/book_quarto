@@ -1,0 +1,26 @@
+project:
+  type: book
+
+execute:
+  echo: true
+  warning: true
+  message: true
+  freeze: auto
+
+toc: true
+toc-depth: 3
+css: [book.css, utilities.css]
+callout-icon: false
+code-fold: show
+
+book:
+  title: "Introduction to Quarto"
+  author: John J. Curtin, PhD
+  site-url: https://jjcurtin.github.io/book_quarto/
+  repo-url: https://github.com/jjcurtin/book_quarto
+  repo-branch: main
+  repo-actions: [edit]
+  page-navigation: true
+  reader-mode: true
+  chapters:
+    - index.qmd

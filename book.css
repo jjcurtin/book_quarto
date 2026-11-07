@@ -1,0 +1,19 @@
+/* Theme for the book (HTML) format.
+   Shared utility classes live in utilities.css (loaded alongside this file). */
+
+h1 {
+    color: #c5050c;
+    }
+
+h2 {
+ color: #c5050c !important;
+}
+  
+h3 {
+ color: #c5050c !important;
+ } 
+
+.cell-output {
+  background-color: honeydew;
+  border-radius: 4px;
+}
