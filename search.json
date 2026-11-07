@@ -1,0 +1,112 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Quarto",
+    "section": "",
+    "text": "Introduction to Quarto",
+    "crumbs": [
+      "Introduction to Quarto"
+    ]
+  },
+  {
+    "objectID": "index.html#introduction-to-quarto",
+    "href": "index.html#introduction-to-quarto",
+    "title": "Introduction to Quarto",
+    "section": "",
+    "text": "Before the workshop\nPlease finish these steps before the workshop so we can spend our time together on Quarto itself. They take about 15 minutes.\nThis setup builds on the Git workshop. It assumes you already have:\n\nGit installed (on Windows, this gave you Git Bash)\nA GitHub account\nAn SSH key connecting your computer to GitHub\n\nType every command below in a terminal: Terminal on macOS or Linux, Git Bash on Windows, or the terminal inside RStudio.\n\nStep 1: Install Quarto\nDownload the installer for your operating system from https://quarto.org/docs/download/ and run it.\nRStudio comes with its own copy of Quarto, but please install Quarto separately anyway. The separate install works in any terminal, and it lets you control which version you have. You won’t break anything: RStudio will use your installed copy automatically.\nWhen the installer finishes, close any open terminals and restart RStudio so they can find Quarto.\n\n\nStep 2: Check your Quarto version\nOpen a new terminal and run:\nquarto --version\nYou need version 1.9 or higher. Earlier versions can’t publish to Posit Connect Cloud from the terminal, which we will do in the workshop.\nIf you don’t see a version number of 1.9 or higher:\n\ncommand not found: Quarto isn’t installed, or the terminal can’t find it yet. Re-run the installer, then open a new terminal and try again.\nA version lower than 1.9: your terminal is finding an older copy of Quarto, often one installed for an earlier course. Run which quarto to see where that copy lives. Then download the current installer from the link above, run it, and check the version again in a new terminal.\n\nFor a fuller diagnosis, quarto check reports which version of Quarto you are running and whether it can find R and Python.\n\n\nStep 3: Create a Posit Connect Cloud account\nPosit Connect Cloud is a free service for sharing documents online. We will publish a report and a slide deck to it during the workshop.\n\nGo to https://connect.posit.cloud/\nClick Sign Up\nChoose to sign up with GitHub, using the GitHub account you already have\n\nThe free plan is all you need. If you already have an account, you can skip this step.\n\n\nStep 4: Create your workshop repo on GitHub\nDuring the workshop you will build a small project about ice cover on Lake Mendota. Make a home for it on GitHub now.\nIn your browser, signed in to GitHub:\n\nClick + (top right) → New repository\nName it mendota_ice\nChoose Public or Private; either works\nFrom the Add .gitignore dropdown, choose the R template\nClick Create repository\n\nDon’t skip the .gitignore. It tells Git to ignore the clutter that R and RStudio create (like .Rhistory and .Rproj.user/). It also gives the repo its first commit, so when you clone it, git push and git pull work right away.\n\n\nStep 5: Clone the repo to your computer\nOn your new repo’s page, click the green Code button, select the SSH tab, and copy the address.\nIn your terminal, move to the folder where you keep your GitHub repos. We used ~/github in the Git workshop; use your own folder if it’s different. Then clone the repo, pasting your own address:\ncd ~/github\ngit clone git@github.com:your_username/mendota_ice.git\nMove into the new folder and look around:\ncd mendota_ice\nls -a\n.  ..  .git  .gitignore\nYou should see the .gitignore you created on GitHub, plus the hidden .git folder that holds the repo’s history.\nThat’s it. You’re ready for the workshop. We will start from this folder.",
+    "crumbs": [
+      "Introduction to Quarto"
+    ]
+  },
+  {
+    "objectID": "01_intro.html",
+    "href": "01_intro.html",
+    "title": "1  What Is Quarto?",
+    "section": "",
+    "text": "1.1 Why are we here?\nBy the end of this hour you will be able to:\nYou’ll build along with me the whole hour, with a few Your turn moments to try a step on your own.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#why-are-we-here",
+    "href": "01_intro.html#why-are-we-here",
+    "title": "1  What Is Quarto?",
+    "section": "",
+    "text": "Explain what Quarto is and how it works with R and RStudio\nWrite a report that mixes text and R code\nRender it to a self-contained file and publish it online\nTurn the same kind of document into a slide deck\nWrite a manuscript with citations and cross-references",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#what-is-quarto",
+    "href": "01_intro.html#what-is-quarto",
+    "title": "1  What Is Quarto?",
+    "section": "1.2 What is Quarto?",
+    "text": "1.2 What is Quarto?\nQuarto is a free, open-source publishing system.\n\n\n\nYou write one plain-text file (a .qmd) that mixes:\n\nText, written in markdown\nCode, in R or Python\nA few options at the top, written in YAML\n\n\n\n\nQuarto turns that file into a finished document:\n\nReports (HTML, Word, PDF)\nSlide decks\nManuscripts and journal articles",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#r-rstudio-and-quarto",
+    "href": "01_intro.html#r-rstudio-and-quarto",
+    "title": "1  What Is Quarto?",
+    "section": "1.3 R, RStudio, and Quarto",
+    "text": "1.3 R, RStudio, and Quarto\nThree tools, three different jobs:\n\n\n\n\n\n\n\n\n\n\n\nTool\nWhat it is\nIts job\n\n\n\n\nR (or Python)\nA programming language\nRuns your code: data, models, figures\n\n\nRStudio\nAn IDE\nWhere you write code and documents\n\n\nQuarto\nA publishing system\nTurns your .qmd into a finished document\n\n\n\n\n\n\nYou use them together: write a .qmd in RStudio, render it from the terminal, and Quarto has R run your code and builds the document around the results.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#what-happens-when-you-render",
+    "href": "01_intro.html#what-happens-when-you-render",
+    "title": "1  What Is Quarto?",
+    "section": "1.4 What happens when you render",
+    "text": "1.4 What happens when you render\nquarto render report.qmd\n\n\n\n\n\n\nflowchart LR\n  Q[\".qmd&lt;br/&gt;text + code\"] --&gt; E[\"engine&lt;br/&gt;runs the code\"]\n  E --&gt; M[\".md&lt;br/&gt;text + results\"]\n  M --&gt; P[\"Pandoc&lt;br/&gt;converts\"]\n  P --&gt; O[\"HTML, Word,&lt;br/&gt;PDF, slides\"]\n\n\n\n\n\n\n\n\n\n\nAn engine runs your code chunks: knitr for R, Jupyter for Python\nYour numbers, tables, and figures are woven into the text\nPandoc converts the result to the format you asked for\n\n\n\n\nThe engine runs your code in a fresh session, not in your RStudio console. Remember this; it matters in the next unit.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#why-use-quarto",
+    "href": "01_intro.html#why-use-quarto",
+    "title": "1  What Is Quarto?",
+    "section": "1.5 Why use Quarto?",
+    "text": "1.5 Why use Quarto?\n\n\n\n\n\n\n\nThe old way\nWith Quarto\n\n\n\n\nCopy numbers from the console into Word, then they drift out of date when the data change\nText and code live together; numbers are computed every time you render\n\n\nRebuild the same figure for the report, the slides, and the paper\nOne source, many formats\n\n\nType citations by hand and renumber figures when you reorder them\nCitations come from a .bib file; figure and table numbers update themselves\n\n\n“How did I get this result?”\nRendering re-runs everything from scratch, so the document is the record\n\n\nBinary files that Git can’t compare\nPlain text that works with Git",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#a-few-quick-notes",
+    "href": "01_intro.html#a-few-quick-notes",
+    "title": "1  What Is Quarto?",
+    "section": "1.6 A few quick notes",
+    "text": "1.6 A few quick notes\nQuarto is its own program. Like Git, you run it from the terminal, and every command starts with quarto. It works the same whether you edit in RStudio, Positron, VS Code, or Jupyter.\n\n\n\nIt is not just for R. If your project uses Python, you can use Quarto the same way. Code chunks just say {python} instead of {r}.\n\n\n\nComing from R Markdown? Quarto is its successor. Most of what you know carries over, and your .Rmd files still work.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#source-vs.-output",
+    "href": "01_intro.html#source-vs.-output",
+    "title": "1  What Is Quarto?",
+    "section": "1.7 Source vs. output",
+    "text": "1.7 Source vs. output\n\n\n\n\n\n\n\n\n\n\n\nFile\nWhat it is\nWhat you do with it\n\n\n\n\nreport.qmd\nThe source\nWrite and edit it; commit it to Git\n\n\nreport.html\nThe output\nRead and share it; never edit it by hand\n\n\n\n\n\n\nQuarto rebuilds the output from scratch every time you render, so any edits you make to the HTML will be overwritten.\n\n\n\nTo change the output, change the source and render again.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#where-we-are",
+    "href": "01_intro.html#where-we-are",
+    "title": "1  What Is Quarto?",
+    "section": "1.8 Where we are",
+    "text": "1.8 Where we are\nWe have:\n\nDefined Quarto as a publishing system, separate from R and RStudio\nSeen what happens when you render\nSeen why it beats copy and paste for reports, slides, and papers\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nTime to write one. Next we will build our first Quarto report about a Madison favorite: ice on Lake Mendota.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+    ]
+  }
+]
