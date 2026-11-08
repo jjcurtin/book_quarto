@@ -71,6 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./02_report.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -173,6 +174,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Quarto?</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -252,6 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Reports (HTML, Word, PDF)</li>
 <li>Slide decks</li>
 <li>Manuscripts and journal articles</li>
+<li>Posters, websites, dashboards (these are not covered today)</li>
 </ul>
 <hr>
 </section>
@@ -295,7 +303,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="gap-md">
 
 </div>
-<p>You use them together: write a <code>.qmd</code> in RStudio, <span class="uwred">render</span> it from the terminal, and Quarto has R run your code and builds the document around the results.</p>
+<p>You use them together:</p>
+<ul>
+<li>write a <code>.qmd</code> in RStudio,</li>
+<li><span class="uwred">render</span> it from the terminal, and</li>
+<li>Quarto has R run your code and builds the document around the results.</li>
+</ul>
 <hr>
 </section>
 <section id="what-happens-when-you-render" class="level2" data-number="1.4">
@@ -329,7 +342,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="gap-md">
 
 </div>
-<p>The engine runs your code in a <span class="uwred">fresh session</span>, not in your RStudio console. Remember this; it matters in the next unit.</p>
+<p>The engine runs your code in a <span class="uwred">fresh session</span>,</p>
+<ul>
+<li>not in your RStudio console.</li>
+<li>Remember this; it matters in the next unit.</li>
+</ul>
 <hr>
 </section>
 <section id="why-use-quarto" class="level2" data-number="1.5">
@@ -372,15 +389,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a-few-quick-notes" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="a-few-quick-notes"><span class="header-section-number">1.6</span> A few quick notes</h2>
-<p><span class="uwred">Quarto is its own program.</span> Like Git, you run it from the terminal, and every command starts with <code>quarto</code>. It works the same whether you edit in RStudio, Positron, VS Code, or Jupyter.</p>
+<p><span class="uwred">Quarto is its own program.</span></p>
+<ul>
+<li>Like Git, you run it from the terminal, and every command starts with <code>quarto</code>.</li>
+<li>It works the same whether you edit in RStudio, Positron, VS Code, or Jupyter.</li>
+</ul>
 <div class="gap-md">
 
 </div>
-<p><span class="uwred">It is not just for R.</span> If your project uses Python, you can use Quarto the same way. Code chunks just say <code>{python}</code> instead of <code>{r}</code>.</p>
+<p><span class="uwred">It is not just for R.</span></p>
+<ul>
+<li>If your project uses Python, you can use Quarto the same way.</li>
+<li>Code chunks just say <code>{python}</code> instead of <code>{r}</code>.</li>
+</ul>
 <div class="gap-md">
 
 </div>
-<p><span class="uwred">Coming from R Markdown?</span> Quarto is its successor. Most of what you know carries over, and your <code>.Rmd</code> files still work.</p>
+<p><span class="uwred">Coming from R Markdown?</span></p>
+<ul>
+<li>Quarto is its successor.</li>
+<li>Most of what you know carries over, and your <code>.Rmd</code> files still work.</li>
+</ul>
 <hr>
 </section>
 <section id="source-vs.-output" class="level2" data-number="1.7">
@@ -938,6 +967,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./02_report.html" class="pagination-link" aria-label="Your First Quarto Report">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jjcurtin.github.io/book_quarto/index.html</loc>
-    <lastmod>2026-11-07T21:30:25.917Z</lastmod>
+    <lastmod>2026-11-08T14:21:01.708Z</lastmod>
   </url>
   <url>
     <loc>https://jjcurtin.github.io/book_quarto/01_intro.html</loc>
-    <lastmod>2026-11-07T21:23:17.377Z</lastmod>
+    <lastmod>2026-11-08T13:31:33.781Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jjcurtin.github.io/book_quarto/02_report.html</loc>
+    <lastmod>2026-11-08T14:21:12.178Z</lastmod>
   </url>
 </urlset>
