@@ -1,0 +1,235 @@
+---
+title: "Render and Publish"
+---
+
+## Two ways to share
+
+Once your report renders, you can share it as:
+
+- a [file]{.uwred}: email it, post it on Canvas
+- a [URL]{.uwred}: publish it online
+
+<div class="gap-md"></div>
+
+We will do both in this unit.
+
+
+--------------------------------------------------------------------------------
+
+## What render made
+
+```bash
+ls
+```
+
+```
+data  report.html  report.qmd  report_files
+```
+
+<div class="gap-sm"></div>
+
+- `report.html` is the page
+- `report_files/` holds the figure and the page's styling
+
+<div class="gap-md"></div>
+
+Email someone just `report.html`:
+
+- the figure and styling are missing
+
+
+--------------------------------------------------------------------------------
+
+## One self-contained file
+
+Change `format:` in your YAML header:
+
+```yaml
+---
+title: "Ice Cover on Lake Mendota"
+author: "Your Name"
+date: today
+format:
+  html:
+    embed-resources: true
+---
+```
+
+<div class="gap-sm"></div>
+
+- `html` moves to its own line, indented under `format:`
+- YAML cares about [indentation]{.uwred}; use two spaces per level
+- `embed-resources: true` packs the figure and styling into the HTML file
+
+
+--------------------------------------------------------------------------------
+
+## Render again
+
+```bash
+quarto render report.qmd
+ls
+```
+
+```
+data  report.html  report.qmd
+```
+
+<div class="gap-sm"></div>
+
+- `report_files/` is gone
+- `report.html` is now one file you can email or post
+- It is bigger (about 1.3 MB), because everything is inside it
+
+
+--------------------------------------------------------------------------------
+
+## Other formats, one flag
+
+The same `.qmd` can become other formats:
+
+```bash
+quarto render report.qmd --to docx
+quarto render report.qmd --to typst
+```
+
+<div class="gap-sm"></div>
+
+- `docx`: a Word document
+- `typst`: a PDF, with no LaTeX needed
+- More on Word output in the manuscript unit
+
+
+--------------------------------------------------------------------------------
+
+## Posit Connect Cloud
+
+[Posit Connect Cloud]{.uwred} hosts documents online for free.
+
+- You made an account before the workshop
+
+<div class="gap-md"></div>
+
+On the free plan, everything you publish is [public]{.uwred}:
+
+- Anyone with the link can see it
+- It is listed on your public profile page
+- This is true even if your GitHub repo is private
+- Never publish private or sensitive data
+
+
+--------------------------------------------------------------------------------
+
+## Publish
+
+```bash
+quarto publish posit-connect-cloud report.qmd
+```
+
+<div class="gap-sm"></div>
+
+What happens:
+
+- Quarto renders the report on [your]{.uwred} computer
+- It uploads only the output
+- Connect Cloud never runs your code
+
+
+--------------------------------------------------------------------------------
+
+## First time only: authorize
+
+Quarto first asks to [Authorize]{.uwred}:
+
+- Press Enter
+- Quarto prints an authorization code and opens your browser
+- Log in to Connect Cloud if asked, then approve the request
+
+<div class="gap-md"></div>
+
+Quarto saves the authorization on your computer.
+
+- You will not need to do this again on this computer
+
+
+--------------------------------------------------------------------------------
+
+## Your report is live
+
+When it finishes, Quarto prints the URL and opens it:
+
+```
+Published: https://connect.posit.cloud/your_name/content/...
+```
+
+<div class="gap-sm"></div>
+
+- Share this link with anyone
+- The title on Connect Cloud comes from `title:` in your YAML
+
+<div class="gap-md"></div>
+
+The title is set only on the [first]{.uwred} publish.
+
+- To rename it later, use the Connect Cloud website
+
+
+--------------------------------------------------------------------------------
+
+## Update it
+
+Change your report, then run the same command:
+
+```bash
+quarto publish posit-connect-cloud report.qmd
+```
+
+<div class="gap-sm"></div>
+
+Quarto asks [Publish update to:]{.uwred}
+
+- The first choice is your report's URL; press Enter
+- Don't choose "Add a new destination"; that makes a second copy
+
+<div class="gap-md"></div>
+
+How does Quarto remember the URL?
+
+- The first publish created `_publish.yml` next to your report
+- It records where `report.qmd` was published
+- Keep it, and don't edit it
+
+
+--------------------------------------------------------------------------------
+
+## Your turn
+
+::: {.callout-wide}
+::: {.callout-important}
+# Try it
+1. Add a sentence with the longest winter on record (Hint: `max(ice$ice_days)`)
+2. Publish the update with `quarto publish posit-connect-cloud report.qmd`
+3. Reload your report's URL and find your new sentence
+:::
+:::
+
+
+--------------------------------------------------------------------------------
+
+## Where we are
+
+We have:
+
+- Rendered the report to one self-contained HTML file
+- Seen that one flag switches the output to Word or PDF
+- Published the report to Posit Connect Cloud
+- Updated it at the same URL
+
+<div class="gap-md"></div>
+
+::: {.callout-wide}
+::: {.callout-important}
+# Next up
+Reports are one product. Next we will turn the same kind of document into a [slide deck]{.uwred}.
+:::
+:::

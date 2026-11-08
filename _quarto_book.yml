@@ -25,3 +25,5 @@ book:
   chapters:
     - index.qmd
     - 01_intro.qmd
+    - 02_report.qmd
+    - 03_publish.qmd

@@ -87,4 +87,31 @@ ls -a
 
 You should see the `.gitignore` you created on GitHub, plus the hidden `.git` folder that holds the repo's history.
 
+#### Step 6: Download the data
+
+Our report will use 170 years of ice records for Lake Mendota. Put a copy in a `data` folder inside your repo.
+
+Stay in your `mendota_ice` folder. Copy the two commands below (use the copy button at the top right of the box), paste them into your terminal, and press Enter:
+
+```bash
+mkdir data
+curl -fsSL -o data/mendota_ice.csv https://raw.githubusercontent.com/jjcurtin/book_quarto/main/data/mendota_ice.csv
+```
+
+`mkdir` makes the `data` folder. `curl` downloads the file into it. If all goes well, neither command prints anything.
+
+Check that the file arrived:
+
+```bash
+head -3 data/mendota_ice.csv
+```
+
+```
+winter,year,ice_days
+1855-56,1856,118
+1856-57,1857,151
+```
+
+If you see an error instead, make sure you are in your `mendota_ice` folder (`pwd` shows where you are), then paste the commands again. If `mkdir` says the folder already exists, that's fine; just run the `curl` line.
+
 That's it. You're ready for the workshop. We will start from this folder.

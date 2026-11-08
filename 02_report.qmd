@@ -1,0 +1,455 @@
+---
+title: "Quarto Workshop: Your First Quarto Report"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+ice <- read_csv(here::here("data/mendota_ice.csv"), show_col_types = FALSE)
+mean_1800s <- ice |> filter(year < 1900) |> pull(ice_days) |> mean() |> round()
+mean_recent <- ice |> filter(year >= 2000) |> pull(ice_days) |> mean() |> round()
+```
+
+## When is Lake Mendota frozen?
+
+The Wisconsin State Climatology Office decides each winter.
+
+<div class="gap-sm"></div>
+
+For Mendota, one of their rules is a bit unusual:
+
+- Can you row a boat from [Picnic Point]{.uwred} to [Maple Bluff]{.uwred}?
+- If not, the lake is frozen.
+
+<div class="gap-md"></div>
+
+The story, handed down by oral tradition:
+
+- UW limnologists E. A. Birge and Chancey Juday were often out on the lake in a rowboat
+- The ice along that line decided whether they could row [a case of beer]{.uwred} to their friends in Maple Bluff
+
+
+--------------------------------------------------------------------------------
+
+## Our data
+
+Observers have recorded ice on Lake Mendota every winter since the 1850s.
+
+<div class="gap-sm"></div>
+
+You downloaded them to `data/mendota_ice.csv`, one row per winter:
+
+- `winter`: the winter, e.g., `1855-56`
+- `year`: the year that winter ended
+- `ice_days`: days the lake was frozen
+
+<div class="gap-md"></div>
+
+`r nrow(ice)` winters, from `r first(ice$winter)` to `r last(ice$winter)`.
+
+- The question for our report: is ice cover declining?
+
+
+--------------------------------------------------------------------------------
+
+## What we will build
+
+One file, `report.qmd`, with:
+
+- A [YAML]{.uwred} header: title, author, date, format
+- Text written in [markdown]{.uwred}: headings, paragraphs, lists
+- [Code chunks]{.uwred} that load the data and draw a figure
+- [Inline R]{.uwred}: numbers in sentences, computed from the data
+
+<div class="gap-md"></div>
+
+We will render it after each step so you can see what changed.
+
+
+--------------------------------------------------------------------------------
+
+## Create the file
+
+In the terminal, move into your repo and create an empty file:
+
+```bash
+cd ~/github/mendota_ice
+touch report.qmd
+```
+
+<div class="gap-sm"></div>
+
+Then open `report.qmd` in RStudio:
+
+- Use the [Files]{.uwred} pane, or File → Open File
+- It is a plain-text file, like an `.R` script
+
+
+--------------------------------------------------------------------------------
+
+## The YAML ("Yet Another Markup Language") header
+
+Type this at the very top of `report.qmd`:
+
+```yaml
+---
+title: "Ice Cover on Lake Mendota"
+author: "Your Name"
+date: today
+format: html
+---
+```
+
+<div class="gap-sm"></div>
+
+The header sits between two lines of `---`
+
+- Each line is a `key: value` pair
+- `format: html` says what to build
+- `date: today` fills in the date each time you render
+
+
+--------------------------------------------------------------------------------
+
+## Render it
+
+Back in the terminal:
+
+```bash
+quarto render report.qmd
+```
+
+<div class="gap-sm"></div>
+
+Quarto writes [`report.html`]{.uwred} next to your `.qmd`.
+
+- Open it in your browser
+- In RStudio: click it in the Files pane → View in Web Browser
+
+<div class="gap-md"></div>
+
+So far, just a title, author, and date.
+
+- Each time you change the `.qmd`, render again and reload the page
+
+
+--------------------------------------------------------------------------------
+
+## Markdown: headings, text, and lists
+
+Below the YAML header, add:
+
+```markdown
+## Background
+
+Lake Mendota has been watched for ice since the **1850s**.
+
+For each winter, the record notes:
+
+- the date the lake froze
+- the date it opened
+
+## Ice cover over time
+```
+
+<div class="gap-sm"></div>
+
+- `##` is a section heading, `###` a subsection
+- Put a space after the `#`
+- Start at `##`; the YAML `title` is already the top level
+- `**bold**` makes text [bold]{.uwred}
+- A line starting with `- ` is a list item
+
+
+--------------------------------------------------------------------------------
+
+## Blank lines matter
+
+If you leave out the blank line before the list (Don't do this step today)
+
+```markdown
+For each winter, the record notes:
+- the date the lake froze
+- the date it opened
+```
+
+<div class="gap-sm"></div>
+
+You get one run-on paragraph:
+
+> For each winter, the record notes: - the date the lake froze - the date it opened
+
+<div class="gap-md"></div>
+
+Markdown needs a [blank line]{.uwred}:
+
+- before a list
+- before and after a heading
+- between paragraphs
+
+
+
+--------------------------------------------------------------------------------
+
+## Your turn
+
+::: {.callout-wide}
+::: {.callout-important}
+# Try it
+1. Add the headings, text, and list from the last few slides
+2. Render with `quarto render report.qmd`
+3. Reload `report.html` and check that the list is a list
+4. (Try later) Remove the blank line above the list items, render again, and see what breaks 
+:::
+:::
+
+
+--------------------------------------------------------------------------------
+
+## Code chunks
+
+R code goes in a [code chunk]{.uwred}:
+
+```{{r}}
+#| label: setup
+
+library(tidyverse)
+ice <- read_csv("data/mendota_ice.csv")
+```
+
+<div class="gap-sm"></div>
+
+- Starts with ```` ```{r} ```` and ends with ```` ``` ````
+- Lines starting with `#|` are [chunk options]{.uwred}
+- `label` names the chunk (use snake_case; not always required but helps when debugging)
+
+<div class="gap-md"></div>
+
+Add this chunk just below the YAML header, then render.
+
+- A [setup chunk]{.uwred} at the top loads packages and data for the whole document
+
+
+--------------------------------------------------------------------------------
+
+## Hide the messages
+
+Your readers do not need these in your report:
+
+- the tidyverse startup messages
+- the column messages from `read_csv()`
+
+<div class="gap-sm"></div>
+
+Add one option to the `setup` chunk:
+
+```{{r}}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+ice <- read_csv("data/mendota_ice.csv")
+```
+
+<div class="gap-sm"></div>
+
+- `message: false` hides messages; the code still runs
+
+<div class="gap-md"></div>
+
+Want to hide the chunk completely?
+
+- `include: false` runs the code but shows neither the code nor its output
+
+
+--------------------------------------------------------------------------------
+
+## Add a figure
+
+Under `## Ice cover over time`, add a chunk:
+
+```{{r}}
+#| label: ice_plot
+
+ice |>
+  ggplot(aes(x = year, y = ice_days)) +
+  geom_line() +
+  labs(x = "Winter (year it ended)", y = "Days of ice cover") +
+  theme_minimal()
+```
+
+<div class="gap-sm"></div>
+
+Render again.
+
+- Quarto runs the chunk and puts the figure right below the code
+- It also makes a `report_files/` folder for the image; more on that in the next unit
+
+
+--------------------------------------------------------------------------------
+
+## The figure in your report
+
+```{r}
+#| label: ice_plot
+#| echo: false
+#| fig-width: 8
+#| fig-height: 4
+
+ice |>
+  ggplot(aes(x = year, y = ice_days)) +
+  geom_line() +
+  labs(x = "Winter (year it ended)", y = "Days of ice cover") +
+  theme_minimal()
+```
+
+<div class="gap-sm"></div>
+
+- Lots of year-to-year variation
+- But the trend is down
+
+
+--------------------------------------------------------------------------------
+
+## Inline R
+
+Do the work in a chunk:
+
+```{{r}}
+#| label: means
+
+mean_1800s <- ice |> filter(year < 1900) |> pull(ice_days) |> mean() |> round()
+mean_recent <- ice |> filter(year >= 2000) |> pull(ice_days) |> mean() |> round()
+```
+
+<div class="gap-sm"></div>
+
+Then put the results in your sentences with [inline R]{.uwred}:
+
+```markdown
+Before 1900, the lake averaged `r knitr::inline_expr("mean_1800s")` days of ice.
+Since 2000, it has averaged `r knitr::inline_expr("mean_recent")`.
+```
+
+- Backtick, the letter `r`, a space, then R code, then a closing backtick
+- Keep inline R short; do the work in a chunk
+
+> Before 1900, the lake averaged `r mean_1800s` days of ice. Since 2000, it has averaged `r mean_recent`.
+
+
+--------------------------------------------------------------------------------
+
+## Render runs in a fresh session
+
+In the RStudio [console]{.uwred}, run:
+
+```r
+n_winters <- 171
+```
+
+<div class="gap-sm"></div>
+
+Then add a sentence to `report.qmd` and render:
+
+```markdown
+There are `r knitr::inline_expr("n_winters")` winters in the record.
+```
+
+<div class="gap-md"></div>
+
+`n_winters` exists in your console.
+
+- So why will this fail?
+
+
+--------------------------------------------------------------------------------
+
+## The error
+
+```
+Error in eval(parse_only(code), envir = envir) :
+  object 'n_winters' not found
+
+Quitting from report.qmd:44-44
+Execution halted
+```
+
+<div class="gap-sm"></div>
+
+`quarto render` runs your code in a [fresh R session]{.uwred}.
+
+- It cannot see anything in your console
+- Not even chunks you ran in RStudio with the green ▶
+- Every object the report uses must be created in the report
+
+<div class="gap-md"></div>
+
+This is a feature:
+
+- If it renders, anyone with your `.qmd` and data can rebuild it
+- Fix it here by creating `n_winters` in a chunk, or use `nrow(ice)` inline
+
+
+--------------------------------------------------------------------------------
+
+## Your turn
+
+::: {.callout-wide}
+::: {.callout-important}
+# Try it
+1. Add the `means` chunk and the two sentences with inline R
+2. Add one more sentence: how many days of ice in the shortest winter on record? (Hint: `min(ice$ice_days)`)
+3. Render, and check the numbers in `report.html`
+:::
+:::
+
+
+--------------------------------------------------------------------------------
+
+## Your turn: what to type
+
+Below the `means` chunk, your text should look like this:
+
+```markdown
+Before 1900, the lake averaged `r knitr::inline_expr("mean_1800s")` days of ice.
+Since 2000, it has averaged `r knitr::inline_expr("mean_recent")`.
+
+The shortest winter on record had `r knitr::inline_expr("min(ice$ice_days)")` days of ice.
+```
+
+<div class="gap-sm"></div>
+
+> Before 1900, the lake averaged `r mean_1800s` days of ice. Since 2000, it has averaged `r mean_recent`.
+>
+> The shortest winter on record had `r min(ice$ice_days)` days of ice.
+
+<div class="gap-md"></div>
+
+Still getting an error?
+
+- The sentences must come [after]{.uwred} the `means` chunk; code runs top to bottom
+- Delete or fix the `n_winters` sentence from the last demo
+
+
+--------------------------------------------------------------------------------
+
+## Where we are
+
+We have:
+
+- Written a YAML header that sets the title, author, date, and format
+- Used markdown for headings, text, bold, and lists
+- Run R code in chunks, and hidden messages with chunk options
+- Put computed numbers in sentences with inline R
+- Seen that `quarto render` runs in a fresh session
+
+<div class="gap-md"></div>
+
+::: {.callout-wide}
+::: {.callout-important}
+# Next up
+Our report works, but it is spread across an HTML file and a folder. Next we will render it to [one self-contained file]{.uwred} and publish it online.
+:::
+:::
