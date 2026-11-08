@@ -22,291 +22,421 @@
   {
     "objectID": "01_intro.html",
     "href": "01_intro.html",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "",
     "text": "1.1 Why are we here?\nBy the end of this hour you will be able to:\nYou’ll build along with me the whole hour, with a few Your turn moments to try a step on your own.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#why-are-we-here",
     "href": "01_intro.html#why-are-we-here",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "",
     "text": "Explain what Quarto is and how it works with R and RStudio\nWrite a report that mixes text and R code\nRender it to a self-contained file and publish it online\nTurn the same kind of document into a slide deck\nWrite a manuscript with citations and cross-references",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#what-is-quarto",
     "href": "01_intro.html#what-is-quarto",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "1.2 What is Quarto?",
     "text": "1.2 What is Quarto?\nQuarto is a free, open-source publishing system.\n\n\n\nYou write one plain-text file (a .qmd) that mixes:\n\nText, written in markdown\nCode, in R or Python\nA few options at the top, written in YAML\n\n\n\n\nQuarto turns that file into a finished document:\n\nReports (HTML, Word, PDF)\nSlide decks\nManuscripts and journal articles\nPosters, websites, dashboards (these are not covered today)",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#r-rstudio-and-quarto",
     "href": "01_intro.html#r-rstudio-and-quarto",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "1.3 R, RStudio, and Quarto",
     "text": "1.3 R, RStudio, and Quarto\nThree tools, three different jobs:\n\n\n\n\n\n\n\n\n\n\n\nTool\nWhat it is\nIts job\n\n\n\n\nR (or Python)\nA programming language\nRuns your code: data, models, figures\n\n\nRStudio\nAn IDE\nWhere you write code and documents\n\n\nQuarto\nA publishing system\nTurns your .qmd into a finished document\n\n\n\n\n\n\nYou use them together:\n\nwrite a .qmd in RStudio,\nrender it from the terminal, and\nQuarto has R run your code and builds the document around the results.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#what-happens-when-you-render",
     "href": "01_intro.html#what-happens-when-you-render",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "1.4 What happens when you render",
     "text": "1.4 What happens when you render\nquarto render report.qmd\n\n\n\n\n\n\nflowchart LR\n  Q[\".qmd&lt;br/&gt;text + code\"] --&gt; E[\"engine&lt;br/&gt;runs the code\"]\n  E --&gt; M[\".md&lt;br/&gt;text + results\"]\n  M --&gt; P[\"Pandoc&lt;br/&gt;converts\"]\n  P --&gt; O[\"HTML, Word,&lt;br/&gt;PDF, slides\"]\n\n\n\n\n\n\n\n\n\n\nAn engine runs your code chunks: knitr for R, Jupyter for Python\nYour numbers, tables, and figures are woven into the text\nPandoc converts the result to the format you asked for\n\n\n\n\nThe engine runs your code in a fresh session,\n\nnot in your RStudio console.\nRemember this; it matters in the next unit.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#why-use-quarto",
     "href": "01_intro.html#why-use-quarto",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "1.5 Why use Quarto?",
     "text": "1.5 Why use Quarto?\n\n\n\n\n\n\n\nThe old way\nWith Quarto\n\n\n\n\nCopy numbers from the console into Word, then they drift out of date when the data change\nText and code live together; numbers are computed every time you render\n\n\nRebuild the same figure for the report, the slides, and the paper\nOne source, many formats\n\n\nType citations by hand and renumber figures when you reorder them\nCitations come from a .bib file; figure and table numbers update themselves\n\n\n“How did I get this result?”\nRendering re-runs everything from scratch, so the document is the record\n\n\nBinary files that Git can’t compare\nPlain text that works with Git",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#a-few-quick-notes",
     "href": "01_intro.html#a-few-quick-notes",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "1.6 A few quick notes",
     "text": "1.6 A few quick notes\nQuarto is its own program.\n\nLike Git, you run it from the terminal, and every command starts with quarto.\nIt works the same whether you edit in RStudio, Positron, VS Code, or Jupyter.\n\n\n\n\nIt is not just for R.\n\nIf your project uses Python, you can use Quarto the same way.\nCode chunks just say {python} instead of {r}.\n\n\n\n\nComing from R Markdown?\n\nQuarto is its successor.\nMost of what you know carries over, and your .Rmd files still work.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#source-vs.-output",
     "href": "01_intro.html#source-vs.-output",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "1.7 Source vs. output",
     "text": "1.7 Source vs. output\n\n\n\n\n\n\n\n\n\n\n\nFile\nWhat it is\nWhat you do with it\n\n\n\n\nreport.qmd\nThe source\nWrite and edit it; commit it to Git\n\n\nreport.html\nThe output\nRead and share it; never edit it by hand\n\n\n\n\n\n\nQuarto rebuilds the output from scratch every time you render, so any edits you make to the HTML will be overwritten.\n\n\n\nTo change the output, change the source and render again.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "01_intro.html#where-we-are",
     "href": "01_intro.html#where-we-are",
-    "title": "1  What Is Quarto?",
+    "title": "1  Quarto Workshop: What Is Quarto?",
     "section": "1.8 Where we are",
     "text": "1.8 Where we are\nWe have:\n\nDefined Quarto as a publishing system, separate from R and RStudio\nSeen what happens when you render\nSeen why it beats copy and paste for reports, slides, and papers\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nTime to write one. Next we will build our first Quarto report about a Madison favorite: ice on Lake Mendota.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Quarto?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quarto Workshop: What Is Quarto?</span>"
     ]
   },
   {
     "objectID": "02_report.html",
     "href": "02_report.html",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "",
     "text": "2.1 When is Lake Mendota frozen?\nThe Wisconsin State Climatology Office decides each winter.\nFor Mendota, one of their rules is a bit unusual:\nThe story, handed down by oral tradition:",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#when-is-lake-mendota-frozen",
     "href": "02_report.html#when-is-lake-mendota-frozen",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "",
     "text": "Can you row a boat from Picnic Point to Maple Bluff?\nIf not, the lake is frozen.\n\n\n\n\n\n\nUW limnologists E. A. Birge and Chancey Juday were often out on the lake in a rowboat\nThe ice along that line decided whether they could row a case of beer to their friends in Maple Bluff",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#our-data",
     "href": "02_report.html#our-data",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.2 Our data",
     "text": "2.2 Our data\nObservers have recorded ice on Lake Mendota every winter since the 1850s.\n\n\n\nYou downloaded them to data/mendota_ice.csv, one row per winter:\n\nwinter: the winter, e.g., 1855-56\nyear: the year that winter ended\nice_days: days the lake was frozen\n\n\n\n\n171 winters, from 1855-56 to 2025-26.\n\nThe question for our report: is ice cover declining?",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#what-we-will-build",
     "href": "02_report.html#what-we-will-build",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.3 What we will build",
     "text": "2.3 What we will build\nOne file, report.qmd, with:\n\nA YAML header: title, author, date, format\nText written in markdown: headings, paragraphs, lists\nCode chunks that load the data and draw a figure\nInline R: numbers in sentences, computed from the data\n\n\n\n\nWe will render it after each step so you can see what changed.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#create-the-file",
     "href": "02_report.html#create-the-file",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.4 Create the file",
     "text": "2.4 Create the file\nIn the terminal, move into your repo and create an empty file:\ncd ~/github/mendota_ice\ntouch report.qmd\n\n\n\nThen open report.qmd in RStudio:\n\nUse the Files pane, or File → Open File\nIt is a plain-text file, like an .R script",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#the-yaml-yet-another-markup-language-header",
     "href": "02_report.html#the-yaml-yet-another-markup-language-header",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.5 The YAML (“Yet Another Markup Language”) header",
     "text": "2.5 The YAML (“Yet Another Markup Language”) header\nType this at the very top of report.qmd:\n---\ntitle: \"Ice Cover on Lake Mendota\"\nauthor: \"Your Name\"\ndate: today\nformat: html\n---\n\n\n\nThe header sits between two lines of ---\n\nEach line is a key: value pair\nformat: html says what to build\ndate: today fills in the date each time you render",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#render-it",
     "href": "02_report.html#render-it",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.6 Render it",
     "text": "2.6 Render it\nBack in the terminal:\nquarto render report.qmd\n\n\n\nQuarto writes report.html next to your .qmd.\n\nOpen it in your browser\nIn RStudio: click it in the Files pane → View in Web Browser\n\n\n\n\nSo far, just a title, author, and date.\n\nEach time you change the .qmd, render again and reload the page",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#markdown-headings-text-and-lists",
     "href": "02_report.html#markdown-headings-text-and-lists",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.7 Markdown: headings, text, and lists",
     "text": "2.7 Markdown: headings, text, and lists\nBelow the YAML header, add:\n## Background\n\nLake Mendota has been watched for ice since the **1850s**.\n\nFor each winter, the record notes:\n\n- the date the lake froze\n- the date it opened\n\n## Ice cover over time\n\n\n\n\n## is a section heading, ### a subsection\nPut a space after the #\nStart at ##; the YAML title is already the top level\n**bold** makes text bold\nA line starting with - is a list item",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#blank-lines-matter",
     "href": "02_report.html#blank-lines-matter",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.8 Blank lines matter",
     "text": "2.8 Blank lines matter\nIf you leave out the blank line before the list (Don’t do this step today)\nFor each winter, the record notes:\n- the date the lake froze\n- the date it opened\n\n\n\nYou get one run-on paragraph:\n\nFor each winter, the record notes: - the date the lake froze - the date it opened\n\n\n\n\nMarkdown needs a blank line:\n\nbefore a list\nbefore and after a heading\nbetween paragraphs",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#your-turn",
     "href": "02_report.html#your-turn",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.9 Your turn",
     "text": "2.9 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd the headings, text, and list from the last few slides\nRender with quarto render report.qmd\nReload report.html and check that the list is a list\n(Try later) Remove the blank line above the list items, render again, and see what breaks",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#code-chunks",
     "href": "02_report.html#code-chunks",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.10 Code chunks",
     "text": "2.10 Code chunks\nR code goes in a code chunk:\n```{r}\n#| label: setup\n\nlibrary(tidyverse)\nice &lt;- read_csv(\"data/mendota_ice.csv\")\n```\n\n\n\n\nStarts with ```{r} and ends with ```\nLines starting with #| are chunk options\nlabel names the chunk (use snake_case; not always required but helps when debugging)\n\n\n\n\nAdd this chunk just below the YAML header, then render.\n\nA setup chunk at the top loads packages and data for the whole document",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#hide-the-messages",
     "href": "02_report.html#hide-the-messages",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.11 Hide the messages",
     "text": "2.11 Hide the messages\nYour readers do not need these in your report:\n\nthe tidyverse startup messages\nthe column messages from read_csv()\n\n\n\n\nAdd one option to the setup chunk:\n```{r}\n#| label: setup\n#| message: false\n\nlibrary(tidyverse)\nice &lt;- read_csv(\"data/mendota_ice.csv\")\n```\n\n\n\n\nmessage: false hides messages; the code still runs\n\n\n\n\nWant to hide the chunk completely?\n\ninclude: false runs the code but shows neither the code nor its output",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#add-a-figure",
     "href": "02_report.html#add-a-figure",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.12 Add a figure",
     "text": "2.12 Add a figure\nUnder ## Ice cover over time, add a chunk:\n```{r}\n#| label: ice_plot\n\nice |&gt;\n  ggplot(aes(x = year, y = ice_days)) +\n  geom_line() +\n  labs(x = \"Winter (year it ended)\", y = \"Days of ice cover\") +\n  theme_minimal()\n```\n\n\n\nRender again.\n\nQuarto runs the chunk and puts the figure right below the code\nIt also makes a report_files/ folder for the image; more on that in the next unit",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#the-figure-in-your-report",
     "href": "02_report.html#the-figure-in-your-report",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.13 The figure in your report",
     "text": "2.13 The figure in your report\n\n\n\n\n\n\n\n\n\n\n\n\n\nLots of year-to-year variation\nBut the trend is down",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#inline-r",
     "href": "02_report.html#inline-r",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.14 Inline R",
     "text": "2.14 Inline R\nDo the work in a chunk:\n```{r}\n#| label: means\n\nmean_1800s &lt;- ice |&gt; filter(year &lt; 1900) |&gt; pull(ice_days) |&gt; mean() |&gt; round()\nmean_recent &lt;- ice |&gt; filter(year &gt;= 2000) |&gt; pull(ice_days) |&gt; mean() |&gt; round()\n```\n\n\n\nThen put the results in your sentences with inline R:\nBefore 1900, the lake averaged `r mean_1800s` days of ice.\nSince 2000, it has averaged `r mean_recent`.\n\nBacktick, the letter r, a space, then R code, then a closing backtick\nKeep inline R short; do the work in a chunk\n\n\nBefore 1900, the lake averaged 114 days of ice. Since 2000, it has averaged 81.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#render-runs-in-a-fresh-session",
     "href": "02_report.html#render-runs-in-a-fresh-session",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.15 Render runs in a fresh session",
     "text": "2.15 Render runs in a fresh session\nIn the RStudio console, run:\nn_winters &lt;- 171\n\n\n\nThen add a sentence to report.qmd and render:\nThere are `r n_winters` winters in the record.\n\n\n\nn_winters exists in your console.\n\nSo why will this fail?",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#the-error",
     "href": "02_report.html#the-error",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.16 The error",
     "text": "2.16 The error\nError in eval(parse_only(code), envir = envir) :\n  object 'n_winters' not found\n\nQuitting from report.qmd:44-44\nExecution halted\n\n\n\nquarto render runs your code in a fresh R session.\n\nIt cannot see anything in your console\nNot even chunks you ran in RStudio with the green ▶\nEvery object the report uses must be created in the report\n\n\n\n\nThis is a feature:\n\nIf it renders, anyone with your .qmd and data can rebuild it\nFix it here by creating n_winters in a chunk, or use nrow(ice) inline",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#your-turn-1",
     "href": "02_report.html#your-turn-1",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.17 Your turn",
     "text": "2.17 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd the means chunk and the two sentences with inline R\nAdd one more sentence: how many days of ice in the shortest winter on record? (Hint: min(ice$ice_days))\nRender, and check the numbers in report.html",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#your-turn-what-to-type",
     "href": "02_report.html#your-turn-what-to-type",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.18 Your turn: what to type",
     "text": "2.18 Your turn: what to type\nBelow the means chunk, your text should look like this:\nBefore 1900, the lake averaged `r mean_1800s` days of ice.\nSince 2000, it has averaged `r mean_recent`.\n\nThe shortest winter on record had `r min(ice$ice_days)` days of ice.\n\n\n\n\nBefore 1900, the lake averaged 114 days of ice. Since 2000, it has averaged 81.\nThe shortest winter on record had 21 days of ice.\n\n\n\n\nStill getting an error?\n\nThe sentences must come after the means chunk; code runs top to bottom\nDelete or fix the n_winters sentence from the last demo",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
   },
   {
     "objectID": "02_report.html#where-we-are",
     "href": "02_report.html#where-we-are",
-    "title": "2  Your First Quarto Report",
+    "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.19 Where we are",
     "text": "2.19 Where we are\nWe have:\n\nWritten a YAML header that sets the title, author, date, and format\nUsed markdown for headings, text, bold, and lists\nRun R code in chunks, and hidden messages with chunk options\nPut computed numbers in sentences with inline R\nSeen that quarto render runs in a fresh session\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nOur report works, but it is spread across an HTML file and a folder. Next we will render it to one self-contained file and publish it online.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html",
+    "href": "03_publish.html",
+    "title": "3  Render and Publish",
+    "section": "",
+    "text": "3.1 Two ways to share\nOnce your report renders, you can share it as:\nWe will do both in this unit.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#two-ways-to-share",
+    "href": "03_publish.html#two-ways-to-share",
+    "title": "3  Render and Publish",
+    "section": "",
+    "text": "a file: email it, post it on Canvas\na URL: publish it online",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#what-render-made",
+    "href": "03_publish.html#what-render-made",
+    "title": "3  Render and Publish",
+    "section": "3.2 What render made",
+    "text": "3.2 What render made\nls\ndata  report.html  report.qmd  report_files\n\n\n\n\nreport.html is the page\nreport_files/ holds the figure and the page’s styling\n\n\n\n\nEmail someone just report.html:\n\nthe figure and styling are missing",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#one-self-contained-file",
+    "href": "03_publish.html#one-self-contained-file",
+    "title": "3  Render and Publish",
+    "section": "3.3 One self-contained file",
+    "text": "3.3 One self-contained file\nChange format: in your YAML header:\n---\ntitle: \"Ice Cover on Lake Mendota\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    embed-resources: true\n---\n\n\n\n\nhtml moves to its own line, indented under format:\nYAML cares about indentation; use two spaces per level\nembed-resources: true packs the figure and styling into the HTML file",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#render-again",
+    "href": "03_publish.html#render-again",
+    "title": "3  Render and Publish",
+    "section": "3.4 Render again",
+    "text": "3.4 Render again\nquarto render report.qmd\nls\ndata  report.html  report.qmd\n\n\n\n\nreport_files/ is gone\nreport.html is now one file you can email or post\nIt is bigger (about 1.3 MB), because everything is inside it",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#other-formats-one-flag",
+    "href": "03_publish.html#other-formats-one-flag",
+    "title": "3  Render and Publish",
+    "section": "3.5 Other formats, one flag",
+    "text": "3.5 Other formats, one flag\nThe same .qmd can become other formats:\nquarto render report.qmd --to docx\nquarto render report.qmd --to typst\n\n\n\n\ndocx: a Word document\ntypst: a PDF, with no LaTeX needed\nMore on Word output in the manuscript unit",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#posit-connect-cloud",
+    "href": "03_publish.html#posit-connect-cloud",
+    "title": "3  Render and Publish",
+    "section": "3.6 Posit Connect Cloud",
+    "text": "3.6 Posit Connect Cloud\nPosit Connect Cloud hosts documents online for free.\n\nYou made an account before the workshop\n\n\n\n\nOn the free plan, everything you publish is public:\n\nAnyone with the link can see it\nIt is listed on your public profile page\nThis is true even if your GitHub repo is private\nNever publish private or sensitive data",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#publish",
+    "href": "03_publish.html#publish",
+    "title": "3  Render and Publish",
+    "section": "3.7 Publish",
+    "text": "3.7 Publish\nquarto publish posit-connect-cloud report.qmd\n\n\n\nWhat happens:\n\nQuarto renders the report on your computer\nIt uploads only the output\nConnect Cloud never runs your code",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#first-time-only-authorize",
+    "href": "03_publish.html#first-time-only-authorize",
+    "title": "3  Render and Publish",
+    "section": "3.8 First time only: authorize",
+    "text": "3.8 First time only: authorize\nQuarto first asks to Authorize:\n\nPress Enter\nQuarto prints an authorization code and opens your browser\nLog in to Connect Cloud if asked, then approve the request\n\n\n\n\nQuarto saves the authorization on your computer.\n\nYou will not need to do this again on this computer",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#your-report-is-live",
+    "href": "03_publish.html#your-report-is-live",
+    "title": "3  Render and Publish",
+    "section": "3.9 Your report is live",
+    "text": "3.9 Your report is live\nWhen it finishes, Quarto prints the URL and opens it:\nPublished: https://connect.posit.cloud/your_name/content/...\n\n\n\n\nShare this link with anyone\nThe title on Connect Cloud comes from title: in your YAML\n\n\n\n\nThe title is set only on the first publish.\n\nTo rename it later, use the Connect Cloud website",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#update-it",
+    "href": "03_publish.html#update-it",
+    "title": "3  Render and Publish",
+    "section": "3.10 Update it",
+    "text": "3.10 Update it\nChange your report, then run the same command:\nquarto publish posit-connect-cloud report.qmd\n\n\n\nQuarto asks Publish update to:\n\nThe first choice is your report’s URL; press Enter\nDon’t choose “Add a new destination”; that makes a second copy\n\n\n\n\nHow does Quarto remember the URL?\n\nThe first publish created _publish.yml next to your report\nIt records where report.qmd was published\nKeep it, and don’t edit it",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#your-turn",
+    "href": "03_publish.html#your-turn",
+    "title": "3  Render and Publish",
+    "section": "3.11 Your turn",
+    "text": "3.11 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd a sentence with the longest winter on record (Hint: max(ice$ice_days))\nPublish the update with quarto publish posit-connect-cloud report.qmd\nReload your report’s URL and find your new sentence",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "03_publish.html#where-we-are",
+    "href": "03_publish.html#where-we-are",
+    "title": "3  Render and Publish",
+    "section": "3.12 Where we are",
+    "text": "3.12 Where we are\nWe have:\n\nRendered the report to one self-contained HTML file\nSeen that one flag switches the output to Word or PDF\nPublished the report to Posit Connect Cloud\nUpdated it at the same URL\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nReports are one product. Next we will turn the same kind of document into a slide deck.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
     ]
   }
 ]
