@@ -180,21 +180,11 @@
     ]
   },
   {
-    "objectID": "02_report.html#markdown-headings",
-    "href": "02_report.html#markdown-headings",
+    "objectID": "02_report.html#markdown-headings-text-and-lists",
+    "href": "02_report.html#markdown-headings-text-and-lists",
     "title": "2  Your First Quarto Report",
-    "section": "2.7 Markdown: headings",
-    "text": "2.7 Markdown: headings\nBelow the YAML header, add two sections:\n## Background\n\n## Ice cover over time\n\n\n\n\nThe number of # sets the level: ## is a section, ### a subsection\nPut a space after the #\nStart at ##; the YAML title is already the top level",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
-    ]
-  },
-  {
-    "objectID": "02_report.html#markdown-text-bold-and-lists",
-    "href": "02_report.html#markdown-text-bold-and-lists",
-    "title": "2  Your First Quarto Report",
-    "section": "2.8 Markdown: text, bold, and lists",
-    "text": "2.8 Markdown: text, bold, and lists\nUnder ## Background, add:\nLake Mendota has been watched for ice since the **1850s**.\n\nFor each winter, the record notes:\n\n- the date the lake froze\n- the date it opened\n\n\n\n\nPlain lines of text become a paragraph\n**bold** makes text bold\nA line starting with - is a list item",
+    "section": "2.7 Markdown: headings, text, and lists",
+    "text": "2.7 Markdown: headings, text, and lists\nBelow the YAML header, add:\n## Background\n\nLake Mendota has been watched for ice since the **1850s**.\n\nFor each winter, the record notes:\n\n- the date the lake froze\n- the date it opened\n\n## Ice cover over time\n\n\n\n\n## is a section heading, ### a subsection\nPut a space after the #\nStart at ##; the YAML title is already the top level\n**bold** makes text bold\nA line starting with - is a list item",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -203,8 +193,8 @@
     "objectID": "02_report.html#blank-lines-matter",
     "href": "02_report.html#blank-lines-matter",
     "title": "2  Your First Quarto Report",
-    "section": "2.9 Blank lines matter",
-    "text": "2.9 Blank lines matter\nIf leave out the blank line before the list (Don’t do this step today)\nFor each winter, the record notes:\n- the date the lake froze\n- the date it opened\n\n\n\nYou get one run-on paragraph:\n\nFor each winter, the record notes: - the date the lake froze - the date it opened\n\n\n\n\nMarkdown needs a blank line:\n\nbefore a list\nbefore and after a heading\nbetween paragraphs",
+    "section": "2.8 Blank lines matter",
+    "text": "2.8 Blank lines matter\nIf you leave out the blank line before the list (Don’t do this step today)\nFor each winter, the record notes:\n- the date the lake froze\n- the date it opened\n\n\n\nYou get one run-on paragraph:\n\nFor each winter, the record notes: - the date the lake froze - the date it opened\n\n\n\n\nMarkdown needs a blank line:\n\nbefore a list\nbefore and after a heading\nbetween paragraphs",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -213,8 +203,8 @@
     "objectID": "02_report.html#your-turn",
     "href": "02_report.html#your-turn",
     "title": "2  Your First Quarto Report",
-    "section": "2.10 Your turn",
-    "text": "2.10 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd the headings, text, and list from the last few slides\nRender with quarto render report.qmd\nReload report.html and check that the list is a list\n(Try later) Remove a blank line, render again, and see what breaks",
+    "section": "2.9 Your turn",
+    "text": "2.9 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd the headings, text, and list from the last few slides\nRender with quarto render report.qmd\nReload report.html and check that the list is a list\n(Try later) Remove the blank line above the list items, render again, and see what breaks",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -223,18 +213,8 @@
     "objectID": "02_report.html#code-chunks",
     "href": "02_report.html#code-chunks",
     "title": "2  Your First Quarto Report",
-    "section": "2.11 Code chunks",
-    "text": "2.11 Code chunks\nR code goes in a code chunk:\n```{r}\n#| label: setup\n\nlibrary(tidyverse)\nice &lt;- read_csv(\"data/mendota_ice.csv\")\n```\n\n\n\n\nStarts with ```{r} and ends with ```\nLines starting with #| are chunk options\nlabel names the chunk (use snake_case; not always required but helps when debugging)\n\n\n\n\nAdd this chunk just below the YAML header, then render.\n\nA setup chunk at the top loads packages and data for the whole document",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
-    ]
-  },
-  {
-    "objectID": "02_report.html#too-much-output",
-    "href": "02_report.html#too-much-output",
-    "title": "2  Your First Quarto Report",
-    "section": "2.12 Too much output",
-    "text": "2.12 Too much output\nLook at your report.\n\nThe code is shown, which is fine for now\nBut so are the tidyverse startup messages\nAnd the column messages from read_csv()\n\n\n\n\nYour readers do not need these.\n\nChunk options let us hide them",
+    "section": "2.10 Code chunks",
+    "text": "2.10 Code chunks\nR code goes in a code chunk:\n```{r}\n#| label: setup\n\nlibrary(tidyverse)\nice &lt;- read_csv(\"data/mendota_ice.csv\")\n```\n\n\n\n\nStarts with ```{r} and ends with ```\nLines starting with #| are chunk options\nlabel names the chunk (use snake_case; not always required but helps when debugging)\n\n\n\n\nAdd this chunk just below the YAML header, then render.\n\nA setup chunk at the top loads packages and data for the whole document",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -243,8 +223,8 @@
     "objectID": "02_report.html#hide-the-messages",
     "href": "02_report.html#hide-the-messages",
     "title": "2  Your First Quarto Report",
-    "section": "2.13 Hide the messages",
-    "text": "2.13 Hide the messages\nAdd one option to the setup chunk:\n```{r}\n#| label: setup\n#| message: false\n\nlibrary(tidyverse)\nice &lt;- read_csv(\"data/mendota_ice.csv\")\n```\n\n\n\n\nmessage: false hides messages; the code still runs\n\n\n\n\nWant to hide the chunk completely?\n\ninclude: false runs the code but shows neither the code nor its output",
+    "section": "2.11 Hide the messages",
+    "text": "2.11 Hide the messages\nYour readers do not need these in your report:\n\nthe tidyverse startup messages\nthe column messages from read_csv()\n\n\n\n\nAdd one option to the setup chunk:\n```{r}\n#| label: setup\n#| message: false\n\nlibrary(tidyverse)\nice &lt;- read_csv(\"data/mendota_ice.csv\")\n```\n\n\n\n\nmessage: false hides messages; the code still runs\n\n\n\n\nWant to hide the chunk completely?\n\ninclude: false runs the code but shows neither the code nor its output",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -253,8 +233,8 @@
     "objectID": "02_report.html#add-a-figure",
     "href": "02_report.html#add-a-figure",
     "title": "2  Your First Quarto Report",
-    "section": "2.14 Add a figure",
-    "text": "2.14 Add a figure\nUnder ## Ice cover over time, add a chunk:\n```{r}\n#| label: ice_plot\n\nice |&gt;\n  ggplot(aes(x = year, y = ice_days)) +\n  geom_line() +\n  labs(x = \"Winter (year it ended)\", y = \"Days of ice cover\") +\n  theme_minimal()\n```\n\n\n\nRender again.\n\nQuarto runs the chunk and puts the figure right below the code\nIt also makes a report_files/ folder for the image; more on that in the next unit",
+    "section": "2.12 Add a figure",
+    "text": "2.12 Add a figure\nUnder ## Ice cover over time, add a chunk:\n```{r}\n#| label: ice_plot\n\nice |&gt;\n  ggplot(aes(x = year, y = ice_days)) +\n  geom_line() +\n  labs(x = \"Winter (year it ended)\", y = \"Days of ice cover\") +\n  theme_minimal()\n```\n\n\n\nRender again.\n\nQuarto runs the chunk and puts the figure right below the code\nIt also makes a report_files/ folder for the image; more on that in the next unit",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -263,8 +243,8 @@
     "objectID": "02_report.html#the-figure-in-your-report",
     "href": "02_report.html#the-figure-in-your-report",
     "title": "2  Your First Quarto Report",
-    "section": "2.15 The figure in your report",
-    "text": "2.15 The figure in your report\n\n\n\n\n\n\n\n\n\n\n\n\n\nLots of year-to-year variation\nBut the trend is down",
+    "section": "2.13 The figure in your report",
+    "text": "2.13 The figure in your report\n\n\n\n\n\n\n\n\n\n\n\n\n\nLots of year-to-year variation\nBut the trend is down",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -273,18 +253,8 @@
     "objectID": "02_report.html#inline-r",
     "href": "02_report.html#inline-r",
     "title": "2  Your First Quarto Report",
-    "section": "2.16 Inline R",
-    "text": "2.16 Inline R\nPut numbers in your sentences with inline R:\nThe record covers `r nrow(ice)` winters.\n\n\n\n\nBacktick, the letter r, a space, then R code, then a closing backtick\nQuarto replaces it with the result when you render\n\n\n\n\nRenders as:\n\nThe record covers 171 winters.\n\n\nUpdate the data and render again: the number updates too",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
-    ]
-  },
-  {
-    "objectID": "02_report.html#compute-in-a-chunk-report-inline",
-    "href": "02_report.html#compute-in-a-chunk-report-inline",
-    "title": "2  Your First Quarto Report",
-    "section": "2.17 Compute in a chunk, report inline",
-    "text": "2.17 Compute in a chunk, report inline\nKeep inline R short; do the work in a chunk:\n```{r}\n#| label: means\n\nmean_1800s &lt;- ice |&gt; filter(year &lt; 1900) |&gt; pull(ice_days) |&gt; mean() |&gt; round()\nmean_recent &lt;- ice |&gt; filter(year &gt;= 2000) |&gt; pull(ice_days) |&gt; mean() |&gt; round()\n```\n\n\n\nThen use the results in your text:\nBefore 1900, the lake averaged `r mean_1800s` days of ice.\nSince 2000, it has averaged `r mean_recent`.\n\n\n\n\nBefore 1900, the lake averaged 114 days of ice. Since 2000, it has averaged 81.",
+    "section": "2.14 Inline R",
+    "text": "2.14 Inline R\nDo the work in a chunk:\n```{r}\n#| label: means\n\nmean_1800s &lt;- ice |&gt; filter(year &lt; 1900) |&gt; pull(ice_days) |&gt; mean() |&gt; round()\nmean_recent &lt;- ice |&gt; filter(year &gt;= 2000) |&gt; pull(ice_days) |&gt; mean() |&gt; round()\n```\n\n\n\nThen put the results in your sentences with inline R:\nBefore 1900, the lake averaged `r mean_1800s` days of ice.\nSince 2000, it has averaged `r mean_recent`.\n\nBacktick, the letter r, a space, then R code, then a closing backtick\nKeep inline R short; do the work in a chunk\n\n\nBefore 1900, the lake averaged 114 days of ice. Since 2000, it has averaged 81.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -293,8 +263,8 @@
     "objectID": "02_report.html#render-runs-in-a-fresh-session",
     "href": "02_report.html#render-runs-in-a-fresh-session",
     "title": "2  Your First Quarto Report",
-    "section": "2.18 Render runs in a fresh session",
-    "text": "2.18 Render runs in a fresh session\nIn the RStudio console, run:\nn_winters &lt;- 171\n\n\n\nThen add a sentence to report.qmd and render:\nThere are `r n_winters` winters in the record.\n\n\n\nn_winters exists in your console.\n\nSo why will this fail?",
+    "section": "2.15 Render runs in a fresh session",
+    "text": "2.15 Render runs in a fresh session\nIn the RStudio console, run:\nn_winters &lt;- 171\n\n\n\nThen add a sentence to report.qmd and render:\nThere are `r n_winters` winters in the record.\n\n\n\nn_winters exists in your console.\n\nSo why will this fail?",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -303,18 +273,8 @@
     "objectID": "02_report.html#the-error",
     "href": "02_report.html#the-error",
     "title": "2  Your First Quarto Report",
-    "section": "2.19 The error",
-    "text": "2.19 The error\nError in eval(parse_only(code), envir = envir) :\n  object 'n_winters' not found\n\nQuitting from report.qmd:44-44\nExecution halted\n\n\n\nquarto render runs your code in a fresh R session.\n\nIt cannot see anything in your console\nEvery object the report uses must be created in the report\n\n\n\n\nThis is a feature:\n\nIf it renders, anyone with your .qmd and data can rebuild it\nFix it here by creating n_winters in a chunk, or use nrow(ice) inline",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
-    ]
-  },
-  {
-    "objectID": "02_report.html#a-note-on-running-chunks-in-rstudio",
-    "href": "02_report.html#a-note-on-running-chunks-in-rstudio",
-    "title": "2  Your First Quarto Report",
-    "section": "2.20 A note on running chunks in RStudio",
-    "text": "2.20 A note on running chunks in RStudio\nRStudio can also run a chunk for you.\n\nThe green ▶ at the top of the chunk, or Ctrl+Shift+Enter (Cmd+Shift+Enter on a Mac)\nHandy for testing code as you write\n\n\n\n\nBut those chunks run in your console session.\n\nYour report can work there and still fail to render\nquarto render is the real test",
+    "section": "2.16 The error",
+    "text": "2.16 The error\nError in eval(parse_only(code), envir = envir) :\n  object 'n_winters' not found\n\nQuitting from report.qmd:44-44\nExecution halted\n\n\n\nquarto render runs your code in a fresh R session.\n\nIt cannot see anything in your console\nNot even chunks you ran in RStudio with the green ▶\nEvery object the report uses must be created in the report\n\n\n\n\nThis is a feature:\n\nIf it renders, anyone with your .qmd and data can rebuild it\nFix it here by creating n_winters in a chunk, or use nrow(ice) inline",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -323,8 +283,18 @@
     "objectID": "02_report.html#your-turn-1",
     "href": "02_report.html#your-turn-1",
     "title": "2  Your First Quarto Report",
-    "section": "2.21 Your turn",
-    "text": "2.21 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd the means chunk and the two sentences with inline R\nAdd one more sentence: how many days of ice in the shortest winter on record? (Hint: min(ice$ice_days))\nRender, and check the numbers in report.html",
+    "section": "2.17 Your turn",
+    "text": "2.17 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd the means chunk and the two sentences with inline R\nAdd one more sentence: how many days of ice in the shortest winter on record? (Hint: min(ice$ice_days))\nRender, and check the numbers in report.html",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
+    ]
+  },
+  {
+    "objectID": "02_report.html#your-turn-what-to-type",
+    "href": "02_report.html#your-turn-what-to-type",
+    "title": "2  Your First Quarto Report",
+    "section": "2.18 Your turn: what to type",
+    "text": "2.18 Your turn: what to type\nBelow the means chunk, your text should look like this:\nBefore 1900, the lake averaged `r mean_1800s` days of ice.\nSince 2000, it has averaged `r mean_recent`.\n\nThe shortest winter on record had `r min(ice$ice_days)` days of ice.\n\n\n\n\nBefore 1900, the lake averaged 114 days of ice. Since 2000, it has averaged 81.\nThe shortest winter on record had 21 days of ice.\n\n\n\n\nStill getting an error?\n\nThe sentences must come after the means chunk; code runs top to bottom\nDelete or fix the n_winters sentence from the last demo",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
@@ -333,8 +303,8 @@
     "objectID": "02_report.html#where-we-are",
     "href": "02_report.html#where-we-are",
     "title": "2  Your First Quarto Report",
-    "section": "2.22 Where we are",
-    "text": "2.22 Where we are\nWe have:\n\nWritten a YAML header that sets the title, author, date, and format\nUsed markdown for headings, text, bold, and lists\nRun R code in chunks, and hidden messages with chunk options\nPut computed numbers in sentences with inline R\nSeen that quarto render runs in a fresh session\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nOur report works, but it is spread across an HTML file and a folder. Next we will render it to one self-contained file and publish it online.",
+    "section": "2.19 Where we are",
+    "text": "2.19 Where we are\nWe have:\n\nWritten a YAML header that sets the title, author, date, and format\nUsed markdown for headings, text, bold, and lists\nRun R code in chunks, and hidden messages with chunk options\nPut computed numbers in sentences with inline R\nSeen that quarto render runs in a fresh session\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nOur report works, but it is spread across an HTML file and a folder. Next we will render it to one self-contained file and publish it online.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Your First Quarto Report</span>"
     ]
