@@ -1,4 +1,6 @@
-# What Is Quarto?
+---
+title: "What Is Quarto?"
+---
 
 ## Why are we here?
 
@@ -36,6 +38,7 @@ Quarto turns that file into a finished document:
 - Reports (HTML, Word, PDF)
 - Slide decks
 - Manuscripts and journal articles
+- Posters, websites, dashboards (these are not covered today)
 
 
 --------------------------------------------------------------------------------
@@ -56,7 +59,11 @@ Three tools, three different jobs:
 
 <div class="gap-md"></div>
 
-You use them together: write a `.qmd` in RStudio, [render]{.uwred} it from the terminal, and Quarto has R run your code and builds the document around the results.
+You use them together: 
+
+- write a `.qmd` in RStudio, 
+- [render]{.uwred} it from the terminal, and 
+- Quarto has R run your code and builds the document around the results.
 
 
 --------------------------------------------------------------------------------
@@ -84,7 +91,10 @@ flowchart LR
 
 <div class="gap-md"></div>
 
-The engine runs your code in a [fresh session]{.uwred}, not in your RStudio console. Remember this; it matters in the next unit.
+The engine runs your code in a [fresh session]{.uwred}, 
+
+- not in your RStudio console. 
+- Remember this; it matters in the next unit.
 
 
 --------------------------------------------------------------------------------
@@ -104,15 +114,24 @@ The engine runs your code in a [fresh session]{.uwred}, not in your RStudio cons
 
 ## A few quick notes
 
-[Quarto is its own program.]{.uwred} Like Git, you run it from the terminal, and every command starts with `quarto`. It works the same whether you edit in RStudio, Positron, VS Code, or Jupyter.
+[Quarto is its own program.]{.uwred} 
+
+- Like Git, you run it from the terminal, and every command starts with `quarto`. 
+- It works the same whether you edit in RStudio, Positron, VS Code, or Jupyter.
 
 <div class="gap-md"></div>
 
-[It is not just for R.]{.uwred} If your project uses Python, you can use Quarto the same way. Code chunks just say `{python}` instead of `{r}`.
+[It is not just for R.]{.uwred} 
+
+- If your project uses Python, you can use Quarto the same way. 
+- Code chunks just say `{python}` instead of `{r}`.
 
 <div class="gap-md"></div>
 
-[Coming from R Markdown?]{.uwred} Quarto is its successor. Most of what you know carries over, and your `.Rmd` files still work.
+[Coming from R Markdown?]{.uwred} 
+
+- Quarto is its successor. 
+- Most of what you know carries over, and your `.Rmd` files still work.
 
 
 --------------------------------------------------------------------------------
