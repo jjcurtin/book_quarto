@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_report.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_intro.html">Basic</a></li><li class="breadcrumb-item"><a href="./02_report.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -165,36 +165,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Introduction to Quarto</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Basic</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Quarto?</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_report.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03_publish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Render and Publish</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_slides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Slide Decks</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05_paper.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Writing a Paper</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Advanced</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./git_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git with Quarto Projects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -230,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_intro.html">Basic</a></li><li class="breadcrumb-item"><a href="./02_report.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></h1>
 </div>
@@ -339,6 +361,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>format: html</code> says what to build</li>
 <li><code>date: today</code> fills in the date each time you render</li>
 </ul>
+<div class="gap-sm">
+
+</div>
+<p>Now <span class="uwred">save</span> report.qmd (You can use the save button on the toolbar in RStudio)</p>
 <hr>
 </section>
 <section id="render-it" class="level2" data-number="2.6">
@@ -426,6 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Add the headings, text, and list from the last few slides</li>
+<li>Save report.qmd</li>
 <li>Render with <code>quarto render report.qmd</code></li>
 <li>Reload <code>report.html</code> and check that the list is a list</li>
 <li>(Try later) Remove the blank line above the list items, render again, and see what breaks</li>
@@ -455,8 +482,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="gap-md">
 
 </div>
-<p>Add this chunk just below the YAML header, then render.</p>
+<p>Add this chunk just below the YAML header, save file, then render.</p>
 <ul>
+<li>Open the html file again in the browser to see the changes</li>
 <li>A <span class="uwred">setup chunk</span> at the top loads packages and data for the whole document</li>
 </ul>
 <hr>
@@ -509,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="gap-sm">
 
 </div>
-<p>Render again.</p>
+<p>Save and render again.</p>
 <ul>
 <li>Quarto runs the chunk and puts the figure right below the code</li>
 <li>It also makes a <code>report_files/</code> folder for the image; more on that in the next unit</li>
@@ -558,6 +586,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Before 1900, the lake averaged 114 days of ice. Since 2000, it has averaged 81.</p>
 </blockquote>
+<div class="gap-sm">
+
+</div>
+<p>Save, render, and view file again</p>
 <hr>
 </section>
 <section id="render-runs-in-a-fresh-session" class="level2" data-number="2.15">
@@ -626,7 +658,7 @@ Execution halted</code></pre>
 <ol type="1">
 <li>Add the <code>means</code> chunk and the two sentences with inline R</li>
 <li>Add one more sentence: how many days of ice in the shortest winter on record? (Hint: <code>min(ice$ice_days)</code>)</li>
-<li>Render, and check the numbers in <code>report.html</code></li>
+<li>Render, save, and check the numbers in <code>report.html</code></li>
 </ol>
 </div>
 </div>

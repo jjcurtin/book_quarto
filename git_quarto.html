@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Git with Quarto Projects – Introduction to Quarto</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05_paper.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-1d8401ff0d8d4c39815efe9fd2eba9a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="book.css">
+<link rel="stylesheet" href="utilities.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git_quarto.html">Advanced</a></li><li class="breadcrumb-item"><a href="./git_quarto.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git with Quarto Projects</span></a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Quarto</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/jjcurtin/book_quarto" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Basic</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Quarto?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_publish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Render and Publish</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Slide Decks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Writing a Paper</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Advanced</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./git_quarto.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git with Quarto Projects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#whats-in-your-repo-now" id="toc-whats-in-your-repo-now" class="nav-link active" data-scroll-target="#whats-in-your-repo-now"><span class="header-section-number">6.1</span> What’s in your repo now</a></li>
+  <li><a href="#commit-what-you-write-ignore-what-quarto-makes" id="toc-commit-what-you-write-ignore-what-quarto-makes" class="nav-link" data-scroll-target="#commit-what-you-write-ignore-what-quarto-makes"><span class="header-section-number">6.2</span> Commit what you write, ignore what Quarto makes</a>
+  <ul class="collapse">
+  <li><a href="#where-the-extra-folders-come-from" id="toc-where-the-extra-folders-come-from" class="nav-link" data-scroll-target="#where-the-extra-folders-come-from"><span class="header-section-number">6.2.1</span> Where the extra folders come from</a></li>
+  </ul></li>
+  <li><a href="#update-your-.gitignore" id="toc-update-your-.gitignore" class="nav-link" data-scroll-target="#update-your-.gitignore"><span class="header-section-number">6.3</span> Update your <code>.gitignore</code></a>
+  <ul class="collapse">
+  <li><a href="#checking-what-git-ignores" id="toc-checking-what-git-ignores" class="nav-link" data-scroll-target="#checking-what-git-ignores"><span class="header-section-number">6.3.1</span> Checking what Git ignores</a></li>
+  </ul></li>
+  <li><a href="#commit-and-push" id="toc-commit-and-push" class="nav-link" data-scroll-target="#commit-and-push"><span class="header-section-number">6.4</span> Commit and push</a></li>
+  <li><a href="#if-you-already-committed-output" id="toc-if-you-already-committed-output" class="nav-link" data-scroll-target="#if-you-already-committed-output"><span class="header-section-number">6.5</span> If you already committed output</a></li>
+  <li><a href="#commit-_publish.yml" id="toc-commit-_publish.yml" class="nav-link" data-scroll-target="#commit-_publish.yml"><span class="header-section-number">6.6</span> Commit <code>_publish.yml</code></a></li>
+  <li><a href="#when-you-add-a-_quarto.yml" id="toc-when-you-add-a-_quarto.yml" class="nav-link" data-scroll-target="#when-you-add-a-_quarto.yml"><span class="header-section-number">6.7</span> When you add a <code>_quarto.yml</code></a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.8</span> Summary</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jjcurtin/book_quarto/edit/main/git_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git_quarto.html">Advanced</a></li><li class="breadcrumb-item"><a href="./git_quarto.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git with Quarto Projects</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-git_quarto" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git with Quarto Projects</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the workshop, we built a report, a slide deck, and a paper in your <code>mendota_ice</code> repo, but we never committed any of it. That was on purpose. Rendering fills your repo with files that Quarto makes, and most of them don’t belong in Git. This unit sorts out which files to commit and which to ignore, then commits and pushes your work.</p>
+<p>The same rules apply to any repo where you use Quarto.</p>
+<section id="whats-in-your-repo-now" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="whats-in-your-repo-now"><span class="header-section-number">6.1</span> What’s in your repo now</h2>
+<p>In your <code>mendota_ice</code> folder, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you finished all the workshop units, you will see something like this:</p>
+<pre><code>On branch main
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+    .quarto/
+    _publish.yml
+    apa.csl
+    data/
+    paper.docx
+    paper.pdf
+    paper.qmd
+    refs.bib
+    report.html
+    report.qmd
+    slides.html
+    slides.qmd
+    slides_files/
+
+nothing added to commit but untracked files present (use "git add" to track)</code></pre>
+<p>Your list may be a little different. For example, you will only have <code>paper.pdf</code> and <code>.quarto/</code> if you also rendered the paper to PDF with Typst.</p>
+</section>
+<section id="commit-what-you-write-ignore-what-quarto-makes" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="commit-what-you-write-ignore-what-quarto-makes"><span class="header-section-number">6.2</span> Commit what you write, ignore what Quarto makes</h2>
+<p>The rule of thumb is simple:</p>
+<ul>
+<li><strong>Commit the files you write</strong>: your <code>.qmd</code> files and the inputs they need (data, references, citation style).</li>
+<li><strong>Ignore the files Quarto makes</strong>: anything <code>quarto render</code> can rebuild.</li>
+</ul>
+<p>Rendered output doesn’t belong in Git for several reasons:</p>
+<ul>
+<li><strong>You can always rebuild it.</strong> Anyone with your source files can run <code>quarto render</code> and get the same output.</li>
+<li><strong>It changes every time you render.</strong> Our report uses <code>date: today</code>, so <code>report.html</code> changes every day you render it, even if nothing else did. Those changes clutter every commit.</li>
+<li><strong>It’s often binary.</strong> Git can’t show you what changed inside a <code>.docx</code> or <code>.pdf</code>, and it can’t merge two versions of one. If two people change the same Word file, someone has to pick one version.</li>
+<li><strong>It’s big.</strong> With <code>embed-resources: true</code>, <code>report.html</code> holds the figure and all the supporting code, so it’s over a megabyte. Git keeps every version you commit, forever.</li>
+<li><strong>It can go stale.</strong> A committed <code>report.html</code> may no longer match <code>report.qmd</code>, and nothing warns you.</li>
+</ul>
+<p>You share output in other ways: publish it (as we did with Connect Cloud), or send the Word file to a co-author.</p>
+<p>Here is how each file in your repo sorts out:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 45%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>What it is</th>
+<th>Commit?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>report.qmd</code>, <code>slides.qmd</code>, <code>paper.qmd</code></td>
+<td>Your source documents</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>data/mendota_ice.csv</code></td>
+<td>Data the documents read</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>refs.bib</code></td>
+<td>References the paper cites</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>apa.csl</code></td>
+<td>Citation style for the paper</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>_publish.yml</code></td>
+<td>Where each document is published (see below)</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>.gitignore</code></td>
+<td>What Git should ignore</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>report.html</code>, <code>slides.html</code></td>
+<td>Rendered HTML</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>slides_files/</code></td>
+<td>Images and code the HTML deck needs</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><code>paper.docx</code>, <code>paper.pdf</code></td>
+<td>Rendered Word and PDF</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>.quarto/</code></td>
+<td>Quarto’s scratch folder</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Committing data is fine here because the file is small and public. For large or private data, think twice; that’s a topic for another day.</p>
+<section id="where-the-extra-folders-come-from" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="where-the-extra-folders-come-from"><span class="header-section-number">6.2.1</span> Where the extra folders come from</h3>
+<ul>
+<li><strong><code>slides_files/</code></strong>: a revealjs deck needs supporting files (the figure, plus the code that runs the slides). Quarto puts them in a folder named after the document. The report has no <code>report_files/</code> folder because <code>embed-resources: true</code> packs everything into <code>report.html</code>.</li>
+<li><strong><code>.quarto/</code></strong>: Quarto’s own working folder. For single documents like ours, it appears when you render to PDF with Typst. Quarto projects (folders with a <code>_quarto.yml</code> file) always have one.</li>
+</ul>
+<p>If a render fails partway, Quarto can leave intermediate files behind, such as a <code>paper_files/</code> folder or a <code>paper.typ</code> file. The next successful render cleans them up.</p>
+</section>
+</section>
+<section id="update-your-.gitignore" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="update-your-.gitignore"><span class="header-section-number">6.3</span> Update your <code>.gitignore</code></h2>
+<p>Your repo already has a <code>.gitignore</code>: the <code>R</code> template you chose on GitHub. It covers R’s clutter (<code>.Rhistory</code>, <code>.RData</code>, <code>.Rproj.user/</code>) and keeps secrets like <code>.Renviron</code> and <code>.env</code> out of Git. It knows nothing about Quarto.</p>
+<p>Open <code>.gitignore</code> in RStudio, add these lines at the end, and save:</p>
+<pre><code># Quarto
+/.quarto/
+*_files/
+*.html
+*.docx
+*.pdf</code></pre>
+<p>What each line does:</p>
+<ul>
+<li><code>/.quarto/</code> ignores Quarto’s scratch folder. The leading <code>/</code> means “only at the top of the repo”.</li>
+<li><code>*_files/</code> ignores any folder whose name ends in <code>_files</code>, like <code>slides_files/</code>.</li>
+<li><code>*.html</code>, <code>*.docx</code>, and <code>*.pdf</code> ignore rendered output anywhere in the repo.</li>
+</ul>
+<p>These patterns are broad on purpose, so new documents are covered without editing <code>.gitignore</code> again. If you ever do want to commit one of these files, say a PDF of a published article you keep in a <code>literature/</code> folder, add an exception line that starts with <code>!</code>:</p>
+<pre><code>!literature/*.pdf</code></pre>
+<p>Now check your work:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>On branch main
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+    modified:   .gitignore
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+    _publish.yml
+    apa.csl
+    data/
+    paper.qmd
+    refs.bib
+    report.qmd
+    slides.qmd
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
+<p>The output files are gone from the list. Only the files you wrote are left.</p>
+<section id="checking-what-git-ignores" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="checking-what-git-ignores"><span class="header-section-number">6.3.1</span> Checking what Git ignores</h3>
+<p>Two commands help when you aren’t sure. To list ignored files (marked <code>!!</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--short</span> <span class="at">--ignored</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code> M .gitignore
+?? _publish.yml
+?? apa.csl
+?? data/
+?? paper.qmd
+?? refs.bib
+?? report.qmd
+?? slides.qmd
+!! .quarto/
+!! paper.docx
+!! paper.pdf
+!! report.html
+!! slides.html
+!! slides_files/</code></pre>
+<p>To see <span class="uwred">which line</span> of <code>.gitignore</code> ignores a file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> check-ignore <span class="at">-v</span> slides.html slides_files</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>.gitignore:55:*.html    slides.html
+.gitignore:54:*_files/  slides_files</code></pre>
+<p>Your line numbers may differ. If <code>git check-ignore</code> prints nothing for a file, Git is not ignoring it.</p>
+</section>
+</section>
+<section id="commit-and-push" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="commit-and-push"><span class="header-section-number">6.4</span> Commit and push</h2>
+<p>With a good <code>.gitignore</code> in place, <code>git add .</code> is safe: it stages everything Git doesn’t ignore. Still, check what you staged before you commit.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>On branch main
+Changes to be committed:
+  (use "git restore --staged &lt;file&gt;..." to unstage)
+    modified:   .gitignore
+    new file:   _publish.yml
+    new file:   apa.csl
+    new file:   data/mendota_ice.csv
+    new file:   paper.qmd
+    new file:   refs.bib
+    new file:   report.qmd
+    new file:   slides.qmd</code></pre>
+<p>Only source files. Commit and push:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add report, slides, and paper"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>From now on, the routine is the same as any other repo: edit your <code>.qmd</code> files, render to check them, then commit the <code>.qmd</code> changes. Rendering never adds anything new for Git to track.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Your turn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Add a sentence to <code>report.qmd</code> and render it</li>
+<li>Run <code>git status</code>: only <code>report.qmd</code> should show as modified</li>
+<li>Commit and push the change</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="if-you-already-committed-output" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="if-you-already-committed-output"><span class="header-section-number">6.5</span> If you already committed output</h2>
+<p><code>.gitignore</code> only affects files Git isn’t tracking yet. If you committed <code>report.html</code> before adding <code>*.html</code> to <code>.gitignore</code>, Git keeps tracking it, and every render shows it as modified:</p>
+<pre><code> M report.html
+ M report.qmd</code></pre>
+<p>To stop tracking a file without deleting it from your computer, use <code>git rm --cached</code>, then commit:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> report.html</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Stop tracking report.html"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>report.html</code> stays on your computer, and from now on <code>.gitignore</code> applies to it. For a folder, add <code>-r</code>: <code>git rm -r --cached slides_files</code>.</p>
+<p>Older versions of the file stay in your Git history. That’s fine for a small report. Removing files from history is possible but disruptive, and you rarely need it.</p>
+</section>
+<section id="commit-_publish.yml" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="commit-_publish.yml"><span class="header-section-number">6.6</span> Commit <code>_publish.yml</code></h2>
+<p><code>_publish.yml</code> is the file <code>quarto publish</code> writes the first time you publish a document. It records where each document went:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">source</span><span class="kw">:</span><span class="at"> report.qmd</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">posit-connect-cloud</span><span class="kw">:</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> 01a1c082-...</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">url</span><span class="kw">:</span><span class="at"> https://connect.posit.cloud/your_name/content/01a1c082-...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Commit it. It’s what makes <code>quarto publish</code> offer to <span class="uwred">update</span> your existing report instead of creating a new copy at a new URL. With it in your repo, you can republish from another computer, or a teammate can, and the URL your readers have keeps working.</p>
+<p>It holds only IDs and URLs, not your login. Quarto keeps your Connect Cloud credentials on your computer, outside the repo, so <code>_publish.yml</code> is safe to commit even to a public repo.</p>
+<p>Two tips:</p>
+<ul>
+<li>To publish a document to a <span class="uwred">new</span> URL (for example, so a new title takes effect), delete its entry from <code>_publish.yml</code>, then publish again. Delete the old copy on the Connect Cloud website if you no longer want it.</li>
+<li>To start over completely, delete the whole file. Don’t leave it empty: Quarto can’t read an empty <code>_publish.yml</code>, so it stops recording where you publish.</li>
+</ul>
+</section>
+<section id="when-you-add-a-_quarto.yml" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="when-you-add-a-_quarto.yml"><span class="header-section-number">6.7</span> When you add a <code>_quarto.yml</code></h2>
+<p>Our repo has no <code>_quarto.yml</code>, so it isn’t a Quarto project. Each document renders on its own. If you later turn a folder into a project (for a website, a book, or to share settings across documents), a few things change:</p>
+<ul>
+<li><strong>Quarto edits <code>.gitignore</code> for you.</strong> When you render a project inside a Git repo, Quarto adds <code>/.quarto/</code> and <code>**/*.quarto_ipynb</code> to <code>.gitignore</code> if they aren’t already there. (<code>*.quarto_ipynb</code> files are temporary files from rendering documents that run Python through Jupyter.) It doesn’t do this for single documents like ours, which is why we added <code>/.quarto/</code> by hand.</li>
+<li><strong>Websites and books render to an output folder</strong>: <code>_site/</code> for websites and <code>_book/</code> for books. Quarto does <span class="uwred">not</span> add these to <code>.gitignore</code>. If you publish with <code>quarto publish</code>, add them yourself.</li>
+<li><strong>The R template ignores <code>docs/</code>.</strong> If you publish a website with GitHub Pages from a <code>docs/</code> folder, that output does need to be committed, so delete the <code>docs/</code> line from <code>.gitignore</code>.</li>
+<li><strong>Commit <code>_freeze/</code>.</strong> If your project uses <code>freeze</code>, Quarto saves the results of your code in a <code>_freeze/</code> folder and reuses them instead of rerunning the code. The Quarto documentation recommends committing it, so others can render the project without setting up your whole computing environment.</li>
+</ul>
+</section>
+<section id="summary" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.8</span> Summary</h2>
+<p>For a repo of Quarto documents like <code>mendota_ice</code>, add this to the <code>.gitignore</code> you got from GitHub’s <code>R</code> template:</p>
+<pre><code># Quarto
+/.quarto/
+*_files/
+*.html
+*.docx
+*.pdf</code></pre>
+<p>Then:</p>
+<ul>
+<li>Commit your <code>.qmd</code> files, the data, references, and citation style they read, <code>_publish.yml</code>, and <code>.gitignore</code>.</li>
+<li>Ignore everything <code>quarto render</code> makes. Share output by publishing it instead.</li>
+<li>If you committed output by mistake, <code>git rm --cached</code> stops tracking it.</li>
+<li>In Quarto projects, let Quarto manage <code>/.quarto/</code>, ignore <code>_site/</code> or <code>_book/</code> unless you publish from them, and commit <code>_freeze/</code>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jjcurtin\.github\.io\/book_quarto\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="./05_paper.html" class="pagination-link" aria-label="Writing a Paper">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Writing a Paper</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jjcurtin/book_quarto/edit/main/git_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

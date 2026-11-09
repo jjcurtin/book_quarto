@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jjcurtin.github.io/book_quarto/index.html</loc>
-    <lastmod>2026-11-09T00:51:04.810Z</lastmod>
+    <lastmod>2026-11-09T14:34:50.543Z</lastmod>
   </url>
   <url>
     <loc>https://jjcurtin.github.io/book_quarto/01_intro.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://jjcurtin.github.io/book_quarto/02_report.html</loc>
-    <lastmod>2026-11-09T00:56:42.094Z</lastmod>
+    <lastmod>2026-11-09T13:21:47.493Z</lastmod>
   </url>
   <url>
     <loc>https://jjcurtin.github.io/book_quarto/03_publish.html</loc>
@@ -22,6 +22,10 @@
   </url>
   <url>
     <loc>https://jjcurtin.github.io/book_quarto/05_paper.html</loc>
-    <lastmod>2026-11-09T00:56:42.095Z</lastmod>
+    <lastmod>2026-11-09T14:34:43.387Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jjcurtin.github.io/book_quarto/git_quarto.html</loc>
+    <lastmod>2026-11-09T14:35:14.445Z</lastmod>
   </url>
 </urlset>
