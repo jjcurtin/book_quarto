@@ -14,7 +14,7 @@
     "href": "index.html#introduction-to-quarto",
     "title": "Introduction to Quarto",
     "section": "",
-    "text": "How this book is organized\nThe book has two parts.\nBasic has five units, covered live in a one-hour, hands-on workshop. They follow the life of a typical project: a report, then slides for a talk, then a paper.\n\nUnit 1 introduces Quarto and how it turns a .qmd file into a finished document.\nUnits 2–3 build a report and publish it online.\nUnits 4–5 reuse that report to make a slide deck and a paper.\n\nAdvanced units go beyond the live hour and are for you to work through on your own afterward. They pick up where the workshop leaves off, using the same report.qmd, slides.qmd, and paper.qmd you built. To see what a new feature does, add it to your own file and render it (or publish it) yourself.\n\nGit with Quarto projects covers which Quarto files to commit and which to ignore.\n\n\nEach Basic unit also has a companion slide deck, published on Posit Connect Cloud. These are the decks we present live. The Advanced units are in the book only.\n\n\n\nUnit\nSlide deck\n\n\n\n\n1 — What Is Quarto?\nopen deck\n\n\n2 — Your First Quarto Report\nopen deck\n\n\n3 — Render and Publish\nopen deck\n\n\n4 — Slide Decks\nopen deck\n\n\n5 — Writing a Paper\nopen deck\n\n\n\n\n\nBefore the workshop\nPlease finish these steps before the workshop so we can spend our time together on Quarto itself. They take about 15 minutes.\nThis setup builds on the Git workshop. It assumes you already have:\n\nGit installed (on Windows, this gave you Git Bash)\nA GitHub account\nAn SSH key connecting your computer to GitHub\n\nType every command below in a terminal: Terminal on macOS or Linux, Git Bash on Windows, or the terminal inside RStudio.\n\nStep 1: Install Quarto\nDownload the installer for your operating system from https://quarto.org/docs/download/ and run it.\nRStudio comes with its own copy of Quarto, but please install Quarto separately anyway. The separate install works in any terminal, and it lets you control which version you have. You won’t break anything: RStudio will use your installed copy automatically.\nWhen the installer finishes, close any open terminals and restart RStudio so they can find Quarto.\n\n\nStep 2: Check your Quarto version\nOpen a new terminal and run:\nquarto --version\nYou need version 1.9 or higher. Earlier versions can’t publish to Posit Connect Cloud from the terminal, which we will do in the workshop.\nIf you don’t see a version number of 1.9 or higher:\n\ncommand not found: Quarto isn’t installed, or the terminal can’t find it yet. Re-run the installer, then open a new terminal and try again.\nA version lower than 1.9: your terminal is finding an older copy of Quarto, often one installed for an earlier course. Run which quarto to see where that copy lives. Then download the current installer from the link above, run it, and check the version again in a new terminal.\n\nFor a fuller diagnosis, quarto check reports which version of Quarto you are running and whether it can find R and Python.\n\n\nStep 3: Create a Posit Connect Cloud account\nPosit Connect Cloud is a free service for sharing documents online. We will publish a report and a slide deck to it during the workshop.\n\nGo to https://connect.posit.cloud/\nClick Sign Up\nChoose to sign up with GitHub, using the GitHub account you already have\n\nThe free plan is all you need. If you already have an account, you can skip this step.\n\n\nStep 4: Create your workshop repo on GitHub\nDuring the workshop you will build a small project about ice cover on Lake Mendota. Make a home for it on GitHub now.\nIn your browser, signed in to GitHub:\n\nClick + (top right) → New repository\nName it mendota_ice\nChoose Public or Private; either works\nFrom the Add .gitignore dropdown, choose the R template\nClick Create repository\n\nDon’t skip the .gitignore. It tells Git to ignore the clutter that R and RStudio create (like .Rhistory and .Rproj.user/). It also gives the repo its first commit, so when you clone it, git push and git pull work right away.\n\n\nStep 5: Clone the repo to your computer\nOn your new repo’s page, click the green Code button, select the SSH tab, and copy the address.\nIn your terminal, move to the folder where you keep your GitHub repos. We used ~/github in the Git workshop; use your own folder if it’s different. Then clone the repo, pasting your own address:\ncd ~/github\ngit clone git@github.com:your_username/mendota_ice.git\nMove into the new folder and look around:\ncd mendota_ice\nls -a\n.  ..  .git  .gitignore\nYou should see the .gitignore you created on GitHub, plus the hidden .git folder that holds the repo’s history.\n\n\nStep 6: Download the data, references, and citation style\nOur report will use 170 years of ice records for Lake Mendota, and our paper will cite them in APA style. Put a copy of the data in a data folder inside your repo. Put the reference file (refs.bib) and the APA style file (apa.csl) at the top of your repo.\nStay in your mendota_ice folder. Copy the four commands below (use the copy button at the top right of the box), paste them into your terminal, and press Enter:\nmkdir data\ncurl -fsSL -o data/mendota_ice.csv https://raw.githubusercontent.com/jjcurtin/book_quarto/main/data/mendota_ice.csv\ncurl -fsSL -o refs.bib https://raw.githubusercontent.com/jjcurtin/book_quarto/main/refs.bib\ncurl -fsSL -o apa.csl https://raw.githubusercontent.com/jjcurtin/book_quarto/main/apa.csl\nmkdir makes the data folder. Each curl command downloads one file. If all goes well, none of the commands prints anything.\nCheck that the files arrived:\nhead -3 data/mendota_ice.csv\nhead -1 refs.bib\ngrep \"&lt;title&gt;\" apa.csl\nwinter,year,ice_days\n1855-56,1856,118\n1856-57,1857,151\n@dataset{magnuson2026,\n    &lt;title&gt;APA Style 7th edition&lt;/title&gt;\nIf you see an error instead, make sure you are in your mendota_ice folder (pwd shows where you are), then paste the commands again. If mkdir says the folder already exists, that’s fine; just run the three curl lines.\nThat’s it. You’re ready for the workshop. We will start from this folder.\n\n\n\nHow to use this book\nQuarto is best learned by doing. As you read, follow along in your own mendota_ice repo: write each file in RStudio (or any editor) and render it yourself. Everything builds one running example, so the report, slides, and paper you create grow right alongside the book.\nWe render and publish from the terminal (Terminal on macOS or Linux, Git Bash on Windows, or the terminal in RStudio), not with buttons in RStudio. The commands are short, they work the same in any editor, and you will see exactly what Quarto is doing.\nA few conventions to know:\n\nCommands you type appear in shaded code blocks, with the output shown just below them.\nYour turn boxes are short challenges to try on your own before moving on.\n\nThe source for this book lives on GitHub; corrections and suggestions are welcome.",
+    "text": "How this book is organized\nThe book has two parts.\nBasic has five units, covered live in a one-hour, hands-on workshop. They follow the life of a typical project: a report, then slides for a talk, then a paper.\n\nUnit 1 introduces Quarto and how it turns a .qmd file into a finished document.\nUnits 2–3 build a report and publish it online.\nUnits 4–5 reuse that report to make a slide deck and a paper.\n\nAdvanced units go beyond the live hour and are for you to work through on your own afterward. They pick up where the workshop leaves off, using the same report.qmd, slides.qmd, and paper.qmd you built. To see what a new feature does, add it to your own file and render it (or publish it) yourself.\n\nAdvanced markdown: more ways to format text, including links, images, tables, math, and callouts.\nChunk options and figures: control what each code chunk shows, and size, caption, and arrange figures.\nTables: turn data frames into tables that look good in HTML, Word, and PDF.\nAdvanced slide formatting: columns, themes, code on slides, and more for your decks.\nYAML in depth: more settings for reports, decks, and papers, and where YAML can live.\nQuarto projects and paths: what a _quarto.yml file does, and how your code finds its files.\nReusing code across products: keep one copy of your analysis code for a report, slides, and a paper.\nGit with Quarto projects: which Quarto files to commit and which to ignore.\n\nEach Basic unit also has a companion slide deck, published on Posit Connect Cloud. These are the decks we present live. The Advanced units are in the book only.\n\n\n\nUnit\nSlide deck\n\n\n\n\n1 — What Is Quarto?\nopen deck\n\n\n2 — Your First Quarto Report\nopen deck\n\n\n3 — Render and Publish\nopen deck\n\n\n4 — Slide Decks\nopen deck\n\n\n5 — Writing a Paper\nopen deck\n\n\n\n\n\nBefore the workshop\nPlease finish these steps before the workshop so we can spend our time together on Quarto itself. They take about 15 minutes.\nThis setup builds on the Git workshop. It assumes you already have:\n\nGit installed (on Windows, this gave you Git Bash)\nA GitHub account\nAn SSH key connecting your computer to GitHub\n\nType every command below in a terminal: Terminal on macOS or Linux, Git Bash on Windows, or the terminal inside RStudio.\n\nStep 1: Install Quarto\nDownload the installer for your operating system from https://quarto.org/docs/download/ and run it.\nRStudio comes with its own copy of Quarto, but please install Quarto separately anyway. The separate install works in any terminal, and it lets you control which version you have. You won’t break anything: RStudio will use your installed copy automatically.\nWhen the installer finishes, close any open terminals and restart RStudio so they can find Quarto.\n\n\nStep 2: Check your Quarto version\nOpen a new terminal and run:\nquarto --version\nYou need version 1.9 or higher. Earlier versions can’t publish to Posit Connect Cloud from the terminal, which we will do in the workshop.\nIf you don’t see a version number of 1.9 or higher:\n\ncommand not found: Quarto isn’t installed, or the terminal can’t find it yet. Re-run the installer, then open a new terminal and try again.\nA version lower than 1.9: your terminal is finding an older copy of Quarto, often one installed for an earlier course. Run which quarto to see where that copy lives. Then download the current installer from the link above, run it, and check the version again in a new terminal.\n\nFor a fuller diagnosis, quarto check reports which version of Quarto you are running and whether it can find R and Python.\n\n\nStep 3: Create a Posit Connect Cloud account\nPosit Connect Cloud is a free service for sharing documents online. We will publish a report and a slide deck to it during the workshop.\n\nGo to https://connect.posit.cloud/\nClick Sign Up\nChoose to sign up with GitHub, using the GitHub account you already have\n\nThe free plan is all you need. If you already have an account, you can skip this step.\n\n\nStep 4: Create your workshop repo on GitHub\nDuring the workshop you will build a small project about ice cover on Lake Mendota. Make a home for it on GitHub now.\nIn your browser, signed in to GitHub:\n\nClick + (top right) → New repository\nName it mendota_ice\nChoose Public or Private; either works\nFrom the Add .gitignore dropdown, choose the R template\nClick Create repository\n\nDon’t skip the .gitignore. It tells Git to ignore the clutter that R and RStudio create (like .Rhistory and .Rproj.user/). It also gives the repo its first commit, so when you clone it, git push and git pull work right away.\n\n\nStep 5: Clone the repo to your computer\nOn your new repo’s page, click the green Code button, select the SSH tab, and copy the address.\nIn your terminal, move to the folder where you keep your GitHub repos. We used ~/github in the Git workshop; use your own folder if it’s different. Then clone the repo, pasting your own address:\ncd ~/github\ngit clone git@github.com:your_username/mendota_ice.git\nMove into the new folder and look around:\ncd mendota_ice\nls -a\n.  ..  .git  .gitignore\nYou should see the .gitignore you created on GitHub, plus the hidden .git folder that holds the repo’s history.\n\n\nStep 6: Download the data, references, and citation style\nOur report will use 170 years of ice records for Lake Mendota, and our paper will cite them in APA style. Put a copy of the data in a data folder inside your repo. Put the reference file (refs.bib) and the APA style file (apa.csl) at the top of your repo.\nStay in your mendota_ice folder. Copy the four commands below (use the copy button at the top right of the box), paste them into your terminal, and press Enter:\nmkdir data\ncurl -fsSL -o data/mendota_ice.csv https://raw.githubusercontent.com/jjcurtin/book_quarto/main/data/mendota_ice.csv\ncurl -fsSL -o refs.bib https://raw.githubusercontent.com/jjcurtin/book_quarto/main/refs.bib\ncurl -fsSL -o apa.csl https://raw.githubusercontent.com/jjcurtin/book_quarto/main/apa.csl\nmkdir makes the data folder. Each curl command downloads one file. If all goes well, none of the commands prints anything.\nCheck that the files arrived:\nhead -3 data/mendota_ice.csv\nhead -1 refs.bib\ngrep \"&lt;title&gt;\" apa.csl\nwinter,year,ice_days\n1855-56,1856,118\n1856-57,1857,151\n@dataset{magnuson2026,\n    &lt;title&gt;APA Style 7th edition&lt;/title&gt;\nIf you see an error instead, make sure you are in your mendota_ice folder (pwd shows where you are), then paste the commands again. If mkdir says the folder already exists, that’s fine; just run the three curl lines.\nThat’s it. You’re ready for the workshop. We will start from this folder.\n\n\n\nHow to use this book\nQuarto is best learned by doing. As you read, follow along in your own mendota_ice repo: write each file in RStudio (or any editor) and render it yourself. Everything builds one running example, so the report, slides, and paper you create grow right alongside the book.\nWe render and publish from the terminal (Terminal on macOS or Linux, Git Bash on Windows, or the terminal in RStudio), not with buttons in RStudio. The commands are short, they work the same in any editor, and you will see exactly what Quarto is doing.\nA few conventions to know:\n\nCommands you type appear in shaded code blocks, with the output shown just below them.\nYour turn boxes are short challenges to try on your own before moving on.\n\nThe source for this book lives on GitHub; corrections and suggestions are welcome.",
     "crumbs": [
       "Introduction to Quarto"
     ]
@@ -728,109 +728,351 @@
     "href": "05_paper.html#where-we-are",
     "title": "5  Writing a Paper",
     "section": "5.13 Where we are",
-    "text": "5.13 Where we are\nWe have:\n\nTurned the report into a paper with a few YAML changes\nCited a source, with a reference list in APA style\nNumbered a figure and a table, and referred to them in the text\nRendered to Word (and PDF)\n\n\n\n\n\n\n\n\n\n\n\nImportantWhere to go next\n\n\n\nThe Advanced units in the book (no slides) pick up from here.\n\nKeep editing your own report, slides, and paper, and render them to see each new feature\nTopics include more markdown, chunk options and tables, slide formatting, YAML in depth, and Git with Quarto projects\nAlso: how to keep one copy of your code for a report, slides, and a paper",
+    "text": "5.13 Where we are\nWe have:\n\nTurned the report into a paper with a few YAML changes\nCited a source, with a reference list in APA style\nNumbered a figure and a table, and referred to them in the text\nRendered to Word (and PDF)\n\n\n\n\n\n\n\n\n\n\n\nImportantWhere to go next\n\n\n\nThe Advanced units in the book (no slides) pick up from here.\n\nKeep editing your own report, slides, and paper, and render them to see each new feature\nTopics include more markdown, chunk options and figures, tables, slide formatting, YAML in depth, Quarto projects, and Git\nAlso: how to keep one copy of your code for a report, slides, and a paper",
     "crumbs": [
       "Basic",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
     ]
   },
   {
-    "objectID": "git_quarto.html",
-    "href": "git_quarto.html",
-    "title": "6  Git with Quarto Projects",
+    "objectID": "markdown.html",
+    "href": "markdown.html",
+    "title": "6  Advanced Markdown",
     "section": "",
-    "text": "6.1 What’s in your repo now\nIn the workshop, we built a report, a slide deck, and a paper in your mendota_ice repo, but we never committed any of it. That was on purpose. Rendering fills your repo with files that Quarto makes, and most of them don’t belong in Git. This unit sorts out which files to commit and which to ignore, then commits and pushes your work.\nThe same rules apply to any repo where you use Quarto.\nIn your mendota_ice folder, run:\nIf you finished all the workshop units, you will see something like this:\nYour list may be a little different. For example, you will only have paper.pdf and .quarto/ if you also rendered the paper to PDF with Typst.",
+    "text": "6.1 Text formatting\nIn the workshop, you used the basics of markdown: headings, paragraphs, bold, bulleted lists, and the blank lines that hold them together. This unit covers the rest of the markdown you are likely to use: more text formatting, numbered and nested lists, links, images, footnotes, tables you type by hand, math, and callout boxes.\nEverything here works in reports, slide decks, and papers. Where an output format handles something differently, we say so.\nEach example shows what you type, followed by what you get (in a green box). Try them in your own report.qmd and render to see them for yourself.\nYou type:\nYou get:\nInline code (text between single backticks) is only formatting: it shows the text in a code font, so readers can tell ice_days is a column name. Quarto doesn’t run it. Inline R code, which does run, starts with the letter r right after the first backtick, as you saw in the workshop.",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#text-formatting",
+    "href": "markdown.html#text-formatting",
+    "title": "6  Advanced Markdown",
+    "section": "",
+    "text": "Lake Mendota is *frozen* for **fewer days** than it was in the 1800s.\nSome winters it ***barely*** freezes.\n\nA winter now averages ~~114~~ 81 days of ice.\nWater is H~2~O, and the lake holds about 5 × 10^11^ liters.\nUse the `ice_days` column.\n\n\nLake Mendota is frozen for fewer days than it was in the 1800s. Some winters it barely freezes.\nA winter now averages 114 81 days of ice. Water is H2O, and the lake holds about 5 × 1011 liters. Use the ice_days column.\n\n\n\n\n\n\n\n\nYou type\nYou get\n\n\n\n\n*italic*\nitalic\n\n\n**bold**\nbold\n\n\n***bold italic***\nbold italic\n\n\n~~strikethrough~~\nstrikethrough\n\n\nH~2~O (subscript)\nH2O\n\n\n10^11^ (superscript)\n1011\n\n\n`code` (inline code)\ncode",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#paragraphs-and-line-breaks",
+    "href": "markdown.html#paragraphs-and-line-breaks",
+    "title": "6  Advanced Markdown",
+    "section": "6.2 Paragraphs and line breaks",
+    "text": "6.2 Paragraphs and line breaks\nMarkdown joins lines that have no blank line between them into one paragraph. That’s why the two sentences about averages in your report, typed on two lines, appear as one paragraph.\n\nTo start a new paragraph, leave a blank line.\nTo break a line without starting a new paragraph (useful for addresses or poems), end the line with a backslash (\\).\n\nYou type:\nLake Mendota\\\nMadison, Wisconsin\\\nUnited States\nYou get:\n\nLake Mendota\nMadison, Wisconsin\nUnited States",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#numbered-and-nested-lists",
+    "href": "markdown.html#numbered-and-nested-lists",
+    "title": "6  Advanced Markdown",
+    "section": "6.3 Numbered and nested lists",
+    "text": "6.3 Numbered and nested lists\nNumbered lists use a number and a period. Quarto does the counting, so you can type 1. for every item; adding an item in the middle never means renumbering by hand. The first number sets where the list starts.\nTo nest a list inside another, indent the inner items so they line up with the text of the item above: two spaces under a - item, three spaces under a 1. item. Four spaces works under both.\nYou type:\nTo update your report:\n\n1. Edit `report.qmd`\n1. Render it\n    - Fix any errors\n    - Render again\n1. Publish the update\nYou get:\n\nTo update your report:\n\nEdit report.qmd\nRender it\n\nFix any errors\nRender again\n\nPublish the update\n\n\nAs with bulleted lists, leave a blank line before a numbered list.\nTwo numbered lists in a row, separated only by a blank line, become one list. Put a line of text between them to keep them apart.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#links",
+    "href": "markdown.html#links",
+    "title": "6  Advanced Markdown",
+    "section": "6.4 Links",
+    "text": "6.4 Links\nYou type:\nThe data are from the [Environmental Data Initiative](https://doi.org/10.6073/pasta/6a95bee73799927cbafbf87393be7038).\nLearn more at &lt;https://quarto.org&gt;.\nYou get:\n\nThe data are from the Environmental Data Initiative. Learn more at https://quarto.org.\n\n\n[text](url) makes the text a link.\n&lt;url&gt; shows the address itself as a link. Without the angle brackets, the address is plain text, not a link.\n\n\n\n\n\n\n\nImportantYour turn\n\n\n\nIn your report.qmd:\n\nPut one word in italics and add a link to the data source in your Background section\nTurn the two bullets about the record into a numbered list, and nest a bullet under one of them\nRender and check the result",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#images",
+    "href": "markdown.html#images",
+    "title": "6  Advanced Markdown",
+    "section": "6.5 Images",
+    "text": "6.5 Images\nAn image looks like a link with an exclamation mark in front:\n![Lake Mendota in January.](images/mendota_winter.jpg){width=60%}\n\nThe path (images/mendota_winter.jpg) is relative to your .qmd file, just like the path to your data.\n{width=60%} is optional. It sets the image’s width as a share of the page.\nWhen the image sits in a paragraph by itself, the text in the square brackets becomes a caption, and Quarto treats the image as a figure.\n\nThe caption is not alt text, the description that screen readers read aloud. Add alt text with fig-alt:\n![Lake Mendota in January.](images/mendota_winter.jpg){width=60% fig-alt=\"Snow-covered ice on Lake Mendota, with the Capitol in the distance.\"}\nFor an image with no caption, leave the square brackets empty: ![](images/mendota_winter.jpg){fig-alt=\"...\"}.\nWith embed-resources: true, the image is packed into your HTML file, so you can publish the report as before. Word and PDF files always hold their own images.\nThis is for image files, like photos or diagrams. For plots you make in R, use a code chunk instead; Chapter 7 covers how to size and caption them.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#block-quotes",
+    "href": "markdown.html#block-quotes",
+    "title": "6  Advanced Markdown",
+    "section": "6.6 Block quotes",
+    "text": "6.6 Block quotes\nStart a line with &gt; to set it off as a quotation. For example, to quote the rule as the story from the workshop tells it:\nYou type:\n&gt; The lake is frozen if you can't row a boat from Picnic Point to Maple Bluff.\nYou get:\n\n\nThe lake is frozen if you can’t row a boat from Picnic Point to Maple Bluff.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#footnotes",
+    "href": "markdown.html#footnotes",
+    "title": "6  Advanced Markdown",
+    "section": "",
+    "text": "Records for 1852-53 and 1853-54 are incomplete, and 1854-55 is missing.↩︎",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#tables-you-type-by-hand",
+    "href": "markdown.html#tables-you-type-by-hand",
+    "title": "6  Advanced Markdown",
+    "section": "6.8 Tables you type by hand",
+    "text": "6.8 Tables you type by hand\nFor a small table of numbers you already know, you can type it as a pipe table:\n| Winter  | Days of ice | Record   |\n|:--------|------------:|:--------:|\n| 1880-81 |         161 | Longest  |\n| 2001-02 |          21 | Shortest |\n\n: Record winters on Lake Mendota. {#tbl-records}\nYou get:\n\n\n\n\nTable 6.1: Record winters on Lake Mendota.\n\n\n\n\n\nWinter\nDays of ice\nRecord\n\n\n\n\n1880-81\n161\nLongest\n\n\n2001-02\n21\nShortest\n\n\n\n\n\n\n\n\n| separates the columns. The columns don’t have to line up in your source, but lining them up makes the table easier to read and edit.\nThe second line separates the header from the rows. Colons set alignment: :--- left, ---: right, :---: centered. Right-align numbers.\nThe line starting with : after the table is its caption. It’s optional.\n{#tbl-records} gives the table a label, so you can refer to it as @tbl-records, just as you did for the table in your paper. Here, @tbl-records becomes “Table 6.1”.\n\nHand-typed tables are for fixed content. If the numbers come from your data, make the table with code, so it updates when the data change. Chapter 8 covers that.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#math",
+    "href": "markdown.html#math",
+    "title": "6  Advanced Markdown",
+    "section": "6.9 Math",
+    "text": "6.9 Math\nQuarto writes math in LaTeX notation, which is the standard for equations.\n\nPut math inside a sentence between single dollar signs: $...$.\nPut an equation on its own line between double dollar signs: $$...$$.\n\nYou type:\nThe mean of $n$ winters is $\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i$.\n\n$$\n\\bar{x}_{\\text{recent}} - \\bar{x}_{\\text{1800s}} = 81 - 114 = -33\n$$\nYou get:\n\nThe mean of \\(n\\) winters is \\(\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i\\).\n\\[\n\\bar{x}_{\\text{recent}} - \\bar{x}_{\\text{1800s}} = 81 - 114 = -33\n\\]\n\nMath works in HTML, in Word (as real, editable Word equations), and in PDF.\nA few LaTeX pieces cover most needs:\n\n\n\n\n\n\n\nYou type\nYou get\n\n\n\n\nx^2, x_i\n\\(x^2\\), \\(x_i\\)\n\n\n\\frac{a}{b}\n\\(\\frac{a}{b}\\)\n\n\n\\bar{x}, \\hat{\\beta}\n\\(\\bar{x}\\), \\(\\hat{\\beta}\\)\n\n\n\\sum_{i=1}^{n}\n\\(\\sum_{i=1}^{n}\\)\n\n\n\\sqrt{x}\n\\(\\sqrt{x}\\)\n\n\n\\alpha, \\mu, \\sigma\n\\(\\alpha\\), \\(\\mu\\), \\(\\sigma\\)\n\n\n\\le, \\ge, \\ne, \\approx\n\\(\\le\\), \\(\\ge\\), \\(\\ne\\), \\(\\approx\\)\n\n\n\nDollar amounts usually come out fine: Quarto only treats $...$ as math when there’s no space just inside the dollar signs. If one ever turns into math by mistake, type \\$ for a plain dollar sign.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#callouts",
+    "href": "markdown.html#callouts",
+    "title": "6  Advanced Markdown",
+    "section": "6.10 Callouts",
+    "text": "6.10 Callouts\nA callout is a colored box that sets off a note, tip, or warning. It starts with ::: {.callout-note} and ends with :::, each on its own line:\n::: {.callout-note}\n## About the data\nA winter counts in the year it ends: winter 1855-56 is 1856.\n:::\nYou get:\n\n\n\n\n\n\n\nNoteAbout the data\n\n\n\nA winter counts in the year it ends: winter 1855-56 is 1856.\n\n\n\n\nThere are five types: callout-note, callout-tip, callout-important, callout-warning, and callout-caution. Each has its own color.\nA heading on the first line inside becomes the callout’s title. You can also write the title as an option: ::: {.callout-warning title=\"Check your paths\"}.\nIn HTML, add collapse=\"true\" to show only the title until the reader clicks it: ::: {.callout-tip collapse=\"true\"}. Word and PDF show the whole callout.\n\nCallouts work in HTML, Word, PDF, and slides.\n\n\n\n\n\n\nImportantYour turn\n\n\n\nIn your report.qmd:\n\nAdd a footnote to your Background section\nAdd the record-winters table above, and refer to it in a sentence with @tbl-records\nAdd a callout-note that explains how a winter’s year is counted\nRender and check the result",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#comments",
+    "href": "markdown.html#comments",
+    "title": "6  Advanced Markdown",
+    "section": "6.11 Comments",
+    "text": "6.11 Comments\nText between &lt;!-- and --&gt; is a comment. It doesn’t appear in your rendered document, so it’s handy for notes to yourself or for switching off a paragraph without deleting it:\n&lt;!-- TODO: add the 2026-27 winter when the data are updated --&gt;\nIn RStudio, select some lines and press Ctrl+Shift+C (Cmd+Shift+C on a Mac) to comment them out or back in.\n\n\n\n\n\n\nWarningComments are hidden, not removed\n\n\n\nWord and PDF files leave comments out completely. An HTML file keeps them in its source code, so anyone who opens View Source on your published report can read them. Don’t put anything private in a comment.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#escaping-special-characters",
+    "href": "markdown.html#escaping-special-characters",
+    "title": "6  Advanced Markdown",
+    "section": "6.12 Escaping special characters",
+    "text": "6.12 Escaping special characters\nCharacters like *, _, #, and $ have special meanings in markdown. To show one as a plain character, put a backslash in front of it.\nYou type:\nMultiply 3 \\* 4 and see \\*this\\*, not *this*.\nYou get:\n\nMultiply 3 * 4 and see *this*, not this.\n\nOften you don’t need to: a * with spaces on both sides, as in 3 * 4, stays a plain *.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#horizontal-rules",
+    "href": "markdown.html#horizontal-rules",
+    "title": "6  Advanced Markdown",
+    "section": "6.13 Horizontal rules",
+    "text": "6.13 Horizontal rules\nThree dashes on a line by themselves, with blank lines around them, draw a horizontal line across a report. You have seen --- do two other jobs: it starts and ends the YAML header, and in a slide deck it starts a new slide.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#divs-and-spans",
+    "href": "markdown.html#divs-and-spans",
+    "title": "6  Advanced Markdown",
+    "section": "6.14 Divs and spans",
+    "text": "6.14 Divs and spans\nCallouts are one example of a general markdown pattern that you will see more of:\n\nA div wraps a block of content: ::: with a class in braces opens it, and ::: closes it. Callouts, the speaker notes in your slide deck (::: {.notes}), and slide columns are all divs.\nA span wraps a few words inside a sentence: square brackets, then a class in braces.\n\nYou type:\nThis word is [underlined]{.underline}, and these are [Small Caps]{.smallcaps}.\nYou get:\n\nThis word is underlined, and these are Small Caps.\n\nChapter 9 uses divs and spans to lay out slides.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "markdown.html#learn-more",
+    "href": "markdown.html#learn-more",
+    "title": "6  Advanced Markdown",
+    "section": "6.15 Learn more",
+    "text": "6.15 Learn more\nThe Quarto guide covers all of Quarto’s markdown, with more examples: https://quarto.org/docs/authoring/markdown-basics.html.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Advanced Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "chunk_options.html",
+    "href": "chunk_options.html",
+    "title": "7  Chunk Options and Figures",
+    "section": "",
+    "text": "This unit is coming soon.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Chunk Options and Figures</span>"
+    ]
+  },
+  {
+    "objectID": "tables.html",
+    "href": "tables.html",
+    "title": "8  Tables",
+    "section": "",
+    "text": "This unit is coming soon.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Tables</span>"
+    ]
+  },
+  {
+    "objectID": "slide_formatting.html",
+    "href": "slide_formatting.html",
+    "title": "9  Advanced Slide Formatting",
+    "section": "",
+    "text": "This unit is coming soon.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Advanced Slide Formatting</span>"
+    ]
+  },
+  {
+    "objectID": "yaml.html",
+    "href": "yaml.html",
+    "title": "10  YAML in Depth",
+    "section": "",
+    "text": "This unit is coming soon.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>YAML in Depth</span>"
+    ]
+  },
+  {
+    "objectID": "projects_paths.html",
+    "href": "projects_paths.html",
+    "title": "11  Quarto Projects and Paths",
+    "section": "",
+    "text": "This unit is coming soon.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Quarto Projects and Paths</span>"
+    ]
+  },
+  {
+    "objectID": "reuse_code.html",
+    "href": "reuse_code.html",
+    "title": "12  Reusing Code Across Products",
+    "section": "",
+    "text": "This unit is coming soon.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Reusing Code Across Products</span>"
+    ]
+  },
+  {
+    "objectID": "git_quarto.html",
+    "href": "git_quarto.html",
+    "title": "13  Git with Quarto Projects",
+    "section": "",
+    "text": "13.1 What’s in your repo now\nIn the workshop, we built a report, a slide deck, and a paper in your mendota_ice repo, but we never committed any of it. That was on purpose. Rendering fills your repo with files that Quarto makes, and most of them don’t belong in Git. This unit sorts out which files to commit and which to ignore, then commits and pushes your work.\nThe same rules apply to any repo where you use Quarto.\nIn your mendota_ice folder, run:\nIf you finished all the workshop units, you will see something like this:\nYour list may be a little different. For example, you will only have paper.pdf and .quarto/ if you also rendered the paper to PDF with Typst.",
+    "crumbs": [
+      "Advanced",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#whats-in-your-repo-now",
     "href": "git_quarto.html#whats-in-your-repo-now",
-    "title": "6  Git with Quarto Projects",
+    "title": "13  Git with Quarto Projects",
     "section": "",
     "text": "git status\n\nOn branch main\nUntracked files:\n  (use \"git add &lt;file&gt;...\" to include in what will be committed)\n    .quarto/\n    _publish.yml\n    apa.csl\n    data/\n    paper.docx\n    paper.pdf\n    paper.qmd\n    refs.bib\n    report.html\n    report.qmd\n    slides.html\n    slides.qmd\n    slides_files/\n\nnothing added to commit but untracked files present (use \"git add\" to track)",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#commit-what-you-write-ignore-what-quarto-makes",
     "href": "git_quarto.html#commit-what-you-write-ignore-what-quarto-makes",
-    "title": "6  Git with Quarto Projects",
-    "section": "6.2 Commit what you write, ignore what Quarto makes",
-    "text": "6.2 Commit what you write, ignore what Quarto makes\nThe rule of thumb is simple:\n\nCommit the files you write: your .qmd files and the inputs they need (data, references, citation style).\nIgnore the files Quarto makes: anything quarto render can rebuild.\n\nRendered output doesn’t belong in Git for several reasons:\n\nYou can always rebuild it. Anyone with your source files can run quarto render and get the same output.\nIt changes every time you render. Our report uses date: today, so report.html changes every day you render it, even if nothing else did. Those changes clutter every commit.\nIt’s often binary. Git can’t show you what changed inside a .docx or .pdf, and it can’t merge two versions of one. If two people change the same Word file, someone has to pick one version.\nIt’s big. With embed-resources: true, report.html holds the figure and all the supporting code, so it’s over a megabyte. Git keeps every version you commit, forever.\nIt can go stale. A committed report.html may no longer match report.qmd, and nothing warns you.\n\nYou share output in other ways: publish it (as we did with Connect Cloud), or send the Word file to a co-author.\nHere is how each file in your repo sorts out:\n\n\n\n\n\n\n\n\nFile\nWhat it is\nCommit?\n\n\n\n\nreport.qmd, slides.qmd, paper.qmd\nYour source documents\nYes\n\n\ndata/mendota_ice.csv\nData the documents read\nYes\n\n\nrefs.bib\nReferences the paper cites\nYes\n\n\napa.csl\nCitation style for the paper\nYes\n\n\n_publish.yml\nWhere each document is published (see below)\nYes\n\n\n.gitignore\nWhat Git should ignore\nYes\n\n\nreport.html, slides.html\nRendered HTML\nNo\n\n\nslides_files/\nImages and code the HTML deck needs\nNo\n\n\npaper.docx, paper.pdf\nRendered Word and PDF\nNo\n\n\n.quarto/\nQuarto’s scratch folder\nNo\n\n\n\nCommitting data is fine here because the file is small and public. For large or private data, think twice; that’s a topic for another day.\n\n6.2.1 Where the extra folders come from\n\nslides_files/: a revealjs deck needs supporting files (the figure, plus the code that runs the slides). Quarto puts them in a folder named after the document. The report has no report_files/ folder because embed-resources: true packs everything into report.html.\n.quarto/: Quarto’s own working folder. For single documents like ours, it appears when you render to PDF with Typst. Quarto projects (folders with a _quarto.yml file) always have one.\n\nIf a render fails partway, Quarto can leave intermediate files behind, such as a paper_files/ folder or a paper.typ file. The next successful render cleans them up.",
+    "title": "13  Git with Quarto Projects",
+    "section": "13.2 Commit what you write, ignore what Quarto makes",
+    "text": "13.2 Commit what you write, ignore what Quarto makes\nThe rule of thumb is simple:\n\nCommit the files you write: your .qmd files and the inputs they need (data, references, citation style).\nIgnore the files Quarto makes: anything quarto render can rebuild.\n\nRendered output doesn’t belong in Git for several reasons:\n\nYou can always rebuild it. Anyone with your source files can run quarto render and get the same output.\nIt changes every time you render. Our report uses date: today, so report.html changes every day you render it, even if nothing else did. Those changes clutter every commit.\nIt’s often binary. Git can’t show you what changed inside a .docx or .pdf, and it can’t merge two versions of one. If two people change the same Word file, someone has to pick one version.\nIt’s big. With embed-resources: true, report.html holds the figure and all the supporting code, so it’s over a megabyte. Git keeps every version you commit, forever.\nIt can go stale. A committed report.html may no longer match report.qmd, and nothing warns you.\n\nYou share output in other ways: publish it (as we did with Connect Cloud), or send the Word file to a co-author.\nHere is how each file in your repo sorts out:\n\n\n\n\n\n\n\n\nFile\nWhat it is\nCommit?\n\n\n\n\nreport.qmd, slides.qmd, paper.qmd\nYour source documents\nYes\n\n\ndata/mendota_ice.csv\nData the documents read\nYes\n\n\nrefs.bib\nReferences the paper cites\nYes\n\n\napa.csl\nCitation style for the paper\nYes\n\n\n_publish.yml\nWhere each document is published (see below)\nYes\n\n\n.gitignore\nWhat Git should ignore\nYes\n\n\nreport.html, slides.html\nRendered HTML\nNo\n\n\nslides_files/\nImages and code the HTML deck needs\nNo\n\n\npaper.docx, paper.pdf\nRendered Word and PDF\nNo\n\n\n.quarto/\nQuarto’s scratch folder\nNo\n\n\n\nCommitting data is fine here because the file is small and public. For large or private data, think twice; that’s a topic for another day.\n\n13.2.1 Where the extra folders come from\n\nslides_files/: a revealjs deck needs supporting files (the figure, plus the code that runs the slides). Quarto puts them in a folder named after the document. The report has no report_files/ folder because embed-resources: true packs everything into report.html.\n.quarto/: Quarto’s own working folder. For single documents like ours, it appears when you render to PDF with Typst. Quarto projects (folders with a _quarto.yml file) always have one.\n\nIf a render fails partway, Quarto can leave intermediate files behind, such as a paper_files/ folder or a paper.typ file. The next successful render cleans them up.",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#update-your-.gitignore",
     "href": "git_quarto.html#update-your-.gitignore",
-    "title": "6  Git with Quarto Projects",
-    "section": "6.3 Update your .gitignore",
-    "text": "6.3 Update your .gitignore\nYour repo already has a .gitignore: the R template you chose on GitHub. It covers R’s clutter (.Rhistory, .RData, .Rproj.user/) and keeps secrets like .Renviron and .env out of Git. It knows nothing about Quarto.\nOpen .gitignore in RStudio, add these lines at the end, and save:\n# Quarto\n/.quarto/\n*_files/\n*.html\n*.docx\n*.pdf\nWhat each line does:\n\n/.quarto/ ignores Quarto’s scratch folder. The leading / means “only at the top of the repo”.\n*_files/ ignores any folder whose name ends in _files, like slides_files/.\n*.html, *.docx, and *.pdf ignore rendered output anywhere in the repo.\n\nThese patterns are broad on purpose, so new documents are covered without editing .gitignore again. If you ever do want to commit one of these files, say a PDF of a published article you keep in a literature/ folder, add an exception line that starts with !:\n!literature/*.pdf\nNow check your work:\ngit status\nOn branch main\nChanges not staged for commit:\n  (use \"git add &lt;file&gt;...\" to update what will be committed)\n  (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n    modified:   .gitignore\n\nUntracked files:\n  (use \"git add &lt;file&gt;...\" to include in what will be committed)\n    _publish.yml\n    apa.csl\n    data/\n    paper.qmd\n    refs.bib\n    report.qmd\n    slides.qmd\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nThe output files are gone from the list. Only the files you wrote are left.\n\n6.3.1 Checking what Git ignores\nTwo commands help when you aren’t sure. To list ignored files (marked !!):\ngit status --short --ignored\n M .gitignore\n?? _publish.yml\n?? apa.csl\n?? data/\n?? paper.qmd\n?? refs.bib\n?? report.qmd\n?? slides.qmd\n!! .quarto/\n!! paper.docx\n!! paper.pdf\n!! report.html\n!! slides.html\n!! slides_files/\nTo see which line of .gitignore ignores a file:\ngit check-ignore -v slides.html slides_files\n.gitignore:55:*.html    slides.html\n.gitignore:54:*_files/  slides_files\nYour line numbers may differ. If git check-ignore prints nothing for a file, Git is not ignoring it.",
+    "title": "13  Git with Quarto Projects",
+    "section": "13.3 Update your .gitignore",
+    "text": "13.3 Update your .gitignore\nYour repo already has a .gitignore: the R template you chose on GitHub. It covers R’s clutter (.Rhistory, .RData, .Rproj.user/) and keeps secrets like .Renviron and .env out of Git. It knows nothing about Quarto.\nOpen .gitignore in RStudio, add these lines at the end, and save:\n# Quarto\n/.quarto/\n*_files/\n*.html\n*.docx\n*.pdf\nWhat each line does:\n\n/.quarto/ ignores Quarto’s scratch folder. The leading / means “only at the top of the repo”.\n*_files/ ignores any folder whose name ends in _files, like slides_files/.\n*.html, *.docx, and *.pdf ignore rendered output anywhere in the repo.\n\nThese patterns are broad on purpose, so new documents are covered without editing .gitignore again. If you ever do want to commit one of these files, say a PDF of a published article you keep in a literature/ folder, add an exception line that starts with !:\n!literature/*.pdf\nNow check your work:\ngit status\nOn branch main\nChanges not staged for commit:\n  (use \"git add &lt;file&gt;...\" to update what will be committed)\n  (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n    modified:   .gitignore\n\nUntracked files:\n  (use \"git add &lt;file&gt;...\" to include in what will be committed)\n    _publish.yml\n    apa.csl\n    data/\n    paper.qmd\n    refs.bib\n    report.qmd\n    slides.qmd\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nThe output files are gone from the list. Only the files you wrote are left.\n\n13.3.1 Checking what Git ignores\nTwo commands help when you aren’t sure. To list ignored files (marked !!):\ngit status --short --ignored\n M .gitignore\n?? _publish.yml\n?? apa.csl\n?? data/\n?? paper.qmd\n?? refs.bib\n?? report.qmd\n?? slides.qmd\n!! .quarto/\n!! paper.docx\n!! paper.pdf\n!! report.html\n!! slides.html\n!! slides_files/\nTo see which line of .gitignore ignores a file:\ngit check-ignore -v slides.html slides_files\n.gitignore:55:*.html    slides.html\n.gitignore:54:*_files/  slides_files\nYour line numbers may differ. If git check-ignore prints nothing for a file, Git is not ignoring it.",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#commit-and-push",
     "href": "git_quarto.html#commit-and-push",
-    "title": "6  Git with Quarto Projects",
-    "section": "6.4 Commit and push",
-    "text": "6.4 Commit and push\nWith a good .gitignore in place, git add . is safe: it stages everything Git doesn’t ignore. Still, check what you staged before you commit.\ngit add .\ngit status\nOn branch main\nChanges to be committed:\n  (use \"git restore --staged &lt;file&gt;...\" to unstage)\n    modified:   .gitignore\n    new file:   _publish.yml\n    new file:   apa.csl\n    new file:   data/mendota_ice.csv\n    new file:   paper.qmd\n    new file:   refs.bib\n    new file:   report.qmd\n    new file:   slides.qmd\nOnly source files. Commit and push:\ngit commit -m \"Add report, slides, and paper\"\ngit push\nFrom now on, the routine is the same as any other repo: edit your .qmd files, render to check them, then commit the .qmd changes. Rendering never adds anything new for Git to track.\n\n\n\n\n\n\nImportantYour turn\n\n\n\n\nAdd a sentence to report.qmd and render it\nRun git status: only report.qmd should show as modified\nCommit and push the change",
+    "title": "13  Git with Quarto Projects",
+    "section": "13.4 Commit and push",
+    "text": "13.4 Commit and push\nWith a good .gitignore in place, git add . is safe: it stages everything Git doesn’t ignore. Still, check what you staged before you commit.\ngit add .\ngit status\nOn branch main\nChanges to be committed:\n  (use \"git restore --staged &lt;file&gt;...\" to unstage)\n    modified:   .gitignore\n    new file:   _publish.yml\n    new file:   apa.csl\n    new file:   data/mendota_ice.csv\n    new file:   paper.qmd\n    new file:   refs.bib\n    new file:   report.qmd\n    new file:   slides.qmd\nOnly source files. Commit and push:\ngit commit -m \"Add report, slides, and paper\"\ngit push\nFrom now on, the routine is the same as any other repo: edit your .qmd files, render to check them, then commit the .qmd changes. Rendering never adds anything new for Git to track.\n\n\n\n\n\n\nImportantYour turn\n\n\n\n\nAdd a sentence to report.qmd and render it\nRun git status: only report.qmd should show as modified\nCommit and push the change",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#if-you-already-committed-output",
     "href": "git_quarto.html#if-you-already-committed-output",
-    "title": "6  Git with Quarto Projects",
-    "section": "6.5 If you already committed output",
-    "text": "6.5 If you already committed output\n.gitignore only affects files Git isn’t tracking yet. If you committed report.html before adding *.html to .gitignore, Git keeps tracking it, and every render shows it as modified:\n M report.html\n M report.qmd\nTo stop tracking a file without deleting it from your computer, use git rm --cached, then commit:\ngit rm --cached report.html\ngit commit -m \"Stop tracking report.html\"\nreport.html stays on your computer, and from now on .gitignore applies to it. For a folder, add -r: git rm -r --cached slides_files.\nOlder versions of the file stay in your Git history. That’s fine for a small report. Removing files from history is possible but disruptive, and you rarely need it.",
+    "title": "13  Git with Quarto Projects",
+    "section": "13.5 If you already committed output",
+    "text": "13.5 If you already committed output\n.gitignore only affects files Git isn’t tracking yet. If you committed report.html before adding *.html to .gitignore, Git keeps tracking it, and every render shows it as modified:\n M report.html\n M report.qmd\nTo stop tracking a file without deleting it from your computer, use git rm --cached, then commit:\ngit rm --cached report.html\ngit commit -m \"Stop tracking report.html\"\nreport.html stays on your computer, and from now on .gitignore applies to it. For a folder, add -r: git rm -r --cached slides_files.\nOlder versions of the file stay in your Git history. That’s fine for a small report. Removing files from history is possible but disruptive, and you rarely need it.",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#commit-_publish.yml",
     "href": "git_quarto.html#commit-_publish.yml",
-    "title": "6  Git with Quarto Projects",
-    "section": "6.6 Commit _publish.yml",
-    "text": "6.6 Commit _publish.yml\n_publish.yml is the file quarto publish writes the first time you publish a document. It records where each document went:\n- source: report.qmd\n  posit-connect-cloud:\n    - id: 01a1c082-...\n      url: https://connect.posit.cloud/your_name/content/01a1c082-...\nCommit it. It’s what makes quarto publish offer to update your existing report instead of creating a new copy at a new URL. With it in your repo, you can republish from another computer, or a teammate can, and the URL your readers have keeps working.\nIt holds only IDs and URLs, not your login. Quarto keeps your Connect Cloud credentials on your computer, outside the repo, so _publish.yml is safe to commit even to a public repo.\nTwo tips:\n\nTo publish a document to a new URL (for example, so a new title takes effect), delete its entry from _publish.yml, then publish again. Delete the old copy on the Connect Cloud website if you no longer want it.\nTo start over completely, delete the whole file. Don’t leave it empty: Quarto can’t read an empty _publish.yml, so it stops recording where you publish.",
+    "title": "13  Git with Quarto Projects",
+    "section": "13.6 Commit _publish.yml",
+    "text": "13.6 Commit _publish.yml\n_publish.yml is the file quarto publish writes the first time you publish a document. It records where each document went:\n- source: report.qmd\n  posit-connect-cloud:\n    - id: 01a1c082-...\n      url: https://connect.posit.cloud/your_name/content/01a1c082-...\nCommit it. It’s what makes quarto publish offer to update your existing report instead of creating a new copy at a new URL. With it in your repo, you can republish from another computer, or a teammate can, and the URL your readers have keeps working.\nIt holds only IDs and URLs, not your login. Quarto keeps your Connect Cloud credentials on your computer, outside the repo, so _publish.yml is safe to commit even to a public repo.\nTwo tips:\n\nTo publish a document to a new URL (for example, so a new title takes effect), delete its entry from _publish.yml, then publish again. Delete the old copy on the Connect Cloud website if you no longer want it.\nTo start over completely, delete the whole file. Don’t leave it empty: Quarto can’t read an empty _publish.yml, so it stops recording where you publish.",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#when-you-add-a-_quarto.yml",
     "href": "git_quarto.html#when-you-add-a-_quarto.yml",
-    "title": "6  Git with Quarto Projects",
-    "section": "6.7 When you add a _quarto.yml",
-    "text": "6.7 When you add a _quarto.yml\nOur repo has no _quarto.yml, so it isn’t a Quarto project. Each document renders on its own. If you later turn a folder into a project (for a website, a book, or to share settings across documents), a few things change:\n\nQuarto edits .gitignore for you. When you render a project inside a Git repo, Quarto adds /.quarto/ and **/*.quarto_ipynb to .gitignore if they aren’t already there. (*.quarto_ipynb files are temporary files from rendering documents that run Python through Jupyter.) It doesn’t do this for single documents like ours, which is why we added /.quarto/ by hand.\nWebsites and books render to an output folder: _site/ for websites and _book/ for books. Quarto does not add these to .gitignore. If you publish with quarto publish, add them yourself.\nThe R template ignores docs/. If you publish a website with GitHub Pages from a docs/ folder, that output does need to be committed, so delete the docs/ line from .gitignore.\nCommit _freeze/. If your project uses freeze, Quarto saves the results of your code in a _freeze/ folder and reuses them instead of rerunning the code. The Quarto documentation recommends committing it, so others can render the project without setting up your whole computing environment.",
+    "title": "13  Git with Quarto Projects",
+    "section": "13.7 When you add a _quarto.yml",
+    "text": "13.7 When you add a _quarto.yml\nOur repo has no _quarto.yml, so it isn’t a Quarto project. Each document renders on its own. If you later turn a folder into a project (for a website, a book, or to share settings across documents; see Chapter 11), a few things change for Git:\n\nQuarto edits .gitignore for you. When you render a project inside a Git repo, Quarto adds /.quarto/ and **/*.quarto_ipynb to .gitignore if they aren’t already there. (*.quarto_ipynb files are temporary files from rendering documents that run Python through Jupyter.) It doesn’t do this for single documents like ours, which is why we added /.quarto/ by hand.\nWebsites and books render to an output folder: _site/ for websites and _book/ for books. Quarto does not add these to .gitignore. If you publish with quarto publish, add them yourself.\nThe R template ignores docs/. If you publish a website with GitHub Pages from a docs/ folder, that output does need to be committed, so delete the docs/ line from .gitignore.\nCommit _freeze/. If your project uses freeze, Quarto saves the results of your code in a _freeze/ folder and reuses them instead of rerunning the code. The Quarto documentation recommends committing it, so others can render the project without setting up your whole computing environment.",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   },
   {
     "objectID": "git_quarto.html#summary",
     "href": "git_quarto.html#summary",
-    "title": "6  Git with Quarto Projects",
-    "section": "6.8 Summary",
-    "text": "6.8 Summary\nFor a repo of Quarto documents like mendota_ice, add this to the .gitignore you got from GitHub’s R template:\n# Quarto\n/.quarto/\n*_files/\n*.html\n*.docx\n*.pdf\nThen:\n\nCommit your .qmd files, the data, references, and citation style they read, _publish.yml, and .gitignore.\nIgnore everything quarto render makes. Share output by publishing it instead.\nIf you committed output by mistake, git rm --cached stops tracking it.\nIn Quarto projects, let Quarto manage /.quarto/, ignore _site/ or _book/ unless you publish from them, and commit _freeze/.",
+    "title": "13  Git with Quarto Projects",
+    "section": "13.8 Summary",
+    "text": "13.8 Summary\nFor a repo of Quarto documents like mendota_ice, add this to the .gitignore you got from GitHub’s R template:\n# Quarto\n/.quarto/\n*_files/\n*.html\n*.docx\n*.pdf\nThen:\n\nCommit your .qmd files, the data, references, and citation style they read, _publish.yml, and .gitignore.\nIgnore everything quarto render makes. Share output by publishing it instead.\nIf you committed output by mistake, git rm --cached stops tracking it.\nIn Quarto projects, let Quarto manage /.quarto/, ignore _site/ or _book/ unless you publish from them, and commit _freeze/.",
     "crumbs": [
       "Advanced",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Git with Quarto Projects</span>"
     ]
   }
 ]

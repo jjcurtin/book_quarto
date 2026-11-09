@@ -17,3 +17,11 @@ h3 {
   background-color: honeydew;
   border-radius: 4px;
 }
+
+/* Rendered result of a markdown example (Advanced Markdown unit) */
+.rendered {
+  background-color: honeydew;
+  border-radius: 4px;
+  padding: 0.75em 1em 0.1em 1em;
+  margin-bottom: 1em;
+}
