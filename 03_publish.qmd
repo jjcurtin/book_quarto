@@ -97,7 +97,7 @@ quarto render report.qmd --to typst
 
 - `docx`: a Word document
 - `typst`: a PDF, with no LaTeX needed
-- More on Word output in the manuscript unit
+- More on Word output in the paper unit
 
 
 --------------------------------------------------------------------------------

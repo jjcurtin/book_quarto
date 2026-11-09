@@ -1,0 +1,194 @@
+---
+title: "Slide Decks"
+engine: knitr
+---
+
+## Your report is almost a deck
+
+In the terminal, copy your report:
+
+```bash
+cp report.qmd slides.qmd
+```
+
+<div class="gap-sm"></div>
+
+In `slides.qmd`, replace the `format:` lines with one line:
+
+```yaml
+---
+title: "Ice Cover on Lake Mendota"
+author: "Your Name"
+date: today
+format: revealjs
+---
+```
+
+<div class="gap-sm"></div>
+
+- [revealjs]{.uwred} is Quarto's format for slides in a web browser
+- Yes, this copies your code; the paper unit comes back to that
+
+<div class="gap-md"></div>
+
+Render, then open `slides.html` in your browser:
+
+```bash
+quarto render slides.qmd
+```
+
+- Use the arrow keys to move between slides
+
+
+--------------------------------------------------------------------------------
+
+## What you got
+
+You changed one line, and:
+
+- The YAML header made a [title slide]{.uwred}
+- Each `##` heading started a new slide
+- The code is gone: decks hide code by default
+
+<div class="gap-md"></div>
+
+But one slide has a problem:
+
+- The figure shares its slide with your three sentences
+- Quarto shrinks the figure to make room for them
+
+
+--------------------------------------------------------------------------------
+
+## One idea per slide
+
+Add a heading just above your sentences:
+
+```markdown
+## The numbers
+
+Before 1900, the lake averaged `r knitr::inline_expr("mean_1800s")` days of ice.
+Since 2000, it has averaged `r knitr::inline_expr("mean_recent")`.
+```
+
+<div class="gap-sm"></div>
+
+- The sentences move to a new slide
+- The figure now has its slide to itself, and it grows to fill it
+
+<div class="gap-md"></div>
+
+Want a new slide [without]{.uwred} a title?
+
+- Put `---` on a line by itself, with blank lines around it
+
+
+--------------------------------------------------------------------------------
+
+## Bullets and pauses
+
+Slides read better as short bullets than as sentences:
+
+```markdown
+## The numbers
+
+- Before 1900: `r knitr::inline_expr("mean_1800s")` days of ice per winter
+- Since 2000: `r knitr::inline_expr("mean_recent")` days
+
+. . .
+
+- Shortest winter: `r knitr::inline_expr("min(ice$ice_days)")` days
+- Longest winter: `r knitr::inline_expr("max(ice$ice_days)")` days
+```
+
+<div class="gap-sm"></div>
+
+`. . .` on a line by itself is a [pause]{.uwred}.
+
+- The slide shows everything above it first
+- Press → to show the rest
+- Keep blank lines around it
+
+
+--------------------------------------------------------------------------------
+
+## Speaker notes
+
+At the bottom of a slide, add:
+
+```markdown
+::: {.notes}
+About a month less ice than in the 1800s.
+:::
+```
+
+<div class="gap-sm"></div>
+
+- Everything between `::: {.notes}` and `:::` is a note
+- Your audience doesn't see notes
+
+<div class="gap-md"></div>
+
+Press [S]{.uwred} for speaker view:
+
+- Your notes, a timer, and the next slide
+- If nothing opens, allow pop-ups for the page
+
+
+--------------------------------------------------------------------------------
+
+## Your turn
+
+::: {.callout-wide}
+::: {.callout-important}
+# Try it
+1. Add the `## The numbers` heading, render, and check that the figure has its own slide
+2. Turn your sentences into bullets, with a `. . .` pause
+3. Add a speaker note to one slide, render, and press S
+:::
+:::
+
+
+--------------------------------------------------------------------------------
+
+## Optional: publish your deck
+
+First, give your deck its own title in the YAML header:
+
+```yaml
+title: "Less Ice on Lake Mendota"
+```
+
+- Connect Cloud takes the title from your YAML, but only on the [first]{.uwred} publish
+- Your report already uses "Ice Cover on Lake Mendota"
+
+<div class="gap-md"></div>
+
+Then publish, just like the report:
+
+```bash
+quarto publish posit-connect-cloud slides.qmd
+```
+
+- The deck gets its own URL
+- `_publish.yml` adds a second entry, for `slides.qmd`
+
+
+--------------------------------------------------------------------------------
+
+## Where we are
+
+We have:
+
+- Turned the report into a slide deck by changing `format:`
+- Split slides with `##` headings, so each idea gets its own slide
+- Added bullets, pauses, and speaker notes
+
+<div class="gap-md"></div>
+
+::: {.callout-wide}
+::: {.callout-important}
+# Next up
+A project often goes from report, to slides for a conference talk, to a [paper]{.uwred}. Next we will write the paper.
+:::
+:::

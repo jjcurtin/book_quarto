@@ -1,0 +1,325 @@
+---
+title: "Writing a Paper"
+engine: knitr
+---
+
+## What a paper needs
+
+A paper needs things a report doesn't:
+
+- Citations and a reference list in a required style
+- Numbered figures and tables you can refer to in the text
+- An abstract
+- No visible code
+
+<div class="gap-md"></div>
+
+And usually a [Word]{.uwred} file:
+
+- Co-authors edit it with track changes
+- Many journals ask for `.docx`
+
+
+--------------------------------------------------------------------------------
+
+## Start from your report
+
+In the terminal, in your `mendota_ice` folder:
+
+```bash
+cp report.qmd paper.qmd
+```
+
+<div class="gap-sm"></div>
+
+- `cp` copies a file: first the original, then the new name
+- `paper.qmd` starts with everything your report has
+
+<div class="gap-md"></div>
+
+Copying is fine for today, but now the same code lives in three files: report, slides, and paper.
+
+- Change one, and you must remember to change the other
+- The DRY unit shows how to keep the code in one place
+
+
+--------------------------------------------------------------------------------
+
+## A paper's YAML header
+
+Replace the YAML header at the top of `paper.qmd`:
+
+```yaml
+---
+title: "Ice Cover on Lake Mendota"
+author: "Your Name"
+date: today
+abstract: |
+  Lake Mendota freezes for fewer days each winter than it did in the 1800s.
+  We summarize more than 170 years of ice records.
+format: docx
+execute:
+  echo: false
+---
+```
+
+<div class="gap-sm"></div>
+
+- `abstract: |` starts a block; the indented lines below it are the abstract
+- `format: docx` builds a Word document
+- `execute:` `echo: false` hides all code; readers see only the results
+- No `embed-resources` needed; a Word file always holds its own figures
+
+
+--------------------------------------------------------------------------------
+
+## Render to Word
+
+```bash
+quarto render paper.qmd
+```
+
+<div class="gap-sm"></div>
+
+Quarto writes [`paper.docx`]{.uwred} next to your `.qmd`.
+
+- Open it in Word (or Google Docs, or LibreOffice)
+
+<div class="gap-md"></div>
+
+You should see:
+
+- The abstract under the title
+- Your sections, sentences, and figure
+- No code
+
+<div class="gap-md"></div>
+
+On Windows, close `paper.docx` in Word before you render again.
+
+- Word locks open files, so Quarto can't replace it
+
+
+--------------------------------------------------------------------------------
+
+## Citations need a `.bib` file
+
+You downloaded `refs.bib` during setup. It holds one entry (shortened here):
+
+```bibtex
+@dataset{magnuson2026,
+  author    = {Magnuson, J. J. and Carpenter, S. R. and Stanley, E. H.},
+  title     = {{North Temperate Lakes LTER}: Ice Duration - ...},
+  year      = {2026},
+  publisher = {Environmental Data Initiative},
+  doi       = {10.6073/pasta/6a95bee73799927cbafbf87393be7038},
+  ...
+}
+```
+
+<div class="gap-sm"></div>
+
+- `magnuson2026` is the [citation key]{.uwred}; you cite the source with it
+- Get entries from Google Scholar (Cite → BibTeX), a journal's "Export citation" link, or Zotero
+
+<div class="gap-md"></div>
+
+Point your paper to the file; add to the YAML header:
+
+```yaml
+bibliography: refs.bib
+```
+
+
+--------------------------------------------------------------------------------
+
+## Citation style
+
+Quarto's default style is Chicago author-date.
+
+- For APA, add one more line to the YAML header:
+
+```yaml
+bibliography: refs.bib
+csl: https://www.zotero.org/styles/apa
+```
+
+<div class="gap-sm"></div>
+
+A [CSL]{.uwred} (Citation Style Language) file describes one style.
+
+- Thousands of styles, including many journals, are at <https://www.zotero.org/styles>
+- With a URL, Quarto downloads the style each time you render, so you need internet
+- Working offline? Download the file once and use `csl: apa.csl`
+
+
+--------------------------------------------------------------------------------
+
+## Cite a source
+
+In your Background section, add a citation to the first sentence:
+
+```markdown
+Lake Mendota has been watched for ice since the **1850s** [@magnuson2026].
+```
+
+<div class="gap-sm"></div>
+
+| You type | Quarto writes |
+|---|---|
+| `[@magnuson2026]` | (Magnuson et al., 2026) |
+| `@magnuson2026` | Magnuson et al. (2026) |
+
+<div class="gap-md"></div>
+
+At the very end of `paper.qmd`, add a heading:
+
+```markdown
+## References
+```
+
+- Quarto puts the reference list there, formatted in APA
+
+
+--------------------------------------------------------------------------------
+
+## Number the figure
+
+Change the figure chunk's label and add a caption:
+
+```{{r}}
+#| label: fig-ice_days
+#| fig-cap: "Days of ice cover on Lake Mendota, by winter."
+
+ice |>
+  ggplot(aes(x = year, y = ice_days)) +
+  geom_line() +
+  labs(x = "Winter (year it ended)", y = "Days of ice cover") +
+  theme_minimal()
+```
+
+<div class="gap-sm"></div>
+
+Then refer to it in a sentence:
+
+```markdown
+Ice cover has declined since the 1850s (@fig-ice_days).
+```
+
+- The label must start with `fig-`; Quarto requires that hyphen (the rest stays snake_case)
+- Quarto numbers the figure and writes "Figure 1" for you
+
+
+--------------------------------------------------------------------------------
+
+## Add a numbered table
+
+Add a new chunk:
+
+```{{r}}
+#| label: tbl-periods
+#| tbl-cap: "Ice cover by half century."
+
+ice |>
+  group_by(half_century = floor(year / 50) * 50) |>
+  summarize(winters = n(), mean_days = round(mean(ice_days))) |>
+  knitr::kable()
+```
+
+<div class="gap-sm"></div>
+
+Then refer to it in a sentence:
+
+```markdown
+@tbl-periods shows the average for each half century.
+```
+
+- Same pattern as figures: a `tbl-` label, a `tbl-cap` caption
+- `knitr::kable()` turns a data frame into a table that works in Word, PDF, and HTML
+
+
+--------------------------------------------------------------------------------
+
+## Your turn
+
+::: {.callout-wide}
+::: {.callout-important}
+# Try it
+1. Add `bibliography:` and `csl:` to your YAML header
+2. Cite `@magnuson2026` in your Background section, and add `## References` at the end
+3. Give your figure a `fig-` label and a caption, and refer to it in a sentence
+4. Add the table chunk, and refer to it in a sentence
+5. Render, and open `paper.docx`
+:::
+:::
+
+
+--------------------------------------------------------------------------------
+
+## Your turn: check your paper
+
+In `paper.docx`, look for (Magnuson et al., 2026), Figure 1, Table 1, and the reference list.
+
+<div class="gap-md"></div>
+
+A typo doesn't stop the render.
+
+- Quarto prints a [WARNING]{.uwred} in the terminal and keeps going
+- Read the render output, not just the Word file
+
+<div class="gap-md"></div>
+
+| You see | Fix |
+|---|---|
+| `(magnuson?)` | The key doesn't match `refs.bib`; check spelling and the `bibliography:` line |
+| `?@fig-ice_days` | The label and the reference must match exactly, and start with `fig-` |
+| Code in the Word file | Check the indentation of `echo: false` under `execute:` |
+
+
+--------------------------------------------------------------------------------
+
+## Word and PDF from one render
+
+<!-- Trim candidate: could be "Try later" or move to a reference unit -->
+
+```yaml
+format:
+  docx: default
+  typst:
+    citeproc: true
+```
+
+<div class="gap-sm"></div>
+
+`quarto render paper.qmd` now makes both `paper.docx` and `paper.pdf`.
+
+- `default` means "no extra options for this format"
+- Typst makes the PDF, with no LaTeX needed
+
+<div class="gap-md"></div>
+
+Why `citeproc: true`?
+
+- Typst formats citations itself, and it can't read a style from a URL
+- This tells it to use the same citation engine as the Word file
+
+
+--------------------------------------------------------------------------------
+
+## Where we are
+
+We have:
+
+- Turned the report into a paper with a few YAML changes
+- Cited a source, with a reference list in APA style
+- Numbered a figure and a table, and referred to them in the text
+- Rendered to Word (and PDF)
+
+<div class="gap-md"></div>
+
+::: {.callout-wide}
+::: {.callout-important}
+# Where to go next
+The reference units cover more markdown, chunk options and tables, YAML in depth, and how to keep [one copy of your code]{.uwred} for a report, slides, and a paper.
+:::
+:::

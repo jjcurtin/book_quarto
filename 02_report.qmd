@@ -389,7 +389,12 @@ Execution halted
 This is a feature:
 
 - If it renders, anyone with your `.qmd` and data can rebuild it
-- Fix it here by creating `n_winters` in a chunk, or use `nrow(ice)` inline
+
+<div class="gap-md"></div>
+
+To fix it:
+
+- Create it in the report: add `n_winters <- nrow(ice)` to a chunk above the sentence
 
 
 --------------------------------------------------------------------------------
