@@ -168,13 +168,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quarto Workshop: What Is Quarto?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Quarto?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_report.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Quarto Workshop: Your First Quarto Report</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your First Quarto Report</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -207,7 +207,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction-to-quarto" id="toc-introduction-to-quarto" class="nav-link active" data-scroll-target="#introduction-to-quarto">Introduction to Quarto</a>
   <ul class="collapse">
+  <li><a href="#how-this-book-is-organized" id="toc-how-this-book-is-organized" class="nav-link" data-scroll-target="#how-this-book-is-organized">How this book is organized</a></li>
   <li><a href="#before-the-workshop" id="toc-before-the-workshop" class="nav-link" data-scroll-target="#before-the-workshop">Before the workshop</a></li>
+  <li><a href="#how-to-use-this-book" id="toc-how-to-use-this-book" class="nav-link" data-scroll-target="#how-to-use-this-book">How to use this book</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jjcurtin/book_quarto/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -242,7 +244,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction-to-quarto" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="introduction-to-quarto">Introduction to Quarto</h2>
-<!-- TODO: landing-page intro, how the book is organized (live vs. reference units), and the slide deck links table (see book_git/index.qmd) -->
+<p>Quarto lets data scientists write reports, slide decks, and papers as plain-text documents that combine writing, code, and results. When the data or the analysis changes, you re-render, and every number, figure, and table updates itself. This book is a hands-on introduction, built around a single running example: 170 years of ice records for Lake Mendota, which grow from an empty file into a published report, a slide deck, and a paper.</p>
+<section id="how-this-book-is-organized" class="level3">
+<h3 class="anchored" data-anchor-id="how-this-book-is-organized">How this book is organized</h3>
+<p>The book has five units, and they follow the life of a typical project: a report, then slides for a talk, then a paper. All five are covered live in a one-hour, hands-on workshop.</p>
+<ul>
+<li><strong>Unit 1</strong> introduces Quarto and how it turns a <code>.qmd</code> file into a finished document.</li>
+<li><strong>Units 2–3</strong> build a report and publish it online.</li>
+<li><strong>Units 4–5</strong> reuse that report to make a slide deck and a paper.</li>
+</ul>
+<!-- TODO: add reference units (advanced markdown, chunk options & tables, advanced slides, YAML in depth, DRY, Git with Quarto projects, cheatsheet) to this list as they are written -->
+<p>Every unit also has a companion <strong>slide deck</strong>, published on Posit Connect Cloud. These are the decks we present live:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Unit</th>
+<th>Slide deck</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 — What Is Quarto?</td>
+<td><a href="https://connect.posit.cloud/jjcurtin/content/01a1bb58-4d5b-536a-d3d5-026eb50fdb65">open deck</a></td>
+</tr>
+<tr class="even">
+<td>2 — Your First Quarto Report</td>
+<td><a href="https://connect.posit.cloud/jjcurtin/content/01a1bb6b-5dac-44fc-68b4-206724cd1105">open deck</a></td>
+</tr>
+<tr class="odd">
+<td>3 — Render and Publish</td>
+<td><a href="https://connect.posit.cloud/jjcurtin/content/01a1bbaf-aadc-5385-f5a4-78962d528088">open deck</a></td>
+</tr>
+<tr class="even">
+<td>4 — Slide Decks</td>
+<td><a href="https://connect.posit.cloud/jjcurtin/content/01a1bdb6-c7cd-8ff4-8ce5-622c6d7f6753">open deck</a></td>
+</tr>
+<tr class="odd">
+<td>5 — Writing a Paper</td>
+<td><a href="https://connect.posit.cloud/jjcurtin/content/01a1bdb7-9799-ccaf-105d-cd0d569e4d4e">open deck</a></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="before-the-workshop" class="level3">
 <h3 class="anchored" data-anchor-id="before-the-workshop">Before the workshop</h3>
 <p>Please finish these steps <span class="uwred">before</span> the workshop so we can spend our time together on Quarto itself. They take about 15 minutes.</p>
@@ -323,9 +366,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 @dataset{magnuson2026,</code></pre>
 <p>If you see an error instead, make sure you are in your <code>mendota_ice</code> folder (<code>pwd</code> shows where you are), then paste the commands again. If <code>mkdir</code> says the folder already exists, that’s fine; just run the two <code>curl</code> lines.</p>
 <p>That’s it. You’re ready for the workshop. We will start from this folder.</p>
-
-
 </section>
+</section>
+<section id="how-to-use-this-book" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-use-this-book">How to use this book</h3>
+<p>Quarto is best learned by doing. As you read, <strong>follow along in your own <code>mendota_ice</code> repo</strong>: write each file in RStudio (or any editor) and render it yourself. Everything builds one running example, so the report, slides, and paper you create grow right alongside the book.</p>
+<p>We render and publish from the <span class="uwred">terminal</span> (Terminal on macOS or Linux, Git Bash on Windows, or the terminal in RStudio), not with buttons in RStudio. The commands are short, they work the same in any editor, and you will see exactly what Quarto is doing.</p>
+<p>A few conventions to know:</p>
+<ul>
+<li>Commands you type appear in shaded code blocks, with the output shown just below them.</li>
+<li><strong>Your turn</strong> boxes are short challenges to try on your own before moving on.</li>
+</ul>
+<p>The source for this book lives on <a href="https://github.com/jjcurtin/book_quarto">GitHub</a>; corrections and suggestions are welcome.</p>
+
+
 </section>
 </section>
 
@@ -810,8 +864,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01_intro.html" class="pagination-link" aria-label="Quarto Workshop: What Is Quarto?">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quarto Workshop: What Is Quarto?</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./01_intro.html" class="pagination-link" aria-label="What Is Quarto?">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Quarto?</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
