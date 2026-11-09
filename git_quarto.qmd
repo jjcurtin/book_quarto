@@ -253,7 +253,7 @@ Two tips:
 
 ## When you add a `_quarto.yml`
 
-Our repo has no `_quarto.yml`, so it isn't a Quarto project. Each document renders on its own. If you later turn a folder into a project (for a website, a book, or to share settings across documents), a few things change:
+Our repo has no `_quarto.yml`, so it isn't a Quarto project. Each document renders on its own. If you later turn a folder into a project (for a website, a book, or to share settings across documents; see @sec-projects_paths), a few things change for Git:
 
 - **Quarto edits `.gitignore` for you.** When you render a project inside a Git repo, Quarto adds `/.quarto/` and `**/*.quarto_ipynb` to `.gitignore` if they aren't already there. (`*.quarto_ipynb` files are temporary files from rendering documents that run Python through Jupyter.) It doesn't do this for single documents like ours, which is why we added `/.quarto/` by hand.
 - **Websites and books render to an output folder**: `_site/` for websites and `_book/` for books. Quarto does [not]{.uwred} add these to `.gitignore`. If you publish with `quarto publish`, add them yourself.

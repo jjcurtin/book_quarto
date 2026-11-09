@@ -1,0 +1,5 @@
+# Chunk Options and Figures {#sec-chunk_options}
+
+<!-- Placeholder. Planned content: HANDOFF.md, "Chunk Options and Figures" outline row -->
+
+*This unit is coming soon.*

@@ -33,4 +33,11 @@ book:
         - 05_paper.qmd
     - part: "Advanced"
       chapters:
+        - markdown.qmd
+        - chunk_options.qmd
+        - tables.qmd
+        - slide_formatting.qmd
+        - yaml.qmd
+        - projects_paths.qmd
+        - reuse_code.qmd
         - git_quarto.qmd

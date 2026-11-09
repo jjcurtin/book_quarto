@@ -1,0 +1,5 @@
+# Advanced Slide Formatting {#sec-slide_formatting}
+
+<!-- Placeholder. Planned content: HANDOFF.md, "Advanced Slide Formatting" outline row -->
+
+*This unit is coming soon.*

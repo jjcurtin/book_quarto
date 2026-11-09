@@ -1,0 +1,364 @@
+# Advanced Markdown {#sec-markdown}
+
+In the workshop, you used the basics of markdown: headings, paragraphs, bold, bulleted lists, and the blank lines that hold them together. This unit covers the rest of the markdown you are likely to use: more text formatting, numbered and nested lists, links, images, footnotes, tables you type by hand, math, and callout boxes.
+
+Everything here works in reports, slide decks, and papers. Where an output format handles something differently, we say so.
+
+Each example shows what you type, followed by what you get (in a green box). Try them in your own `report.qmd` and render to see them for yourself.
+
+## Text formatting
+
+You type:
+
+```markdown
+Lake Mendota is *frozen* for **fewer days** than it was in the 1800s.
+Some winters it ***barely*** freezes.
+
+A winter now averages ~~114~~ 81 days of ice.
+Water is H~2~O, and the lake holds about 5 × 10^11^ liters.
+Use the `ice_days` column.
+```
+
+You get:
+
+::: {.rendered}
+Lake Mendota is *frozen* for **fewer days** than it was in the 1800s.
+Some winters it ***barely*** freezes.
+
+A winter now averages ~~114~~ 81 days of ice.
+Water is H~2~O, and the lake holds about 5 × 10^11^ liters.
+Use the `ice_days` column.
+:::
+
+| You type | You get |
+|---|---|
+| `*italic*` | *italic* |
+| `**bold**` | **bold** |
+| `***bold italic***` | ***bold italic*** |
+| `~~strikethrough~~` | ~~strikethrough~~ |
+| `H~2~O` (subscript) | H~2~O |
+| `10^11^` (superscript) | 10^11^ |
+| `` `code` `` (inline code) | `code` |
+: {tbl-colwidths="[50,50]"}
+
+Inline code (text between single backticks) is only formatting: it shows the text in a code font, so readers can tell `ice_days` is a column name. Quarto doesn't run it. Inline [R]{.uwred} code, which does run, starts with the letter `r` right after the first backtick, as you saw in the workshop.
+
+## Paragraphs and line breaks
+
+Markdown joins lines that have no blank line between them into one paragraph. That's why the two sentences about averages in your report, typed on two lines, appear as one paragraph.
+
+- To start a new paragraph, leave a [blank line]{.uwred}.
+- To break a line [without]{.uwred} starting a new paragraph (useful for addresses or poems), end the line with a backslash (`\`).
+
+You type:
+
+```markdown
+Lake Mendota\
+Madison, Wisconsin\
+United States
+```
+
+You get:
+
+::: {.rendered}
+Lake Mendota\
+Madison, Wisconsin\
+United States
+:::
+
+## Numbered and nested lists
+
+Numbered lists use a number and a period. Quarto does the counting, so you can type `1.` for every item; adding an item in the middle never means renumbering by hand. The first number sets where the list starts.
+
+To nest a list inside another, indent the inner items so they line up with the [text]{.uwred} of the item above: two spaces under a `-` item, three spaces under a `1.` item. Four spaces works under both.
+
+You type:
+
+```markdown
+To update your report:
+
+1. Edit `report.qmd`
+1. Render it
+    - Fix any errors
+    - Render again
+1. Publish the update
+```
+
+You get:
+
+::: {.rendered}
+To update your report:
+
+1. Edit `report.qmd`
+1. Render it
+    - Fix any errors
+    - Render again
+1. Publish the update
+:::
+
+As with bulleted lists, leave a blank line [before]{.uwred} a numbered list.
+
+Two numbered lists in a row, separated only by a blank line, become one list. Put a line of text between them to keep them apart.
+
+## Links
+
+You type:
+
+```markdown
+The data are from the [Environmental Data Initiative](https://doi.org/10.6073/pasta/6a95bee73799927cbafbf87393be7038).
+Learn more at <https://quarto.org>.
+```
+
+You get:
+
+::: {.rendered}
+The data are from the [Environmental Data Initiative](https://doi.org/10.6073/pasta/6a95bee73799927cbafbf87393be7038).
+Learn more at <https://quarto.org>.
+:::
+
+- `[text](url)` makes the text a link.
+- `<url>` shows the address itself as a link. Without the angle brackets, the address is plain text, not a link.
+
+::: {.callout-important}
+# Your turn
+In your `report.qmd`:
+
+1. Put one word in *italics* and add a link to the data source in your Background section
+2. Turn the two bullets about the record into a numbered list, and nest a bullet under one of them
+3. Render and check the result
+:::
+
+## Images
+
+An image looks like a link with an exclamation mark in front:
+
+```markdown
+![Lake Mendota in January.](images/mendota_winter.jpg){width=60%}
+```
+
+- The path (`images/mendota_winter.jpg`) is relative to your `.qmd` file, just like the path to your data.
+- `{width=60%}` is optional. It sets the image's width as a share of the page.
+- When the image sits in a paragraph by itself, the text in the square brackets becomes a [caption]{.uwred}, and Quarto treats the image as a figure.
+
+The caption is not alt text, the description that screen readers read aloud. Add alt text with `fig-alt`:
+
+```markdown
+![Lake Mendota in January.](images/mendota_winter.jpg){width=60% fig-alt="Snow-covered ice on Lake Mendota, with the Capitol in the distance."}
+```
+
+For an image with no caption, leave the square brackets empty: `![](images/mendota_winter.jpg){fig-alt="..."}`.
+
+With `embed-resources: true`, the image is packed into your HTML file, so you can publish the report as before. Word and PDF files always hold their own images.
+
+This is for image [files]{.uwred}, like photos or diagrams. For plots you make in R, use a code chunk instead; @sec-chunk_options covers how to size and caption them.
+
+## Block quotes
+
+Start a line with `>` to set it off as a quotation. For example, to quote the rule as the story from the workshop tells it:
+
+You type:
+
+```markdown
+> The lake is frozen if you can't row a boat from Picnic Point to Maple Bluff.
+```
+
+You get:
+
+::: {.rendered}
+> The lake is frozen if you can't row a boat from Picnic Point to Maple Bluff.
+:::
+
+## Footnotes
+
+For a short note, put it right in the sentence with `^[...]`:
+
+```markdown
+Ice records go back to the winter of 1855-56.^[Records for the two winters before that are incomplete.]
+```
+
+For a longer note, put a marker like `[^gaps]` in the sentence and the note itself anywhere else in the file, on its own line:
+
+```markdown
+Ice records go back to the winter of 1855-56.[^gaps]
+
+[^gaps]: Records for 1852-53 and 1853-54 are incomplete, and 1854-55 is missing.
+```
+
+Either way, Quarto numbers the notes and collects them at the end of the document (in HTML), at the bottom of the page (in Word), or as page footnotes (in PDF). You get:
+
+::: {.rendered}
+Ice records go back to the winter of 1855-56.^[Records for 1852-53 and 1853-54 are incomplete, and 1854-55 is missing.]
+:::
+
+## Tables you type by hand
+
+For a small table of numbers you already know, you can type it as a [pipe table]{.uwred}:
+
+```markdown
+| Winter  | Days of ice | Record   |
+|:--------|------------:|:--------:|
+| 1880-81 |         161 | Longest  |
+| 2001-02 |          21 | Shortest |
+
+: Record winters on Lake Mendota. {#tbl-records}
+```
+
+You get:
+
+::: {.rendered}
+| Winter  | Days of ice | Record   |
+|:--------|------------:|:--------:|
+| 1880-81 |         161 | Longest  |
+| 2001-02 |          21 | Shortest |
+
+: Record winters on Lake Mendota. {#tbl-records}
+:::
+
+- `|` separates the columns. The columns don't have to line up in your source, but lining them up makes the table easier to read and edit.
+- The second line separates the header from the rows. Colons set alignment: `:---` left, `---:` right, `:---:` centered. Right-align numbers.
+- The line starting with `:` after the table is its caption. It's optional.
+- `{#tbl-records}` gives the table a label, so you can refer to it as `@tbl-records`, just as you did for the table in your paper. Here, `@tbl-records` becomes "@tbl-records".
+
+Hand-typed tables are for [fixed]{.uwred} content. If the numbers come from your data, make the table with code, so it updates when the data change. @sec-tables covers that.
+
+## Math
+
+Quarto writes math in LaTeX notation, which is the standard for equations.
+
+- Put math inside a sentence between single dollar signs: `$...$`.
+- Put an equation on its own line between double dollar signs: `$$...$$`.
+
+You type:
+
+```markdown
+The mean of $n$ winters is $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$.
+
+$$
+\bar{x}_{\text{recent}} - \bar{x}_{\text{1800s}} = 81 - 114 = -33
+$$
+```
+
+You get:
+
+::: {.rendered}
+The mean of $n$ winters is $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$.
+
+$$
+\bar{x}_{\text{recent}} - \bar{x}_{\text{1800s}} = 81 - 114 = -33
+$$
+:::
+
+Math works in HTML, in Word (as real, editable Word equations), and in PDF.
+
+A few LaTeX pieces cover most needs:
+
+| You type | You get |
+|---|---|
+| `x^2`, `x_i` | $x^2$, $x_i$ |
+| `\frac{a}{b}` | $\frac{a}{b}$ |
+| `\bar{x}`, `\hat{\beta}` | $\bar{x}$, $\hat{\beta}$ |
+| `\sum_{i=1}^{n}` | $\sum_{i=1}^{n}$ |
+| `\sqrt{x}` | $\sqrt{x}$ |
+| `\alpha`, `\mu`, `\sigma` | $\alpha$, $\mu$, $\sigma$ |
+| `\le`, `\ge`, `\ne`, `\approx` | $\le$, $\ge$, $\ne$, $\approx$ |
+: {tbl-colwidths="[50,50]"}
+
+Dollar amounts usually come out fine: Quarto only treats `$...$` as math when there's no space just inside the dollar signs. If one ever turns into math by mistake, type `\$` for a plain dollar sign.
+
+## Callouts
+
+A callout is a colored box that sets off a note, tip, or warning. It starts with `::: {.callout-note}` and ends with `:::`, each on its own line:
+
+```markdown
+::: {.callout-note}
+## About the data
+A winter counts in the year it ends: winter 1855-56 is 1856.
+:::
+```
+
+You get:
+
+::: {.rendered}
+::: {.callout-note}
+## About the data
+A winter counts in the year it ends: winter 1855-56 is 1856.
+:::
+:::
+
+- There are five types: `callout-note`, `callout-tip`, `callout-important`, `callout-warning`, and `callout-caution`. Each has its own color.
+- A heading on the first line inside becomes the callout's title. You can also write the title as an option: `::: {.callout-warning title="Check your paths"}`.
+- In HTML, add `collapse="true"` to show only the title until the reader clicks it: `::: {.callout-tip collapse="true"}`. Word and PDF show the whole callout.
+
+Callouts work in HTML, Word, PDF, and slides.
+
+::: {.callout-important}
+# Your turn
+In your `report.qmd`:
+
+1. Add a footnote to your Background section
+2. Add the record-winters table above, and refer to it in a sentence with `@tbl-records`
+3. Add a `callout-note` that explains how a winter's year is counted
+4. Render and check the result
+:::
+
+## Comments
+
+Text between `<!--` and `-->` is a comment. It doesn't appear in your rendered document, so it's handy for notes to yourself or for switching off a paragraph without deleting it:
+
+```markdown
+<!-- TODO: add the 2026-27 winter when the data are updated -->
+```
+
+In RStudio, select some lines and press [Ctrl+Shift+C]{.uwred} (Cmd+Shift+C on a Mac) to comment them out or back in.
+
+::: {.callout-warning}
+## Comments are hidden, not removed
+Word and PDF files leave comments out completely. An HTML file keeps them in its source code, so anyone who opens View Source on your published report can read them. Don't put anything private in a comment.
+:::
+
+## Escaping special characters
+
+Characters like `*`, `_`, `#`, and `$` have special meanings in markdown. To show one as a plain character, put a backslash in front of it.
+
+You type:
+
+```markdown
+Multiply 3 \* 4 and see \*this\*, not *this*.
+```
+
+You get:
+
+::: {.rendered}
+Multiply 3 \* 4 and see \*this\*, not *this*.
+:::
+
+Often you don't need to: a `*` with spaces on both sides, as in `3 * 4`, stays a plain `*`.
+
+## Horizontal rules
+
+Three dashes on a line by themselves, with blank lines around them, draw a horizontal line across a report. You have seen `---` do two other jobs: it starts and ends the YAML header, and in a slide deck it starts a new slide.
+
+## Divs and spans
+
+Callouts are one example of a general markdown pattern that you will see more of:
+
+- A [div]{.uwred} wraps a block of content: `:::` with a class in braces opens it, and `:::` closes it. Callouts, the speaker notes in your slide deck (`::: {.notes}`), and slide columns are all divs.
+- A [span]{.uwred} wraps a few words inside a sentence: square brackets, then a class in braces.
+
+You type:
+
+```markdown
+This word is [underlined]{.underline}, and these are [Small Caps]{.smallcaps}.
+```
+
+You get:
+
+::: {.rendered}
+This word is [underlined]{.underline}, and these are [Small Caps]{.smallcaps}.
+:::
+
+@sec-slide_formatting uses divs and spans to lay out slides.
+
+## Learn more
+
+The Quarto guide covers all of Quarto's markdown, with more examples: <https://quarto.org/docs/authoring/markdown-basics.html>.

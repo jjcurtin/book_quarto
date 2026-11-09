@@ -1,0 +1,5 @@
+# YAML in Depth {#sec-yaml}
+
+<!-- Placeholder. Planned content: HANDOFF.md, "YAML in Depth" outline row -->
+
+*This unit is coming soon.*

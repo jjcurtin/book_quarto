@@ -14,9 +14,14 @@ The book has two parts.
 
 **Advanced** units go beyond the live hour and are for you to work through on your own afterward. They pick up where the workshop leaves off, using the same `report.qmd`, `slides.qmd`, and `paper.qmd` you built. To see what a new feature does, add it to your own file and render it (or publish it) yourself.
 
-- **Git with Quarto projects** covers which Quarto files to commit and which to ignore.
-
-<!-- TODO: add advanced units (advanced markdown, chunk options & tables, advanced slide formatting, YAML in depth, DRY, cheatsheet) to this list as they are written -->
+- **Advanced markdown**: more ways to format text, including links, images, tables, math, and callouts.
+- **Chunk options and figures**: control what each code chunk shows, and size, caption, and arrange figures.
+- **Tables**: turn data frames into tables that look good in HTML, Word, and PDF.
+- **Advanced slide formatting**: columns, themes, code on slides, and more for your decks.
+- **YAML in depth**: more settings for reports, decks, and papers, and where YAML can live.
+- **Quarto projects and paths**: what a `_quarto.yml` file does, and how your code finds its files.
+- **Reusing code across products**: keep one copy of your analysis code for a report, slides, and a paper.
+- **Git with Quarto projects**: which Quarto files to commit and which to ignore.
 
 Each Basic unit also has a companion **slide deck**, published on Posit Connect Cloud. These are the decks we present live. The Advanced units are in the book only.
 

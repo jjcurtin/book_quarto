@@ -1,0 +1,5 @@
+# Tables {#sec-tables}
+
+<!-- Placeholder. Planned content: HANDOFF.md, "Tables" outline row -->
+
+*This unit is coming soon.*

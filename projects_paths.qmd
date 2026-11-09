@@ -1,0 +1,5 @@
+# Quarto Projects and Paths {#sec-projects_paths}
+
+<!-- Placeholder. Planned content: HANDOFF.md, "Quarto Projects and Paths" outline row -->
+
+*This unit is coming soon.*
