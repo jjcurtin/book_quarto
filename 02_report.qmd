@@ -110,6 +110,9 @@ The header sits between two lines of `---`
 - `format: html` says what to build
 - `date: today` fills in the date each time you render
 
+<div class="gap-sm"></div>
+
+Now [save]{.uwred} report.qmd (You can use the save button on the toolbar in RStudio)
 
 --------------------------------------------------------------------------------
 
@@ -199,9 +202,10 @@ Markdown needs a [blank line]{.uwred}:
 ::: {.callout-important}
 # Try it
 1. Add the headings, text, and list from the last few slides
-2. Render with `quarto render report.qmd`
-3. Reload `report.html` and check that the list is a list
-4. (Try later) Remove the blank line above the list items, render again, and see what breaks 
+2. Save report.qmd
+3. Render with `quarto render report.qmd`
+4. Reload `report.html` and check that the list is a list
+5. (Try later) Remove the blank line above the list items, render again, and see what breaks 
 :::
 :::
 
@@ -227,8 +231,9 @@ ice <- read_csv("data/mendota_ice.csv")
 
 <div class="gap-md"></div>
 
-Add this chunk just below the YAML header, then render.
+Add this chunk just below the YAML header, save file, then render.
 
+- Open the html file again in the browser to see the changes
 - A [setup chunk]{.uwred} at the top loads packages and data for the whole document
 
 
@@ -282,7 +287,7 @@ ice |>
 
 <div class="gap-sm"></div>
 
-Render again.
+Save and render again.
 
 - Quarto runs the chunk and puts the figure right below the code
 - It also makes a `report_files/` folder for the image; more on that in the next unit
@@ -338,6 +343,9 @@ Since 2000, it has averaged `r knitr::inline_expr("mean_recent")`.
 
 > Before 1900, the lake averaged `r mean_1800s` days of ice. Since 2000, it has averaged `r mean_recent`.
 
+<div class="gap-sm"></div>
+
+Save, render, and view file again
 
 --------------------------------------------------------------------------------
 
@@ -406,7 +414,7 @@ To fix it:
 # Try it
 1. Add the `means` chunk and the two sentences with inline R
 2. Add one more sentence: how many days of ice in the shortest winter on record? (Hint: `min(ice$ice_days)`)
-3. Render, and check the numbers in `report.html`
+3. Render, save, and check the numbers in `report.html`
 :::
 :::
 

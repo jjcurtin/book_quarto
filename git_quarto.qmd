@@ -1,0 +1,281 @@
+# Git with Quarto Projects {#sec-git_quarto}
+
+In the workshop, we built a report, a slide deck, and a paper in your `mendota_ice` repo, but we never committed any of it. That was on purpose. Rendering fills your repo with files that Quarto makes, and most of them don't belong in Git. This unit sorts out which files to commit and which to ignore, then commits and pushes your work.
+
+The same rules apply to any repo where you use Quarto.
+
+## What's in your repo now
+
+In your `mendota_ice` folder, run:
+
+```bash
+git status
+```
+
+If you finished all the workshop units, you will see something like this:
+
+```
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.quarto/
+	_publish.yml
+	apa.csl
+	data/
+	paper.docx
+	paper.pdf
+	paper.qmd
+	refs.bib
+	report.html
+	report.qmd
+	slides.html
+	slides.qmd
+	slides_files/
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+Your list may be a little different. For example, you will only have `paper.pdf` and `.quarto/` if you also rendered the paper to PDF with Typst.
+
+## Commit what you write, ignore what Quarto makes
+
+The rule of thumb is simple:
+
+- **Commit the files you write**: your `.qmd` files and the inputs they need (data, references, citation style).
+- **Ignore the files Quarto makes**: anything `quarto render` can rebuild.
+
+Rendered output doesn't belong in Git for several reasons:
+
+- **You can always rebuild it.** Anyone with your source files can run `quarto render` and get the same output.
+- **It changes every time you render.** Our report uses `date: today`, so `report.html` changes every day you render it, even if nothing else did. Those changes clutter every commit.
+- **It's often binary.** Git can't show you what changed inside a `.docx` or `.pdf`, and it can't merge two versions of one. If two people change the same Word file, someone has to pick one version.
+- **It's big.** With `embed-resources: true`, `report.html` holds the figure and all the supporting code, so it's over a megabyte. Git keeps every version you commit, forever.
+- **It can go stale.** A committed `report.html` may no longer match `report.qmd`, and nothing warns you.
+
+You share output in other ways: publish it (as we did with Connect Cloud), or send the Word file to a co-author.
+
+Here is how each file in your repo sorts out:
+
+| File | What it is | Commit? |
+|---|---|---|
+| `report.qmd`, `slides.qmd`, `paper.qmd` | Your source documents | Yes |
+| `data/mendota_ice.csv` | Data the documents read | Yes |
+| `refs.bib` | References the paper cites | Yes |
+| `apa.csl` | Citation style for the paper | Yes |
+| `_publish.yml` | Where each document is published (see below) | Yes |
+| `.gitignore` | What Git should ignore | Yes |
+| `report.html`, `slides.html` | Rendered HTML | No |
+| `slides_files/` | Images and code the HTML deck needs | No |
+| `paper.docx`, `paper.pdf` | Rendered Word and PDF | No |
+| `.quarto/` | Quarto's scratch folder | No |
+: {tbl-colwidths="[35,45,20]"}
+
+Committing data is fine here because the file is small and public. For large or private data, think twice; that's a topic for another day.
+
+### Where the extra folders come from
+
+- **`slides_files/`**: a revealjs deck needs supporting files (the figure, plus the code that runs the slides). Quarto puts them in a folder named after the document. The report has no `report_files/` folder because `embed-resources: true` packs everything into `report.html`.
+- **`.quarto/`**: Quarto's own working folder. For single documents like ours, it appears when you render to PDF with Typst. Quarto projects (folders with a `_quarto.yml` file) always have one.
+
+If a render fails partway, Quarto can leave intermediate files behind, such as a `paper_files/` folder or a `paper.typ` file. The next successful render cleans them up.
+
+## Update your `.gitignore`
+
+Your repo already has a `.gitignore`: the `R` template you chose on GitHub. It covers R's clutter (`.Rhistory`, `.RData`, `.Rproj.user/`) and keeps secrets like `.Renviron` and `.env` out of Git. It knows nothing about Quarto.
+
+Open `.gitignore` in RStudio, add these lines at the end, and save:
+
+```
+# Quarto
+/.quarto/
+*_files/
+*.html
+*.docx
+*.pdf
+```
+
+What each line does:
+
+- `/.quarto/` ignores Quarto's scratch folder. The leading `/` means "only at the top of the repo".
+- `*_files/` ignores any folder whose name ends in `_files`, like `slides_files/`.
+- `*.html`, `*.docx`, and `*.pdf` ignore rendered output anywhere in the repo.
+
+These patterns are broad on purpose, so new documents are covered without editing `.gitignore` again. If you ever do want to commit one of these files, say a PDF of a published article you keep in a `literature/` folder, add an exception line that starts with `!`:
+
+```
+!literature/*.pdf
+```
+
+Now check your work:
+
+```bash
+git status
+```
+
+```
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .gitignore
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	_publish.yml
+	apa.csl
+	data/
+	paper.qmd
+	refs.bib
+	report.qmd
+	slides.qmd
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+The output files are gone from the list. Only the files you wrote are left.
+
+### Checking what Git ignores
+
+Two commands help when you aren't sure. To list ignored files (marked `!!`):
+
+```bash
+git status --short --ignored
+```
+
+```
+ M .gitignore
+?? _publish.yml
+?? apa.csl
+?? data/
+?? paper.qmd
+?? refs.bib
+?? report.qmd
+?? slides.qmd
+!! .quarto/
+!! paper.docx
+!! paper.pdf
+!! report.html
+!! slides.html
+!! slides_files/
+```
+
+To see [which line]{.uwred} of `.gitignore` ignores a file:
+
+```bash
+git check-ignore -v slides.html slides_files
+```
+
+```
+.gitignore:55:*.html	slides.html
+.gitignore:54:*_files/	slides_files
+```
+
+Your line numbers may differ. If `git check-ignore` prints nothing for a file, Git is not ignoring it.
+
+## Commit and push
+
+With a good `.gitignore` in place, `git add .` is safe: it stages everything Git doesn't ignore. Still, check what you staged before you commit.
+
+```bash
+git add .
+git status
+```
+
+```
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   .gitignore
+	new file:   _publish.yml
+	new file:   apa.csl
+	new file:   data/mendota_ice.csv
+	new file:   paper.qmd
+	new file:   refs.bib
+	new file:   report.qmd
+	new file:   slides.qmd
+```
+
+Only source files. Commit and push:
+
+```bash
+git commit -m "Add report, slides, and paper"
+git push
+```
+
+From now on, the routine is the same as any other repo: edit your `.qmd` files, render to check them, then commit the `.qmd` changes. Rendering never adds anything new for Git to track.
+
+::: {.callout-important}
+# Your turn
+1. Add a sentence to `report.qmd` and render it
+2. Run `git status`: only `report.qmd` should show as modified
+3. Commit and push the change
+:::
+
+## If you already committed output
+
+`.gitignore` only affects files Git isn't tracking yet. If you committed `report.html` before adding `*.html` to `.gitignore`, Git keeps tracking it, and every render shows it as modified:
+
+```
+ M report.html
+ M report.qmd
+```
+
+To stop tracking a file without deleting it from your computer, use `git rm --cached`, then commit:
+
+```bash
+git rm --cached report.html
+git commit -m "Stop tracking report.html"
+```
+
+`report.html` stays on your computer, and from now on `.gitignore` applies to it. For a folder, add `-r`: `git rm -r --cached slides_files`.
+
+Older versions of the file stay in your Git history. That's fine for a small report. Removing files from history is possible but disruptive, and you rarely need it.
+
+## Commit `_publish.yml`
+
+`_publish.yml` is the file `quarto publish` writes the first time you publish a document. It records where each document went:
+
+```yaml
+- source: report.qmd
+  posit-connect-cloud:
+    - id: 01a1c082-...
+      url: https://connect.posit.cloud/your_name/content/01a1c082-...
+```
+
+Commit it. It's what makes `quarto publish` offer to [update]{.uwred} your existing report instead of creating a new copy at a new URL. With it in your repo, you can republish from another computer, or a teammate can, and the URL your readers have keeps working.
+
+It holds only IDs and URLs, not your login. Quarto keeps your Connect Cloud credentials on your computer, outside the repo, so `_publish.yml` is safe to commit even to a public repo.
+
+Two tips:
+
+- To publish a document to a [new]{.uwred} URL (for example, so a new title takes effect), delete its entry from `_publish.yml`, then publish again. Delete the old copy on the Connect Cloud website if you no longer want it.
+- To start over completely, delete the whole file. Don't leave it empty: Quarto can't read an empty `_publish.yml`, so it stops recording where you publish.
+
+## When you add a `_quarto.yml`
+
+Our repo has no `_quarto.yml`, so it isn't a Quarto project. Each document renders on its own. If you later turn a folder into a project (for a website, a book, or to share settings across documents), a few things change:
+
+- **Quarto edits `.gitignore` for you.** When you render a project inside a Git repo, Quarto adds `/.quarto/` and `**/*.quarto_ipynb` to `.gitignore` if they aren't already there. (`*.quarto_ipynb` files are temporary files from rendering documents that run Python through Jupyter.) It doesn't do this for single documents like ours, which is why we added `/.quarto/` by hand.
+- **Websites and books render to an output folder**: `_site/` for websites and `_book/` for books. Quarto does [not]{.uwred} add these to `.gitignore`. If you publish with `quarto publish`, add them yourself.
+- **The R template ignores `docs/`.** If you publish a website with GitHub Pages from a `docs/` folder, that output does need to be committed, so delete the `docs/` line from `.gitignore`.
+- **Commit `_freeze/`.** If your project uses `freeze`, Quarto saves the results of your code in a `_freeze/` folder and reuses them instead of rerunning the code. The Quarto documentation recommends committing it, so others can render the project without setting up your whole computing environment.
+
+## Summary
+
+For a repo of Quarto documents like `mendota_ice`, add this to the `.gitignore` you got from GitHub's `R` template:
+
+```
+# Quarto
+/.quarto/
+*_files/
+*.html
+*.docx
+*.pdf
+```
+
+Then:
+
+- Commit your `.qmd` files, the data, references, and citation style they read, `_publish.yml`, and `.gitignore`.
+- Ignore everything `quarto render` makes. Share output by publishing it instead.
+- If you committed output by mistake, `git rm --cached` stops tracking it.
+- In Quarto projects, let Quarto manage `/.quarto/`, ignore `_site/` or `_book/` unless you publish from them, and commit `_freeze/`.

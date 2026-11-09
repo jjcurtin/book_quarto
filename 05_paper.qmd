@@ -141,16 +141,16 @@ Quarto's default style is Chicago author-date.
 
 ```yaml
 bibliography: refs.bib
-csl: https://www.zotero.org/styles/apa
+csl: apa.csl
 ```
 
 <div class="gap-sm"></div>
 
 A [CSL]{.uwred} (Citation Style Language) file describes one style.
 
+- You downloaded `apa.csl` during setup, next to `refs.bib`
 - Thousands of styles, including many journals, are at <https://www.zotero.org/styles>
-- With a URL, Quarto downloads the style each time you render, so you need internet
-- Working offline? Download the file once and use `csl: apa.csl`
+- For another style, download its `.csl` file into your repo and change the `csl:` line
 
 
 --------------------------------------------------------------------------------
@@ -280,7 +280,7 @@ A typo doesn't stop the render.
 
 ## Word and PDF from one render
 
-<!-- Trim candidate: could be "Try later" or move to a reference unit -->
+<!-- Trim candidate: could be "Try later" or move to an Advanced unit -->
 
 ```yaml
 format:
@@ -300,7 +300,7 @@ format:
 
 Why `citeproc: true`?
 
-- Typst formats citations itself, and it can't read a style from a URL
+- Typst formats citations itself, and its APA output differs a little from Word's
 - This tells it to use the same citation engine as the Word file
 
 
@@ -320,6 +320,10 @@ We have:
 ::: {.callout-wide}
 ::: {.callout-important}
 # Where to go next
-The reference units cover more markdown, chunk options and tables, YAML in depth, and how to keep [one copy of your code]{.uwred} for a report, slides, and a paper.
+The [Advanced]{.uwred} units in the book (no slides) pick up from here.
+
+- Keep editing your own report, slides, and paper, and render them to see each new feature
+- Topics include more markdown, chunk options and tables, slide formatting, YAML in depth, and Git with Quarto projects
+- Also: how to keep [one copy of your code]{.uwred} for a report, slides, and a paper
 :::
 :::

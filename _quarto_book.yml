@@ -24,8 +24,13 @@ book:
   reader-mode: true
   chapters:
     - index.qmd
-    - 01_intro.qmd
-    - 02_report.qmd
-    - 03_publish.qmd
-    - 04_slides.qmd
-    - 05_paper.qmd
+    - part: "Basic"
+      chapters:
+        - 01_intro.qmd
+        - 02_report.qmd
+        - 03_publish.qmd
+        - 04_slides.qmd
+        - 05_paper.qmd
+    - part: "Advanced"
+      chapters:
+        - git_quarto.qmd
