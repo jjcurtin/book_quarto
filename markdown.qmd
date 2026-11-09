@@ -6,6 +6,8 @@ Everything here works in reports, slide decks, and papers. Where an output forma
 
 Each example shows what you type, followed by what you get (in a green box). Try them in your own `report.qmd` and render to see them for yourself.
 
+If you committed your work in @sec-git_quarto, experiment freely. If you make a mess of `report.qmd`, `git restore report.qmd` takes it back to your last commit.
+
 ## Text formatting
 
 You type:
@@ -362,3 +364,15 @@ This word is [underlined]{.underline}, and these are [Small Caps]{.smallcaps}.
 ## Learn more
 
 The Quarto guide covers all of Quarto's markdown, with more examples: <https://quarto.org/docs/authoring/markdown-basics.html>.
+
+::: {.callout-tip}
+## Commit your changes
+If you followed along, your `report.qmd` has changed. Check what changed, then commit and push, as in @sec-git_quarto:
+
+```bash
+git status
+git add .
+git commit -m "Try advanced markdown"
+git push
+```
+:::

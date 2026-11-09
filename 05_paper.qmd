@@ -322,8 +322,8 @@ We have:
 # Where to go next
 The [Advanced]{.uwred} units in the book (no slides) pick up from here.
 
-- Keep editing your own report, slides, and paper, and render them to see each new feature
-- Topics include more markdown, chunk options and figures, tables, slide formatting, YAML in depth, Quarto projects, and Git
-- Also: how to keep [one copy of your code]{.uwred} for a report, slides, and a paper
+- Start with [Git]{.uwred}: commit what you built today
+- Then keep editing your own report, slides, and paper, and render them to see each new feature
+- Topics: more markdown, chunk options and figures, tables, slide formatting, YAML in depth, Quarto projects, and keeping [one copy of your code]{.uwred} for all three
 :::
 :::

@@ -1,5 +1,5 @@
 # Chunk Options and Figures {#sec-chunk_options}
 
-<!-- Placeholder. Planned content: HANDOFF.md, "Chunk Options and Figures" outline row -->
+<!-- Placeholder. Planned content: HANDOFF.md, "Chunk Options and Figures" outline row. End with the standard "Commit your changes" callout-tip (copy from markdown.qmd; adjust the files and commit message) -->
 
 *This unit is coming soon.*

@@ -33,6 +33,7 @@ book:
         - 05_paper.qmd
     - part: "Advanced"
       chapters:
+        - git_quarto.qmd
         - markdown.qmd
         - chunk_options.qmd
         - tables.qmd
@@ -40,4 +41,3 @@ book:
         - yaml.qmd
         - projects_paths.qmd
         - reuse_code.qmd
-        - git_quarto.qmd

@@ -1,5 +1,5 @@
 # Reusing Code Across Products {#sec-reuse_code}
 
-<!-- Placeholder. Planned content: HANDOFF.md, "Reusing Code Across Products" outline row -->
+<!-- Placeholder. Planned content: HANDOFF.md, "Reusing Code Across Products" outline row. End with the standard "Commit your changes" callout-tip (copy from markdown.qmd; adjust the files and commit message) -->
 
 *This unit is coming soon.*

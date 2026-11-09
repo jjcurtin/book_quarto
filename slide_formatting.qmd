@@ -1,5 +1,5 @@
 # Advanced Slide Formatting {#sec-slide_formatting}
 
-<!-- Placeholder. Planned content: HANDOFF.md, "Advanced Slide Formatting" outline row -->
+<!-- Placeholder. Planned content: HANDOFF.md, "Advanced Slide Formatting" outline row. End with the standard "Commit your changes" callout-tip (copy from markdown.qmd; adjust the files and commit message) -->
 
 *This unit is coming soon.*
