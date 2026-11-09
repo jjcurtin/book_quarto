@@ -1,5 +1,5 @@
 ---
-title: "Quarto Workshop: Your First Quarto Report"
+title: "Your First Quarto Report"
 ---
 
 ```{r}

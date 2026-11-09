@@ -1,5 +1,5 @@
 ---
-title: "Quarto Workshop: What Is Quarto?"
+title: "What Is Quarto?"
 ---
 
 ## Why are we here?
