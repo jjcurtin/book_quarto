@@ -183,6 +183,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Render and Publish</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Slide Decks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Writing a Paper</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -294,19 +306,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>.  ..  .git  .gitignore</code></pre>
 <p>You should see the <code>.gitignore</code> you created on GitHub, plus the hidden <code>.git</code> folder that holds the repo’s history.</p>
 </section>
-<section id="step-6-download-the-data" class="level4">
-<h4 class="anchored" data-anchor-id="step-6-download-the-data">Step 6: Download the data</h4>
-<p>Our report will use 170 years of ice records for Lake Mendota. Put a copy in a <code>data</code> folder inside your repo.</p>
-<p>Stay in your <code>mendota_ice</code> folder. Copy the two commands below (use the copy button at the top right of the box), paste them into your terminal, and press Enter:</p>
+<section id="step-6-download-the-data-and-references" class="level4">
+<h4 class="anchored" data-anchor-id="step-6-download-the-data-and-references">Step 6: Download the data and references</h4>
+<p>Our report will use 170 years of ice records for Lake Mendota, and our paper will cite them. Put a copy of the data in a <code>data</code> folder inside your repo, and the reference file (<code>refs.bib</code>) at the top of your repo.</p>
+<p>Stay in your <code>mendota_ice</code> folder. Copy the three commands below (use the copy button at the top right of the box), paste them into your terminal, and press Enter:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> data</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> <span class="at">-o</span> data/mendota_ice.csv https://raw.githubusercontent.com/jjcurtin/book_quarto/main/data/mendota_ice.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>mkdir</code> makes the <code>data</code> folder. <code>curl</code> downloads the file into it. If all goes well, neither command prints anything.</p>
-<p>Check that the file arrived:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-3</span> data/mendota_ice.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> <span class="at">-o</span> data/mendota_ice.csv https://raw.githubusercontent.com/jjcurtin/book_quarto/main/data/mendota_ice.csv</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> <span class="at">-o</span> refs.bib https://raw.githubusercontent.com/jjcurtin/book_quarto/main/refs.bib</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>mkdir</code> makes the <code>data</code> folder. Each <code>curl</code> command downloads one file. If all goes well, none of the commands prints anything.</p>
+<p>Check that the files arrived:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-3</span> data/mendota_ice.csv</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-1</span> refs.bib</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>winter,year,ice_days
 1855-56,1856,118
-1856-57,1857,151</code></pre>
-<p>If you see an error instead, make sure you are in your <code>mendota_ice</code> folder (<code>pwd</code> shows where you are), then paste the commands again. If <code>mkdir</code> says the folder already exists, that’s fine; just run the <code>curl</code> line.</p>
+1856-57,1857,151
+@dataset{magnuson2026,</code></pre>
+<p>If you see an error instead, make sure you are in your <code>mendota_ice</code> folder (<code>pwd</code> shows where you are), then paste the commands again. If <code>mkdir</code> says the folder already exists, that’s fine; just run the two <code>curl</code> lines.</p>
 <p>That’s it. You’re ready for the workshop. We will start from this folder.</p>
 
 

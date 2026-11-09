@@ -14,7 +14,7 @@
     "href": "index.html#introduction-to-quarto",
     "title": "Introduction to Quarto",
     "section": "",
-    "text": "Before the workshop\nPlease finish these steps before the workshop so we can spend our time together on Quarto itself. They take about 15 minutes.\nThis setup builds on the Git workshop. It assumes you already have:\n\nGit installed (on Windows, this gave you Git Bash)\nA GitHub account\nAn SSH key connecting your computer to GitHub\n\nType every command below in a terminal: Terminal on macOS or Linux, Git Bash on Windows, or the terminal inside RStudio.\n\nStep 1: Install Quarto\nDownload the installer for your operating system from https://quarto.org/docs/download/ and run it.\nRStudio comes with its own copy of Quarto, but please install Quarto separately anyway. The separate install works in any terminal, and it lets you control which version you have. You won’t break anything: RStudio will use your installed copy automatically.\nWhen the installer finishes, close any open terminals and restart RStudio so they can find Quarto.\n\n\nStep 2: Check your Quarto version\nOpen a new terminal and run:\nquarto --version\nYou need version 1.9 or higher. Earlier versions can’t publish to Posit Connect Cloud from the terminal, which we will do in the workshop.\nIf you don’t see a version number of 1.9 or higher:\n\ncommand not found: Quarto isn’t installed, or the terminal can’t find it yet. Re-run the installer, then open a new terminal and try again.\nA version lower than 1.9: your terminal is finding an older copy of Quarto, often one installed for an earlier course. Run which quarto to see where that copy lives. Then download the current installer from the link above, run it, and check the version again in a new terminal.\n\nFor a fuller diagnosis, quarto check reports which version of Quarto you are running and whether it can find R and Python.\n\n\nStep 3: Create a Posit Connect Cloud account\nPosit Connect Cloud is a free service for sharing documents online. We will publish a report and a slide deck to it during the workshop.\n\nGo to https://connect.posit.cloud/\nClick Sign Up\nChoose to sign up with GitHub, using the GitHub account you already have\n\nThe free plan is all you need. If you already have an account, you can skip this step.\n\n\nStep 4: Create your workshop repo on GitHub\nDuring the workshop you will build a small project about ice cover on Lake Mendota. Make a home for it on GitHub now.\nIn your browser, signed in to GitHub:\n\nClick + (top right) → New repository\nName it mendota_ice\nChoose Public or Private; either works\nFrom the Add .gitignore dropdown, choose the R template\nClick Create repository\n\nDon’t skip the .gitignore. It tells Git to ignore the clutter that R and RStudio create (like .Rhistory and .Rproj.user/). It also gives the repo its first commit, so when you clone it, git push and git pull work right away.\n\n\nStep 5: Clone the repo to your computer\nOn your new repo’s page, click the green Code button, select the SSH tab, and copy the address.\nIn your terminal, move to the folder where you keep your GitHub repos. We used ~/github in the Git workshop; use your own folder if it’s different. Then clone the repo, pasting your own address:\ncd ~/github\ngit clone git@github.com:your_username/mendota_ice.git\nMove into the new folder and look around:\ncd mendota_ice\nls -a\n.  ..  .git  .gitignore\nYou should see the .gitignore you created on GitHub, plus the hidden .git folder that holds the repo’s history.\n\n\nStep 6: Download the data\nOur report will use 170 years of ice records for Lake Mendota. Put a copy in a data folder inside your repo.\nStay in your mendota_ice folder. Copy the two commands below (use the copy button at the top right of the box), paste them into your terminal, and press Enter:\nmkdir data\ncurl -fsSL -o data/mendota_ice.csv https://raw.githubusercontent.com/jjcurtin/book_quarto/main/data/mendota_ice.csv\nmkdir makes the data folder. curl downloads the file into it. If all goes well, neither command prints anything.\nCheck that the file arrived:\nhead -3 data/mendota_ice.csv\nwinter,year,ice_days\n1855-56,1856,118\n1856-57,1857,151\nIf you see an error instead, make sure you are in your mendota_ice folder (pwd shows where you are), then paste the commands again. If mkdir says the folder already exists, that’s fine; just run the curl line.\nThat’s it. You’re ready for the workshop. We will start from this folder.",
+    "text": "Before the workshop\nPlease finish these steps before the workshop so we can spend our time together on Quarto itself. They take about 15 minutes.\nThis setup builds on the Git workshop. It assumes you already have:\n\nGit installed (on Windows, this gave you Git Bash)\nA GitHub account\nAn SSH key connecting your computer to GitHub\n\nType every command below in a terminal: Terminal on macOS or Linux, Git Bash on Windows, or the terminal inside RStudio.\n\nStep 1: Install Quarto\nDownload the installer for your operating system from https://quarto.org/docs/download/ and run it.\nRStudio comes with its own copy of Quarto, but please install Quarto separately anyway. The separate install works in any terminal, and it lets you control which version you have. You won’t break anything: RStudio will use your installed copy automatically.\nWhen the installer finishes, close any open terminals and restart RStudio so they can find Quarto.\n\n\nStep 2: Check your Quarto version\nOpen a new terminal and run:\nquarto --version\nYou need version 1.9 or higher. Earlier versions can’t publish to Posit Connect Cloud from the terminal, which we will do in the workshop.\nIf you don’t see a version number of 1.9 or higher:\n\ncommand not found: Quarto isn’t installed, or the terminal can’t find it yet. Re-run the installer, then open a new terminal and try again.\nA version lower than 1.9: your terminal is finding an older copy of Quarto, often one installed for an earlier course. Run which quarto to see where that copy lives. Then download the current installer from the link above, run it, and check the version again in a new terminal.\n\nFor a fuller diagnosis, quarto check reports which version of Quarto you are running and whether it can find R and Python.\n\n\nStep 3: Create a Posit Connect Cloud account\nPosit Connect Cloud is a free service for sharing documents online. We will publish a report and a slide deck to it during the workshop.\n\nGo to https://connect.posit.cloud/\nClick Sign Up\nChoose to sign up with GitHub, using the GitHub account you already have\n\nThe free plan is all you need. If you already have an account, you can skip this step.\n\n\nStep 4: Create your workshop repo on GitHub\nDuring the workshop you will build a small project about ice cover on Lake Mendota. Make a home for it on GitHub now.\nIn your browser, signed in to GitHub:\n\nClick + (top right) → New repository\nName it mendota_ice\nChoose Public or Private; either works\nFrom the Add .gitignore dropdown, choose the R template\nClick Create repository\n\nDon’t skip the .gitignore. It tells Git to ignore the clutter that R and RStudio create (like .Rhistory and .Rproj.user/). It also gives the repo its first commit, so when you clone it, git push and git pull work right away.\n\n\nStep 5: Clone the repo to your computer\nOn your new repo’s page, click the green Code button, select the SSH tab, and copy the address.\nIn your terminal, move to the folder where you keep your GitHub repos. We used ~/github in the Git workshop; use your own folder if it’s different. Then clone the repo, pasting your own address:\ncd ~/github\ngit clone git@github.com:your_username/mendota_ice.git\nMove into the new folder and look around:\ncd mendota_ice\nls -a\n.  ..  .git  .gitignore\nYou should see the .gitignore you created on GitHub, plus the hidden .git folder that holds the repo’s history.\n\n\nStep 6: Download the data and references\nOur report will use 170 years of ice records for Lake Mendota, and our paper will cite them. Put a copy of the data in a data folder inside your repo, and the reference file (refs.bib) at the top of your repo.\nStay in your mendota_ice folder. Copy the three commands below (use the copy button at the top right of the box), paste them into your terminal, and press Enter:\nmkdir data\ncurl -fsSL -o data/mendota_ice.csv https://raw.githubusercontent.com/jjcurtin/book_quarto/main/data/mendota_ice.csv\ncurl -fsSL -o refs.bib https://raw.githubusercontent.com/jjcurtin/book_quarto/main/refs.bib\nmkdir makes the data folder. Each curl command downloads one file. If all goes well, none of the commands prints anything.\nCheck that the files arrived:\nhead -3 data/mendota_ice.csv\nhead -1 refs.bib\nwinter,year,ice_days\n1855-56,1856,118\n1856-57,1857,151\n@dataset{magnuson2026,\nIf you see an error instead, make sure you are in your mendota_ice folder (pwd shows where you are), then paste the commands again. If mkdir says the folder already exists, that’s fine; just run the two curl lines.\nThat’s it. You’re ready for the workshop. We will start from this folder.",
     "crumbs": [
       "Introduction to Quarto"
     ]
@@ -274,7 +274,7 @@
     "href": "02_report.html#the-error",
     "title": "2  Quarto Workshop: Your First Quarto Report",
     "section": "2.16 The error",
-    "text": "2.16 The error\nError in eval(parse_only(code), envir = envir) :\n  object 'n_winters' not found\n\nQuitting from report.qmd:44-44\nExecution halted\n\n\n\nquarto render runs your code in a fresh R session.\n\nIt cannot see anything in your console\nNot even chunks you ran in RStudio with the green ▶\nEvery object the report uses must be created in the report\n\n\n\n\nThis is a feature:\n\nIf it renders, anyone with your .qmd and data can rebuild it\nFix it here by creating n_winters in a chunk, or use nrow(ice) inline",
+    "text": "2.16 The error\nError in eval(parse_only(code), envir = envir) :\n  object 'n_winters' not found\n\nQuitting from report.qmd:44-44\nExecution halted\n\n\n\nquarto render runs your code in a fresh R session.\n\nIt cannot see anything in your console\nNot even chunks you ran in RStudio with the green ▶\nEvery object the report uses must be created in the report\n\n\n\n\nThis is a feature:\n\nIf it renders, anyone with your .qmd and data can rebuild it\n\n\n\n\nTo fix it:\n\nCreate it in the report: add n_winters &lt;- nrow(ice) to a chunk above the sentence",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Quarto Workshop: Your First Quarto Report</span>"
     ]
@@ -364,7 +364,7 @@
     "href": "03_publish.html#other-formats-one-flag",
     "title": "3  Render and Publish",
     "section": "3.5 Other formats, one flag",
-    "text": "3.5 Other formats, one flag\nThe same .qmd can become other formats:\nquarto render report.qmd --to docx\nquarto render report.qmd --to typst\n\n\n\n\ndocx: a Word document\ntypst: a PDF, with no LaTeX needed\nMore on Word output in the manuscript unit",
+    "text": "3.5 Other formats, one flag\nThe same .qmd can become other formats:\nquarto render report.qmd --to docx\nquarto render report.qmd --to typst\n\n\n\n\ndocx: a Word document\ntypst: a PDF, with no LaTeX needed\nMore on Word output in the paper unit",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
     ]
@@ -437,6 +437,236 @@
     "text": "3.12 Where we are\nWe have:\n\nRendered the report to one self-contained HTML file\nSeen that one flag switches the output to Word or PDF\nPublished the report to Posit Connect Cloud\nUpdated it at the same URL\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nReports are one product. Next we will turn the same kind of document into a slide deck.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Render and Publish</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html",
+    "href": "04_slides.html",
+    "title": "4  Slide Decks",
+    "section": "",
+    "text": "4.1 Your report is almost a deck\nIn the terminal, copy your report:\nIn slides.qmd, replace the format: lines with one line:\nRender, then open slides.html in your browser:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#your-report-is-almost-a-deck",
+    "href": "04_slides.html#your-report-is-almost-a-deck",
+    "title": "4  Slide Decks",
+    "section": "",
+    "text": "cp report.qmd slides.qmd\n\n\n\n\n---\ntitle: \"Ice Cover on Lake Mendota\"\nauthor: \"Your Name\"\ndate: today\nformat: revealjs\n---\n\n\n\n\nrevealjs is Quarto’s format for slides in a web browser\nYes, this copies your code; the paper unit comes back to that\n\n\n\n\n\nquarto render slides.qmd\n\nUse the arrow keys to move between slides",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#what-you-got",
+    "href": "04_slides.html#what-you-got",
+    "title": "4  Slide Decks",
+    "section": "4.2 What you got",
+    "text": "4.2 What you got\nYou changed one line, and:\n\nThe YAML header made a title slide\nEach ## heading started a new slide\nThe code is gone: decks hide code by default\n\n\n\n\nBut one slide has a problem:\n\nThe figure shares its slide with your three sentences\nQuarto shrinks the figure to make room for them",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#one-idea-per-slide",
+    "href": "04_slides.html#one-idea-per-slide",
+    "title": "4  Slide Decks",
+    "section": "4.3 One idea per slide",
+    "text": "4.3 One idea per slide\nAdd a heading just above your sentences:\n## The numbers\n\nBefore 1900, the lake averaged `r mean_1800s` days of ice.\nSince 2000, it has averaged `r mean_recent`.\n\n\n\n\nThe sentences move to a new slide\nThe figure now has its slide to itself, and it grows to fill it\n\n\n\n\nWant a new slide without a title?\n\nPut --- on a line by itself, with blank lines around it",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#bullets-and-pauses",
+    "href": "04_slides.html#bullets-and-pauses",
+    "title": "4  Slide Decks",
+    "section": "4.4 Bullets and pauses",
+    "text": "4.4 Bullets and pauses\nSlides read better as short bullets than as sentences:\n## The numbers\n\n- Before 1900: `r mean_1800s` days of ice per winter\n- Since 2000: `r mean_recent` days\n\n. . .\n\n- Shortest winter: `r min(ice$ice_days)` days\n- Longest winter: `r max(ice$ice_days)` days\n\n\n\n. . . on a line by itself is a pause.\n\nThe slide shows everything above it first\nPress → to show the rest\nKeep blank lines around it",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#speaker-notes",
+    "href": "04_slides.html#speaker-notes",
+    "title": "4  Slide Decks",
+    "section": "4.5 Speaker notes",
+    "text": "4.5 Speaker notes\nAt the bottom of a slide, add:\n::: {.notes}\nAbout a month less ice than in the 1800s.\n:::\n\n\n\n\nEverything between ::: {.notes} and ::: is a note\nYour audience doesn’t see notes\n\n\n\n\nPress S for speaker view:\n\nYour notes, a timer, and the next slide\nIf nothing opens, allow pop-ups for the page",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#your-turn",
+    "href": "04_slides.html#your-turn",
+    "title": "4  Slide Decks",
+    "section": "4.6 Your turn",
+    "text": "4.6 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd the ## The numbers heading, render, and check that the figure has its own slide\nTurn your sentences into bullets, with a . . . pause\nAdd a speaker note to one slide, render, and press S",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#optional-publish-your-deck",
+    "href": "04_slides.html#optional-publish-your-deck",
+    "title": "4  Slide Decks",
+    "section": "4.7 Optional: publish your deck",
+    "text": "4.7 Optional: publish your deck\nFirst, give your deck its own title in the YAML header:\ntitle: \"Less Ice on Lake Mendota\"\n\nConnect Cloud takes the title from your YAML, but only on the first publish\nYour report already uses “Ice Cover on Lake Mendota”\n\n\n\n\nThen publish, just like the report:\nquarto publish posit-connect-cloud slides.qmd\n\nThe deck gets its own URL\n_publish.yml adds a second entry, for slides.qmd",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "04_slides.html#where-we-are",
+    "href": "04_slides.html#where-we-are",
+    "title": "4  Slide Decks",
+    "section": "4.8 Where we are",
+    "text": "4.8 Where we are\nWe have:\n\nTurned the report into a slide deck by changing format:\nSplit slides with ## headings, so each idea gets its own slide\nAdded bullets, pauses, and speaker notes\n\n\n\n\n\n\n\n\n\n\n\nImportantNext up\n\n\n\nA project often goes from report, to slides for a conference talk, to a paper. Next we will write the paper.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Slide Decks</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html",
+    "href": "05_paper.html",
+    "title": "5  Writing a Paper",
+    "section": "",
+    "text": "5.1 What a paper needs\nA paper needs things a report doesn’t:\nAnd usually a Word file:",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#what-a-paper-needs",
+    "href": "05_paper.html#what-a-paper-needs",
+    "title": "5  Writing a Paper",
+    "section": "",
+    "text": "Citations and a reference list in a required style\nNumbered figures and tables you can refer to in the text\nAn abstract\nNo visible code\n\n\n\n\n\n\nCo-authors edit it with track changes\nMany journals ask for .docx",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#start-from-your-report",
+    "href": "05_paper.html#start-from-your-report",
+    "title": "5  Writing a Paper",
+    "section": "5.2 Start from your report",
+    "text": "5.2 Start from your report\nIn the terminal, in your mendota_ice folder:\ncp report.qmd paper.qmd\n\n\n\n\ncp copies a file: first the original, then the new name\npaper.qmd starts with everything your report has\n\n\n\n\nCopying is fine for today, but now the same code lives in three files: report, slides, and paper.\n\nChange one, and you must remember to change the other\nThe DRY unit shows how to keep the code in one place",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#a-papers-yaml-header",
+    "href": "05_paper.html#a-papers-yaml-header",
+    "title": "5  Writing a Paper",
+    "section": "5.3 A paper’s YAML header",
+    "text": "5.3 A paper’s YAML header\nReplace the YAML header at the top of paper.qmd:\n---\ntitle: \"Ice Cover on Lake Mendota\"\nauthor: \"Your Name\"\ndate: today\nabstract: |\n  Lake Mendota freezes for fewer days each winter than it did in the 1800s.\n  We summarize more than 170 years of ice records.\nformat: docx\nexecute:\n  echo: false\n---\n\n\n\n\nabstract: | starts a block; the indented lines below it are the abstract\nformat: docx builds a Word document\nexecute: echo: false hides all code; readers see only the results\nNo embed-resources needed; a Word file always holds its own figures",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#render-to-word",
+    "href": "05_paper.html#render-to-word",
+    "title": "5  Writing a Paper",
+    "section": "5.4 Render to Word",
+    "text": "5.4 Render to Word\nquarto render paper.qmd\n\n\n\nQuarto writes paper.docx next to your .qmd.\n\nOpen it in Word (or Google Docs, or LibreOffice)\n\n\n\n\nYou should see:\n\nThe abstract under the title\nYour sections, sentences, and figure\nNo code\n\n\n\n\nOn Windows, close paper.docx in Word before you render again.\n\nWord locks open files, so Quarto can’t replace it",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#citations-need-a-.bib-file",
+    "href": "05_paper.html#citations-need-a-.bib-file",
+    "title": "5  Writing a Paper",
+    "section": "5.5 Citations need a .bib file",
+    "text": "5.5 Citations need a .bib file\nYou downloaded refs.bib during setup. It holds one entry (shortened here):\n@dataset{magnuson2026,\n  author    = {Magnuson, J. J. and Carpenter, S. R. and Stanley, E. H.},\n  title     = {{North Temperate Lakes LTER}: Ice Duration - ...},\n  year      = {2026},\n  publisher = {Environmental Data Initiative},\n  doi       = {10.6073/pasta/6a95bee73799927cbafbf87393be7038},\n  ...\n}\n\n\n\n\nmagnuson2026 is the citation key; you cite the source with it\nGet entries from Google Scholar (Cite → BibTeX), a journal’s “Export citation” link, or Zotero\n\n\n\n\nPoint your paper to the file; add to the YAML header:\nbibliography: refs.bib",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#citation-style",
+    "href": "05_paper.html#citation-style",
+    "title": "5  Writing a Paper",
+    "section": "5.6 Citation style",
+    "text": "5.6 Citation style\nQuarto’s default style is Chicago author-date.\n\nFor APA, add one more line to the YAML header:\n\nbibliography: refs.bib\ncsl: https://www.zotero.org/styles/apa\n\n\n\nA CSL (Citation Style Language) file describes one style.\n\nThousands of styles, including many journals, are at https://www.zotero.org/styles\nWith a URL, Quarto downloads the style each time you render, so you need internet\nWorking offline? Download the file once and use csl: apa.csl",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#cite-a-source",
+    "href": "05_paper.html#cite-a-source",
+    "title": "5  Writing a Paper",
+    "section": "5.7 Cite a source",
+    "text": "5.7 Cite a source\nIn your Background section, add a citation to the first sentence:\nLake Mendota has been watched for ice since the **1850s** [@magnuson2026].\n\n\n\n\n\n\nYou type\nQuarto writes\n\n\n\n\n[@magnuson2026]\n(Magnuson et al., 2026)\n\n\n@magnuson2026\nMagnuson et al. (2026)\n\n\n\n\n\n\nAt the very end of paper.qmd, add a heading:\n## References\n\nQuarto puts the reference list there, formatted in APA",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#number-the-figure",
+    "href": "05_paper.html#number-the-figure",
+    "title": "5  Writing a Paper",
+    "section": "5.8 Number the figure",
+    "text": "5.8 Number the figure\nChange the figure chunk’s label and add a caption:\n```{r}\n#| label: fig-ice_days\n#| fig-cap: \"Days of ice cover on Lake Mendota, by winter.\"\n\nice |&gt;\n  ggplot(aes(x = year, y = ice_days)) +\n  geom_line() +\n  labs(x = \"Winter (year it ended)\", y = \"Days of ice cover\") +\n  theme_minimal()\n```\n\n\n\nThen refer to it in a sentence:\nIce cover has declined since the 1850s (@fig-ice_days).\n\nThe label must start with fig-; Quarto requires that hyphen (the rest stays snake_case)\nQuarto numbers the figure and writes “Figure 1” for you",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#add-a-numbered-table",
+    "href": "05_paper.html#add-a-numbered-table",
+    "title": "5  Writing a Paper",
+    "section": "5.9 Add a numbered table",
+    "text": "5.9 Add a numbered table\nAdd a new chunk:\n```{r}\n#| label: tbl-periods\n#| tbl-cap: \"Ice cover by half century.\"\n\nice |&gt;\n  group_by(half_century = floor(year / 50) * 50) |&gt;\n  summarize(winters = n(), mean_days = round(mean(ice_days))) |&gt;\n  knitr::kable()\n```\n\n\n\nThen refer to it in a sentence:\n@tbl-periods shows the average for each half century.\n\nSame pattern as figures: a tbl- label, a tbl-cap caption\nknitr::kable() turns a data frame into a table that works in Word, PDF, and HTML",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#your-turn",
+    "href": "05_paper.html#your-turn",
+    "title": "5  Writing a Paper",
+    "section": "5.10 Your turn",
+    "text": "5.10 Your turn\n\n\n\n\n\n\n\nImportantTry it\n\n\n\n\nAdd bibliography: and csl: to your YAML header\nCite @magnuson2026 in your Background section, and add ## References at the end\nGive your figure a fig- label and a caption, and refer to it in a sentence\nAdd the table chunk, and refer to it in a sentence\nRender, and open paper.docx",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#your-turn-check-your-paper",
+    "href": "05_paper.html#your-turn-check-your-paper",
+    "title": "5  Writing a Paper",
+    "section": "5.11 Your turn: check your paper",
+    "text": "5.11 Your turn: check your paper\nIn paper.docx, look for (Magnuson et al., 2026), Figure 1, Table 1, and the reference list.\n\n\n\nA typo doesn’t stop the render.\n\nQuarto prints a WARNING in the terminal and keeps going\nRead the render output, not just the Word file\n\n\n\n\n\n\n\n\n\n\n\nYou see\nFix\n\n\n\n\n(magnuson?)\nThe key doesn’t match refs.bib; check spelling and the bibliography: line\n\n\n?@fig-ice_days\nThe label and the reference must match exactly, and start with fig-\n\n\nCode in the Word file\nCheck the indentation of echo: false under execute:",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#word-and-pdf-from-one-render",
+    "href": "05_paper.html#word-and-pdf-from-one-render",
+    "title": "5  Writing a Paper",
+    "section": "5.12 Word and PDF from one render",
+    "text": "5.12 Word and PDF from one render\n\nformat:\n  docx: default\n  typst:\n    citeproc: true\n\n\n\nquarto render paper.qmd now makes both paper.docx and paper.pdf.\n\ndefault means “no extra options for this format”\nTypst makes the PDF, with no LaTeX needed\n\n\n\n\nWhy citeproc: true?\n\nTypst formats citations itself, and it can’t read a style from a URL\nThis tells it to use the same citation engine as the Word file",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
+    ]
+  },
+  {
+    "objectID": "05_paper.html#where-we-are",
+    "href": "05_paper.html#where-we-are",
+    "title": "5  Writing a Paper",
+    "section": "5.13 Where we are",
+    "text": "5.13 Where we are\nWe have:\n\nTurned the report into a paper with a few YAML changes\nCited a source, with a reference list in APA style\nNumbered a figure and a table, and referred to them in the text\nRendered to Word (and PDF)\n\n\n\n\n\n\n\n\n\n\n\nImportantWhere to go next\n\n\n\nThe reference units cover more markdown, chunk options and tables, YAML in depth, and how to keep one copy of your code for a report, slides, and a paper.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Writing a Paper</span>"
     ]
   }
 ]
